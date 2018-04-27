@@ -7,7 +7,7 @@ package net.ictcampus.rts.view;
  * GUI,
  * 
  * @author lauwrensw
- *
+ * @version 1.0
  */
 
 public class GUI {
@@ -18,13 +18,12 @@ public class GUI {
     private String mitgliedsname2;
 
     // -------------------------------Constructor--------------------------------//
+
     
-    
-//asdf
     // -----------------------------------Main-----------------------------------//
-    
-    public static void main(String[] args){
-        
+
+    public static void main(String[] args) {
+
     }
 
     // ---------------------------------Methods---------------------------------//
