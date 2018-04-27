@@ -6,7 +6,7 @@ public class SpielLogik {
     private Spiel spiel;
     private SpielFeld feld;
     private ArrayList<Player> spieler;
-    
+
     public SpielLogik(ArrayList<Player>) {
         
     }

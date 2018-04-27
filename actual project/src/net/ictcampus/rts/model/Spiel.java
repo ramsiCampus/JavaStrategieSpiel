@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Spiel {
     private Spielfeld spielfeld;
-    private ArrayListy<Player> spieler;
+    private ArrayList<Player> spieler;
     
     public Spiel(int xLength, int yLength, Player... spieler ) {
         
