@@ -7,7 +7,7 @@ public class SpielLogik {
     private SpielFeld feld;
     private ArrayList<Player> spieler;
 
-    public SpielLogik(ArrayList<Player>) {
+    public SpielLogik( ArrayList<Player> ) {
         
     }
 }

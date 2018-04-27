@@ -11,7 +11,7 @@ public class Spiel {
     }
     
     
-    public boolean commandAusfuehren(int , int ) {
+    public boolean commandAusfuehren(int int1, int int2 ) {
         
     }
     
