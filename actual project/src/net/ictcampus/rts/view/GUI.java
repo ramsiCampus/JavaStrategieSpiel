@@ -1,6 +1,8 @@
 //packages
 package net.ictcampus.rts.view;
 
+import net.ictcampus.rts.model.Spiel;
+
 //imports
 
 /**
@@ -13,7 +15,7 @@ package net.ictcampus.rts.view;
 public class GUI {
 
     // ---------------------------variable_declaration---------------------------//
-    private String spiel = new Spiel();
+    private Spiel spiel;
     private String mitgliedsname;
     private String mitgliedsname2;
     private String hallo;

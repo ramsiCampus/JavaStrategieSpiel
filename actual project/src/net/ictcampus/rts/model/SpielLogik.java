@@ -1,6 +1,7 @@
 package net.ictcampus.rts.model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class SpielLogik {
     private Spiel spiel;

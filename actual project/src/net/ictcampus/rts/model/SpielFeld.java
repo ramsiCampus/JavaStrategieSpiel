@@ -1,12 +1,14 @@
 package net.ictcampus.rts.model;
 
-public class Spielfeld {
+import java.util.List;
+
+public class SpielFeld {
 
     private List<Mensch> einheiten;
     private List<Stadt> staedte;
     private Feld[][] felder;
     
-    public Spielfeld(int xLength, int yLength) {
+    public SpielFeld(int xLength, int yLength) {
         
     }
     

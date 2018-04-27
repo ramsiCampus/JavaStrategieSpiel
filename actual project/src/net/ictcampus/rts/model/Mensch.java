@@ -3,6 +3,9 @@
 package net.ictcampus.rts.model;
 //imports
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
 * Mensch,
 * 

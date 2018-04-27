@@ -2,6 +2,8 @@
 package net.ictcampus.rts.model;
 //imports
 
+import java.util.List;
+
 import com.sun.javafx.collections.MappingChange.Map;
 
 /**
@@ -17,7 +19,7 @@ public class Player {
     private String name;
     private int[] alleID;
     private int ID;
-    private Map<Ressourcen, int> ressourcen = new HashMap<Ressourcen, int>();       // Anschauen!!!
+    private List<Ressource> ressourcen;       // Anschauen!!!
 
   //-------------------------------Constructor--------------------------------//
 

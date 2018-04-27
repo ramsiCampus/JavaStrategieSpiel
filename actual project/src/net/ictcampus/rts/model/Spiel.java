@@ -1,9 +1,10 @@
 package net.ictcampus.rts.model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Spiel {
-    private Spielfeld spielfeld;
+    private SpielFeld spielfeld;
     private List<Player> spieler;
     
     public Spiel(int xLength, int yLength, Player... spieler ) {
@@ -12,6 +13,7 @@ public class Spiel {
     
     
     public boolean commandAusfuehren(int int1, int int2 ) {
+        return false;
         
     }
     

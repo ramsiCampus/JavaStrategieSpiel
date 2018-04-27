@@ -33,6 +33,7 @@ public class Stadt {
     }
     
     public int checkVorrat(Ressource ressource) {
+        return 0;
         
     }
 }

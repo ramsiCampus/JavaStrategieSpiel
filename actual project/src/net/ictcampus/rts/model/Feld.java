@@ -1,12 +1,14 @@
 package net.ictcampus.rts.model;
 
+import java.util.List;
+
 public class Feld {
     
     private int xPos;
     private int yPos;
-    private List<Mensch> einheiten = new ArrayList<Mensch>();
-    private List<Item> loot = new ArrayList<Item>();
-    private Stadt stadt = new Stadt();
+    private List<Mensch> einheiten;
+    private List<Item> loot;
+    private Stadt stadt;
     
     public Feld(int xPos, int yPos){
         xPos = this.xPos;
@@ -18,6 +20,7 @@ public class Feld {
     }
     
     public Item lootAufgenommen(Mensch einheiten){
+        return null;
         
     }
     
