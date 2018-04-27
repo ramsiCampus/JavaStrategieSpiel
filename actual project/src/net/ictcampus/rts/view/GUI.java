@@ -16,6 +16,7 @@ public class GUI {
     private String spiel = new Spiel();
     private String mitgliedsname;
     private String mitgliedsname2;
+    private String hallo;
 
     // -------------------------------Constructor--------------------------------//
 
