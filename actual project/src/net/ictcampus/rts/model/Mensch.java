@@ -22,6 +22,7 @@ public class Mensch extends GameObject {
     private List<Item> tasche = new ArrayList<Item>();
     private Player besitzer;
     private Ressource preis;
+    private int ausdauer;
 
     // -------------------------------Constructor--------------------------------//
 
@@ -37,8 +38,14 @@ public class Mensch extends GameObject {
 
     // ---------------------------------Methods---------------------------------//
 
-    public boolean bewegen(int xPos, int yPos) {
-        return true;
+    public boolean bewegen(int xGoal, int yGoal) {
+        int distanz = Math.abs(xPos-xGoal) + Math.abs(yPos-yGoal);
+        if(distanz<=this.ausdauer) {
+            this.xPos = xGoal;
+            this.yPos = yGoal;
+            return true;
+        }
+        return false;
     }
 
     public void aufnehmen(Item tasche) {
