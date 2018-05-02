@@ -14,7 +14,7 @@ public class GameObject {
     // ---------------------------variable_declaration---------------------------//
 
     private static int counter;
-    private List<GameObject> alleObj = new ArrayList<GameObject>();
+    private static List<GameObject> alleObj = new ArrayList<GameObject>();
     private int staerke;
     private int ID;
 
