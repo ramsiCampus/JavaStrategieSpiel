@@ -21,11 +21,8 @@ public class Feld {
     private List<Mensch> einheiten = new ArrayList<Mensch>();
     private List<Ressource> loot = new ArrayList<Ressource>();
     private Stadt stadt;
-    private int anzahlRessourcen;
 
     // -------------------------------Constructor--------------------------------//
-
-    
 
     public Feld(int xPos, int yPos) {
         xPos = this.xPos;
@@ -55,8 +52,7 @@ public class Feld {
             return false;
         }
 
-    }  
-   
+    }
 
     /**
      * erzeugeLoot, erstellt ein neues Item als Ressource und fügt diese der
@@ -67,9 +63,9 @@ public class Feld {
 
         Ressource ressource = new Ressource("Geld", anzahlRessourcen());
         loot.add(ressource);
-        
+
     }
-    
+
     /**
      * lootAufnehmen,
      * 
@@ -78,11 +74,9 @@ public class Feld {
      */
 
     public Item lootAufnehmen(Mensch mensch) {
-        
+
         mensch.aufnehmen(loot.get(0));
-        
-   
-        return null;
+        return loot.get(0);
 
     }
 
@@ -96,13 +90,11 @@ public class Feld {
         int min = 100;
         int max = 1000;
         Random randomZahl = new Random();
-        int generierteRessource = randomZahl.nextInt(max-min) +min;
+        int generierteRessource = randomZahl.nextInt(max - min) + min;
         return generierteRessource;
 
     }
-    
- // ------------------------------Getter_Setter------------------------------//
-    
-  
+
+    // ------------------------------Getter_Setter------------------------------//
 
 }

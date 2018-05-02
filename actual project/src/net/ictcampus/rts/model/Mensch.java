@@ -46,14 +46,8 @@ public class Mensch extends GameObject {
         int menge;
         if(ressource.getAnzahl() >= 50){
             menge = ressource.getAnzahl() - 50; 
-            ressource.setAnzahl(ressource.getAnzahl()-menge);
-            
-            
-        }
-        else{
-            
-        }
-
+            ressource.setAnzahl(ressource.getAnzahl()-menge);           
+        }       
     }
 
     // ------------------------------Getter_Setter------------------------------//
