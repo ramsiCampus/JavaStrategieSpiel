@@ -1,23 +1,41 @@
+//packages
 package net.ictcampus.rts.model;
 
-import java.util.ArrayList;
+//imports
+
 import java.util.List;
 
+/**
+ * Klasse Spiel,
+ * 
+ * @author lauwrensw
+ *
+ */
+
 public class Spiel {
+
+    // ---------------------------variable_declaration---------------------------//
     private SpielFeld spielfeld;
     private List<Player> spieler;
-    
-    public Spiel(int xLength, int yLength, Player... spieler ) {
-        
+
+    // -------------------------------Constructor--------------------------------//
+
+    public Spiel(int xLength, int yLength, Player... spieler) {
+
     }
-    
-    
-    public boolean commandAusfuehren(int int1, int int2 ) {
+
+    // -----------------------------------Main-----------------------------------//
+
+    // ---------------------------------Methods---------------------------------//
+
+    public boolean commandAusfuehren(int int1, int int2) {
         return false;
-        
+
     }
-    
+
     public void spielerHinzufuegen(Player spieler) {
-        
+
     }
+
+    // ------------------------------Getter_Setter------------------------------//
 }
