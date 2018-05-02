@@ -19,7 +19,7 @@ public class Feld {
     private int xPos;
     private int yPos;
     private List<Mensch> einheiten = new ArrayList<Mensch>();
-    private List<Ressource> loot = new ArrayList<Ressource>();
+    private List<Item> loot = new ArrayList<Item>();
     private Stadt stadt;
 
     // -------------------------------Constructor--------------------------------//
@@ -36,10 +36,11 @@ public class Feld {
     // ---------------------------------Methods---------------------------------//
 
     /**
-     * wirdBetreten, fügt Objekt Mensch der Liste einheiten hinzu und überprüft
-     * ob die Liste Objekte des Typs Mensch erhalten.
+     * wirdBetreten, fügt Objekt Mensch der Liste einheiten hinzu und überprüft ob
+     * die Liste Objekte des Typs Mensch erhalten.
      * 
-     * @param mensch, Objeckt Mensch als Parameter wird mitgegeben
+     * @param mensch,
+     *            Objeckt Mensch als Parameter wird mitgegeben
      * @return true falls Objekt Mensch in Liste vorhanden ist, sonnst false.
      */
 
@@ -57,8 +58,8 @@ public class Feld {
     }
 
     /**
-     * erzeugeLoot, erstellt ein neues Item als Ressource und fügt diese der
-     * Liste "loot" hinzu
+     * erzeugeLoot, erstellt ein neues Item als Ressource und fügt diese der Liste
+     * "loot" hinzu
      */
 
     public void erzeugeLoot() {
@@ -80,16 +81,17 @@ public class Feld {
      * @return
      */
 
-    public Item lootAufnehmen(Mensch mensch) {
-
-        mensch.aufnehmen(loot.get(0));
-        return loot.get(0);
-
+    public boolean lootAufnehmen(Mensch mensch) {
+        if (this.loot.size() == 0) {
+            return false;
+        }
+        mensch.aufnehmen(this);
+        return true;
     }
 
     /**
-     * anzahlRessource, generiert eine Zahl zwischen 100 und 1000 und gibt sie
-     * als int-Wert zurück @return, generierte Zahl als int
+     * anzahlRessource, generiert eine Zahl zwischen 100 und 1000 und gibt sie als
+     * int-Wert zurück @return, generierte Zahl als int
      */
 
     private int anzahlRessourcen() {
@@ -100,18 +102,52 @@ public class Feld {
         int generierteRessource = randomZahl.nextInt(max - min) + min;
         return generierteRessource;
 
+       
     }
+
 
     // ------------------------------Getter_Setter------------------------------//
     
+
+    public int getxPos() {
+        return xPos;
+    }
+
+    public void setxPos(int xPos) {
+        this.xPos = xPos;
+    }
+
+    public int getyPos() {
+        return yPos;
+    }
+
+    public void setyPos(int yPos) {
+        this.yPos = yPos;
+    }
+
+    public List<Mensch> getEinheiten() {
+        return einheiten;
+    }
+
+    public void setEinheiten(List<Mensch> einheiten) {
+        this.einheiten = einheiten;
+    }
+
+    public List<Item> getLoot() {
+        return loot;
+    }
+
+    public void setLoot(List<Item> loot) {
+        this.loot = loot;
+    }
+
     public Stadt getStadt() {
         return stadt;
     }
-    
+
     public void setStadt(Stadt stadt) {
         this.stadt = stadt;
     }
-
 
 
 }
