@@ -130,7 +130,9 @@ public class Testframe extends JFrame {
 
     private void setContentLeft(JPanel contentBorderLeft) {
         contentBorderLeft.setLayout(new GridLayout(5, 2));
-
+        
+        contentBorderLeft.setBackground(new Color(92, 255, 150));
+        
         JLabel menschenAnzahl = new JLabel("800000");
         JLabel ressourcenAnzahl = new JLabel("2022541100");
         JLabel stadtAnzahl = new JLabel("6");
@@ -152,7 +154,9 @@ public class Testframe extends JFrame {
 
     private void setContentCenter(JPanel p,Font titel) {
         p.setLayout(new GridLayout(7, 3));
-
+        
+        p.setBackground(new Color(150, 218, 255));
+        
         JLabel lblTitel = new JLabel("Aktionen");
         JButton btnCreateP = new JButton("Menschen erstellen");
         JButton btnBuildC = new JButton("Stadt bauen");
