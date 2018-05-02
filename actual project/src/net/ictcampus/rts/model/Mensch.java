@@ -20,7 +20,7 @@ public class Mensch extends GameObject {
     private int yPos;
     private int lebenspunkt;
     private List<Item> tasche = new ArrayList<Item>();
-    private Player besitzer = new Player();
+    private Player besitzer;
     private Ressource preis;
 
     // -------------------------------Constructor--------------------------------//
