@@ -21,10 +21,19 @@ public class Item extends GameObject{
         name = this.name;
     }
 
+
     // -----------------------------------Main-----------------------------------//
 
     // ---------------------------------Methods---------------------------------//
 
     // ------------------------------Getter_Setter------------------------------//
 
+    public String getName() {
+        return name;
+    }
+    
+    public void setName(String name) {
+        this.name = name;
+    }
+    
 }

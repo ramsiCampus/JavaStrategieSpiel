@@ -26,17 +26,35 @@ public class Stadt extends GameObject {
 
     // -------------------------------Constructor--------------------------------//
 
-    public Stadt(int xPos, int yPos, Player spieler) {
+    public Stadt(String name,int xPos, int yPos, Player spieler) {
         super();
-
+        this.name = name;
+        this.xPos = xPos;
+        this.yPos = yPos;
+        this.besitzer = spieler;
+        
     }
 
     // -----------------------------------Main-----------------------------------//
 
     // ---------------------------------Methods---------------------------------//
 
-    public void menschKaufen(Mensch mensch) {
-
+    /**
+     * 
+     * @param mensch Welcher Menschen typ soll gekauft werden
+     * @return boolean ob Transaktion geglückt
+     */
+    public boolean menschKaufen(Mensch mensch) {
+        int preisM = mensch.getPreis().getAnzahl();    
+        if(preisM > this.checkVorrat("Geld")) {
+            return false;
+        }
+        for(int i = 0; i<preis;i++) {
+            vorrat.remove(vorrat.size()-1);
+            Mensch newBurger = new Mensch(this.besitzer, preisM);
+            volk.add(newBurger);
+        }
+        return true;
     }
 
     public void vorratErzeugen(Ressource ressource, int menge) {
@@ -51,9 +69,16 @@ public class Stadt extends GameObject {
 
     }
 
-    public int checkVorrat(Ressource ressource) {
-        return 0;
-
+    public int checkVorrat(String itemName) {
+        int anzahl = 0;
+        for(Item i : vorrat) {
+            if(i instanceof Ressource) {
+                if(i.getName().equals(itemName))
+                anzahl += ((Ressource)i).getAnzahl();
+            }
+        }
+        
+        return anzahl;
     }
 
     // ------------------------------Getter_Setter------------------------------//

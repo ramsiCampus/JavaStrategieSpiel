@@ -23,6 +23,7 @@ public class Ressource extends Item {
         anzahl = this.anzahl;
     }
 
+
     // -------------------------------Constructor--------------------------------//
 
     // -----------------------------------Main-----------------------------------//
@@ -31,4 +32,12 @@ public class Ressource extends Item {
 
     // ------------------------------Getter_Setter------------------------------//
 
+    public int getAnzahl() {
+        return anzahl;
+    }
+    
+    public void setAnzahl(int anzahl) {
+        this.anzahl = anzahl;
+    }
+    
 }
