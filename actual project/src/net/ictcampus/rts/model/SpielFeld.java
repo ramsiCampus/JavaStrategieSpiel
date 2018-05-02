@@ -54,8 +54,10 @@ public class SpielFeld {
         }
     }
 
-    public void menschBewegen(int xPos, int yPos, Mensch mensch) {
-
+    public void armeeBewegen(int xPos, int yPos, Armee armee) {
+        
+        armee.armeeBewegen(xPos, yPos);
+        
     }
 
     // ------------------------------Getter_Setter------------------------------//

@@ -44,6 +44,7 @@ public class Feld {
      * @return true falls Objekt Mensch in Liste vorhanden ist, sonnst false.
      */
 
+    @SuppressWarnings("unlikely-arg-type")
     public boolean wirdBetreten(Mensch mensch) {
 
         einheiten.add(mensch);
@@ -101,13 +102,11 @@ public class Feld {
         Random randomZahl = new Random();
         int generierteRessource = randomZahl.nextInt(max - min) + min;
         return generierteRessource;
-
-       
     }
 
 
     // ------------------------------Getter_Setter------------------------------//
-    
+
 
     public int getxPos() {
         return xPos;

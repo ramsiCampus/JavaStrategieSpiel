@@ -22,7 +22,7 @@ public class Mensch extends GameObject {
     private List<Item> tasche = new ArrayList<Item>();
     private Player besitzer;
     private Ressource preis;
-    private int ausdauer;
+    private int ausdauer = 1;
 
     // -------------------------------Constructor--------------------------------//
 
