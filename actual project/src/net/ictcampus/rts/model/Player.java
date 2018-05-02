@@ -20,14 +20,30 @@ public class Player {
     private int[] alleID;
     private int ID;
     private List<Ressource> ressourcen;       // Anschauen!!!
+    private int testgeld;
 
   //-------------------------------Constructor--------------------------------//
 
+   
+
+    public Player(String name, int ID){
+        name = this.name;
+        ID = this.ID;
+        
+    }
   //-----------------------------------Main-----------------------------------//
 
   //---------------------------------Methods---------------------------------//
     
     
   //------------------------------Getter_Setter------------------------------//
+    
+    public int getTestgeld() {
+        return testgeld;
+    }
+
+    public void setTestgeld(int testgeld) {
+        this.testgeld = testgeld;
+    }
 
 }

@@ -24,6 +24,8 @@ public class Feld {
 
     // -------------------------------Constructor--------------------------------//
 
+   
+   
     public Feld(int xPos, int yPos) {
         xPos = this.xPos;
         yPos = this.yPos;
@@ -67,6 +69,11 @@ public class Feld {
         loot.add(ressource);
 
     }
+    
+    public void erzeugeStadt(String name, Player spieler){
+        stadt = new Stadt(name, this.xPos,this.yPos, spieler);  
+        setStadt(stadt);
+    }
 
     /**
      * lootAufnehmen,
@@ -96,9 +103,9 @@ public class Feld {
         int generierteRessource = randomZahl.nextInt(max - min) + min;
         return generierteRessource;
 
-    }
 
     // ------------------------------Getter_Setter------------------------------//
+
 
     public int getxPos() {
         return xPos;
@@ -139,5 +146,6 @@ public class Feld {
     public void setStadt(Stadt stadt) {
         this.stadt = stadt;
     }
+
 
 }
