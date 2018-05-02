@@ -12,7 +12,7 @@ import java.util.List;
  *
  */
 
-public class Stadt {
+public class Stadt extends GameObject {
 
     // ---------------------------variable_declaration---------------------------//
 
@@ -27,6 +27,7 @@ public class Stadt {
     // -------------------------------Constructor--------------------------------//
 
     public Stadt(int xPos, int yPos, Player spieler) {
+        super();
 
     }
 

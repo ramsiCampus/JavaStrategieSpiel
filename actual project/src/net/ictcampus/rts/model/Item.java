@@ -8,7 +8,7 @@ package net.ictcampus.rts.model;
  * @author lauwrensw
  *
  */
-public class Item {
+public class Item extends GameObject{
 
     // ---------------------------variable_declaration---------------------------//
 
@@ -17,6 +17,7 @@ public class Item {
     // -------------------------------Constructor--------------------------------//
 
     public Item(String name) {
+        super();
         name = this.name;
     }
 

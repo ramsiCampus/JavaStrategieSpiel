@@ -12,7 +12,7 @@ import java.util.List;
 * @author lauwrensw
 * @version 1.0
 */
-public class Mensch {
+public class Mensch extends GameObject{
 
   // ---------------------------variable_declaration---------------------------//
 
@@ -26,6 +26,7 @@ public class Mensch {
 //-------------------------------Constructor--------------------------------//
   
   public Mensch(Player besitzer, int preis){
+      super();
       besitzer = this.besitzer;
       preis = this.preis;
   }

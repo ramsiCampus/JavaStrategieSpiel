@@ -1,7 +1,8 @@
 //packages
 package net.ictcampus.rts.model;
 //imports
-
+import java.util.ArrayList;
+import java.util.List;
 /**
  * GameObject,
  * 
@@ -12,14 +13,17 @@ public class GameObject {
 
     // ---------------------------variable_declaration---------------------------//
 
-    private int[] alleID;
+    private static int counter;
+    private List<GameObject> alleObj = new ArrayList<GameObject>();
     private int staerke;
     private int ID;
 
     // -------------------------------Constructor--------------------------------//
 
     public GameObject() {
-
+        counter++;
+        this.ID = counter;
+        alleObj.add(this);
     }
 
     // -----------------------------------Main-----------------------------------//
