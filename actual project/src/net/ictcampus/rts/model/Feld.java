@@ -102,6 +102,7 @@ public class Feld {
         Random randomZahl = new Random();
         int generierteRessource = randomZahl.nextInt(max - min) + min;
         return generierteRessource;
+    }
 
 
     // ------------------------------Getter_Setter------------------------------//
