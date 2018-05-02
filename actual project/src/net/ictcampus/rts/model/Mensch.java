@@ -48,13 +48,60 @@ public class Mensch extends GameObject {
         return false;
     }
 
-    public void aufnehmen(Ressource ressource) {
+    public void aufnehmen(Feld feld) {
         
-        int menge;
-        if(ressource.getAnzahl() >= 50){
-            menge = ressource.getAnzahl() - 50; 
-            ressource.setAnzahl(ressource.getAnzahl()-menge);           
-        }       
+        int geld = 0;
+        List<Item> loot = feld.getLoot();
+        for(Item it : loot) {
+            if(it instanceof Ressource) {
+                if(it.getName().equals("Geld")) {
+                    geld =((Ressource) it).getAnzahl();
+                    if (geld > 50) {
+                        looteGeld(50);
+                        ((Ressource) it).setAnzahl(geld-50);
+                    }
+                    else {
+                        looteGeld(geld);
+                        ((Ressource) it).setAnzahl(0);
+                        loot.remove(0);                         //hard-coded für Felder die nur Geld haben 
+                    }
+                }
+            }
+        }
+       
+    }
+    
+    private void looteGeld(int menge) {
+        if (checkTasche("Geld") == 0) {
+            erzeugeInBeutel("Geld", menge);
+        }
+        else {
+            for (Item i : tasche) {
+                if (i instanceof Ressource) {
+                    if (i.getName().equals("Geld")) {
+                        int mengeNeu = (checkTasche("Geld")+ menge);
+                        ((Ressource) i).setAnzahl(mengeNeu);
+                    }
+                }
+            }
+        }
+    }
+    
+    private int checkTasche(String itemName) {
+        int anzahl = 0;
+        for (Item i : tasche) {
+            if (i instanceof Ressource) {
+                if (i.getName().equals(itemName))
+                    anzahl += ((Ressource) i).getAnzahl();
+            }
+        }
+
+        return anzahl;
+    }
+    
+    private void erzeugeInBeutel(String ressourceName, int menge) {
+        Item newRessource = new Ressource(ressourceName, menge);
+        this.tasche.add(newRessource);
     }
 
     // ------------------------------Getter_Setter------------------------------//
