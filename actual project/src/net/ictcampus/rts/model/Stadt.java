@@ -88,6 +88,15 @@ public class Stadt extends GameObject {
 
     public void wirdBetreten(Mensch mensch) {
         if(mensch.getBesitzer().equals(this.besitzer)) {
+            for(Item i : mensch.getTasche()) {
+                if(i instanceof Ressource) {
+                    vorratAddieren("Geld", ((Ressource) i).getAnzahl());
+                }
+                else {
+                    vorrat.add(i);
+                }
+            }
+            mensch.getTasche().clear();
             this.volk.add(mensch);
         }
     }
