@@ -24,6 +24,8 @@ public class Feld {
 
     // -------------------------------Constructor--------------------------------//
 
+   
+   
     public Feld(int xPos, int yPos) {
         xPos = this.xPos;
         yPos = this.yPos;
@@ -65,6 +67,11 @@ public class Feld {
         loot.add(ressource);
 
     }
+    
+    public void erzeugeStadt(String name, Player spieler){
+        stadt = new Stadt(name, this.xPos,this.yPos, spieler);  
+        setStadt(stadt);
+    }
 
     /**
      * lootAufnehmen,
@@ -96,5 +103,15 @@ public class Feld {
     }
 
     // ------------------------------Getter_Setter------------------------------//
+    
+    public Stadt getStadt() {
+        return stadt;
+    }
+    
+    public void setStadt(Stadt stadt) {
+        this.stadt = stadt;
+    }
+
+
 
 }
