@@ -27,8 +27,10 @@ public class GUI {
 
     public static void main(String[] args) {
 
+        Testframe tf = new Testframe();
+        
     }
-
+    
     // ---------------------------------Methods---------------------------------//
 
     // ------------------------------Getter_Setter------------------------------//

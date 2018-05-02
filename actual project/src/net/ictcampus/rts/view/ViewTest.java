@@ -1,5 +1,5 @@
 package net.ictcampus.rts.view;
 
-public class viewTest {
+public class ViewTest {
 
 }
