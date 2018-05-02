@@ -87,7 +87,8 @@ public class Stadt extends GameObject {
     }
 
     public void wirdBetreten(Mensch mensch) {
-
+        this.volk.add(mensch);
+        if(mensch.getBesitzer().equals(this.besitzer));
     }
 
     public int checkVorrat(String itemName) {
@@ -103,4 +104,62 @@ public class Stadt extends GameObject {
     }
 
     // ------------------------------Getter_Setter------------------------------//
+
+    public int getxPos() {
+        return xPos;
+    }
+
+    public void setxPos(int xPos) {
+        this.xPos = xPos;
+    }
+
+    public int getyPos() {
+        return yPos;
+    }
+
+    public void setyPos(int yPos) {
+        this.yPos = yPos;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<Mensch> getVolk() {
+        return volk;
+    }
+
+    public void setVolk(List<Mensch> volk) {
+        this.volk = volk;
+    }
+
+    public List<Item> getVorrat() {
+        return vorrat;
+    }
+
+    public void setVorrat(List<Item> vorrat) {
+        this.vorrat = vorrat;
+    }
+
+    public Player getBesitzer() {
+        return besitzer;
+    }
+
+    public void setBesitzer(Player besitzer) {
+        this.besitzer = besitzer;
+    }
+
+    public int getPreis() {
+        return preis;
+    }
+
+    public void setPreis(int preis) {
+        this.preis = preis;
+
+    }
+
 }
