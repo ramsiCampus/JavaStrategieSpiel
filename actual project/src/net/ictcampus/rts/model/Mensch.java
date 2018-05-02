@@ -41,7 +41,18 @@ public class Mensch extends GameObject {
         return true;
     }
 
-    public void aufnehmen(Item tasche) {
+    public void aufnehmen(Ressource ressource) {
+        
+        int menge;
+        if(ressource.getAnzahl() >= 50){
+            menge = ressource.getAnzahl() - 50; 
+            ressource.setAnzahl(ressource.getAnzahl()-menge);
+            
+            
+        }
+        else{
+            
+        }
 
     }
 
