@@ -42,7 +42,7 @@ public class Stadt extends GameObject {
     /**
      * 
      * @param mensch
-     *            Welcher Menschen typ soll gekauft werden
+     *            Welcher Menschen typ gekauft werden soll
      * @return boolean ob Transaktion geglückt
      */
     public boolean menschKaufen(Mensch mensch) {
@@ -87,8 +87,9 @@ public class Stadt extends GameObject {
     }
 
     public void wirdBetreten(Mensch mensch) {
-        this.volk.add(mensch);
-        if(mensch.getBesitzer().equals(this.besitzer));
+        if(mensch.getBesitzer().equals(this.besitzer)) {
+            this.volk.add(mensch);
+        }
     }
 
     public int checkVorrat(String itemName) {
@@ -104,7 +105,7 @@ public class Stadt extends GameObject {
     }
 
     // ------------------------------Getter_Setter------------------------------//
-
+    
     public int getxPos() {
         return xPos;
     }
