@@ -42,18 +42,20 @@ public class Feld {
      *            Objeckt Mensch als Parameter wird mitgegeben
      * @return true falls Objekt Mensch in Liste vorhanden ist, sonnst false.
      */
-    
+
     public boolean wirdBetreten(Armee armee) {
 
+        if (einheiten.size() > 0) {
+            for (Armee i : einheiten) {
+                if (i.getBesitzer().equals(armee.getBesitzer())) {
+                    i.menschenHinzufuegen(armee.getArmee());
+                    return true;
+                }
+            }
+            //possible pvp
+        }
         einheiten.add(armee);
-
-        if (einheiten.contains(einheiten)) {
-            return true;
-        }
-        else {
-            return false;
-        }
-
+        return true;
     }
 
     /**
