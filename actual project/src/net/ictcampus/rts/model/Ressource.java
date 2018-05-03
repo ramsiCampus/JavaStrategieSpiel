@@ -10,7 +10,7 @@ package net.ictcampus.rts.model;
  *
  */
 
-public class Ressource {
+public class Ressource extends Item {
 
     // ---------------------------variable_declaration---------------------------//
 
@@ -19,10 +19,9 @@ public class Ressource {
     // -------------------------------Constructor--------------------------------//
 
     public Ressource(String name, int anzahl) {
+        super(name);
         anzahl = this.anzahl;
     }
-
-    // -------------------------------Constructor--------------------------------//
 
     // -----------------------------------Main-----------------------------------//
 
@@ -30,4 +29,12 @@ public class Ressource {
 
     // ------------------------------Getter_Setter------------------------------//
 
+    public int getAnzahl() {
+        return anzahl;
+    }
+    
+    public void setAnzahl(int anzahl) {
+        this.anzahl = anzahl;
+    }
+    
 }
