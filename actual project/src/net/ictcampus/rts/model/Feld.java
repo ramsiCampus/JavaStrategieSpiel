@@ -24,11 +24,9 @@ public class Feld {
 
     // -------------------------------Constructor--------------------------------//
 
-   
-   
     public Feld(int xPos, int yPos) {
-        xPos = this.xPos;
-        yPos = this.yPos;
+        this.xPos = xPos;
+        this.yPos = yPos;
     }
 
     // -----------------------------------Main-----------------------------------//
@@ -44,7 +42,6 @@ public class Feld {
      * @return true falls Objekt Mensch in Liste vorhanden ist, sonnst false.
      */
 
-    @SuppressWarnings("unlikely-arg-type")
     public boolean wirdBetreten(Mensch mensch) {
 
         einheiten.add(mensch);
@@ -69,9 +66,9 @@ public class Feld {
         loot.add(ressource);
 
     }
-    
-    public void erzeugeStadt(String name, Player spieler){
-        stadt = new Stadt(name, this.xPos,this.yPos, spieler);  
+
+    public void erzeugeStadt(String name, Player spieler) {
+        stadt = new Stadt(name, this.xPos, this.yPos, spieler);
         setStadt(stadt);
     }
 
@@ -104,9 +101,7 @@ public class Feld {
         return generierteRessource;
     }
 
-
     // ------------------------------Getter_Setter------------------------------//
-
 
     public int getxPos() {
         return xPos;
@@ -147,6 +142,5 @@ public class Feld {
     public void setStadt(Stadt stadt) {
         this.stadt = stadt;
     }
-
 
 }

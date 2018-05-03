@@ -21,7 +21,7 @@ public class Mensch extends GameObject {
     private int lebenspunkt;
     private List<Item> tasche = new ArrayList<Item>();
     private Player besitzer;
-    private Ressource preis;
+    private Ressource preis = new Ressource("Geld",10);
     private int ausdauer = 1;
 
     // -------------------------------Constructor--------------------------------//
@@ -29,9 +29,7 @@ public class Mensch extends GameObject {
     public Mensch(Player besitzer, int preisZahl) {
         super();
         besitzer = this.besitzer;
-        Ressource r = new Ressource("Geld",10);
-        r.setAnzahl(preisZahl);
-        this.preis = r;
+        preis.setAnzahl(preisZahl);
     }
 
     // -----------------------------------Main-----------------------------------//
@@ -153,5 +151,15 @@ public class Mensch extends GameObject {
     public void setPreis(Ressource preis) {
         this.preis = preis;
     }
+
+    public int getAusdauer() {
+        return ausdauer;
+    }
+
+    public void setAusdauer(int ausdauer) {
+        this.ausdauer = ausdauer;
+    }
+    
+    
 
 }

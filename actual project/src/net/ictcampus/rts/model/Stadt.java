@@ -23,7 +23,6 @@ public class Stadt extends GameObject {
     private List<Item> vorrat;
     private Player besitzer;
     private int preis;
-    private Armee armee;
 
     // -------------------------------Constructor--------------------------------//
 
@@ -89,9 +88,9 @@ public class Stadt extends GameObject {
 
     public void wirdBetreten(Mensch mensch) {
 
-        if(mensch.getBesitzer().equals(this.besitzer)) {
-            for(Item i : mensch.getTasche()) {
-                if(i instanceof Ressource) {
+        if (mensch.getBesitzer().equals(this.besitzer)) {
+            for (Item i : mensch.getTasche()) {
+                if (i instanceof Ressource) {
                     vorratAddieren("Geld", ((Ressource) i).getAnzahl());
                 }
                 else {
@@ -117,17 +116,23 @@ public class Stadt extends GameObject {
     }
 
     /**
-     * Methode aremeeErzeugen, erzeugt eine Armee mit Mensch Objekten aus der
-     * Liste volk. die Anzahl wird über einen Input bestimmt.
+     * Methode aremeeErzeugen, erzeugt eine Armee mit Mensch Objekten aus der Liste
+     * volk. die Anzahl wird über einen Input bestimmt.
      */
 
-    public void armeeErzeugen() {
+    public boolean armeeErzeugen() {
 
         String name = "test";
         int anzahlMenschen = 80;
-        armee = new Armee(name, anzahlMenschen, volk);
-        armee.menschenEinfuegen();
-
+        
+        if (anzahlMenschen > this.volk.size()) {
+            return false;
+        }
+        Armee armee = new Armee(this.besitzer ,name, anzahlMenschen);
+        for (int i = 0; i < anzahlMenschen; i++) {
+            this.volk.remove(0);
+        }
+        return true;
     }
 
     // ------------------------------Getter_Setter------------------------------//
