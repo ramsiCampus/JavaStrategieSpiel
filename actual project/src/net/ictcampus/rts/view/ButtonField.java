@@ -21,6 +21,8 @@ public class ButtonField extends JButton{
     private int posX;
     private int posY;
     
+    private int feldTyp;
+    
     private Boolean ausgew = false;
 
     public ButtonField(int x, int y) {
@@ -48,6 +50,7 @@ public class ButtonField extends JButton{
     }
     
     public void setFeldIcon(int feldTyp) {
+        this.feldTyp=feldTyp;
         if(feldTyp==0) {
             icon = new ImageIcon(img1);
                        
@@ -60,6 +63,9 @@ public class ButtonField extends JButton{
         }
         this.setIcon(icon);
     }
+    
+    
+    
 
     public int getPosX() {
         return posX;
@@ -83,6 +89,14 @@ public class ButtonField extends JButton{
 
     public void setAusgew(Boolean ausgew) {
         this.ausgew = ausgew;
+    }
+
+    public int getFeldTyp() {
+        return feldTyp;
+    }
+
+    public void setFeldTyp(int feldTyp) {
+        this.feldTyp = feldTyp;
     }
     
 
