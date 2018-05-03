@@ -1,6 +1,7 @@
 package net.ictcampus.rts.controller;
 
 import java.io.IOException;
+import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
@@ -15,8 +16,8 @@ public class ClientSocketFactory {
   //---------------------------variable_declaration---------------------------//
     private static Socket socket;
     private static int PORT = 54269;
-    //private static String serverAddress = "172.16.2.133";
-    private static String serverAddress = "127.0.0.1";
+    private static String serverAddress = "172.16.2.133";
+    //private static String serverAddress = "127.0.0.1";
   //-------------------------------Constructor--------------------------------//
 
   //-----------------------------------Main-----------------------------------//
@@ -28,8 +29,10 @@ public class ClientSocketFactory {
      */
     public static Socket createClientSocket() {
         try {
+        	
         	System.out.println("Creating socket 2");
             socket = new Socket(serverAddress, PORT);
+            System.out.println("Verbindung steht");
         } catch (UnknownHostException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

@@ -1,6 +1,7 @@
 package net.ictcampus.rts.controller;
 
 import java.io.IOException;
+import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -27,9 +28,8 @@ public class ServerSocketFactory {
      */
     public static ServerSocket createServerSocket() {
         try {
-            listener = new ServerSocket(PORT);
+            listener = new ServerSocket(PORT,1, InetAddress.getByName("nkerstingk"));
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         return listener;

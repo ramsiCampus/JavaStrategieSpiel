@@ -22,16 +22,14 @@ public class ServerController {
     public ServerController() {
         listener = ServerSocketFactory.createServerSocket();
         try {
-            try {
-            	connection = listener.accept();
-            	
-                //new Handler(listener.accept()).start();
-            } catch (IOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-        }finally {
-            ServerSocketFactory.closeServerSocket(listener);
+        	System.out.println(listener.getLocalPort()+" is the local port.");
+        	System.out.println(listener.getInetAddress().toString());
+        	connection = listener.accept();
+        	
+            //new Handler(listener.accept()).start();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
         }
     }
     // -----------------------------------Main-----------------------------------//
