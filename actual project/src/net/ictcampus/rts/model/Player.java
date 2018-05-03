@@ -2,9 +2,9 @@
 package net.ictcampus.rts.model;
 //imports
 
-import java.util.List;
-
-import com.sun.javafx.collections.MappingChange.Map;
+//import java.util.List;
+//
+//import com.sun.javafx.collections.MappingChange.Map;
 
 /**
  * Player,
@@ -17,6 +17,7 @@ public class Player {
     // ---------------------------variable_declaration---------------------------//
 
     private String name;
+    @SuppressWarnings("unused")
     private int[] alleID;
     private int ID;
     

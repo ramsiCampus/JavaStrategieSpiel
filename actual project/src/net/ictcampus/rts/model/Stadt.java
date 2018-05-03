@@ -23,6 +23,7 @@ public class Stadt extends GameObject {
     private List<Item> vorrat;
     private Player besitzer;
     private int preis;
+    @SuppressWarnings("unused")
     private Armee armee;
 
     // -------------------------------Constructor--------------------------------//
@@ -167,12 +168,11 @@ public class Stadt extends GameObject {
         name = "Testarmee";
         if (!armeeErzeugen(name, anzahlMenschen)) {
             return false;
-        }
-
+        }        
         return true;
     }
 
-    public boolean armeeErzeugen(String name, int anzahlMenschen) {
+    private boolean armeeErzeugen(String name, int anzahlMenschen) {
 
         if (anzahlMenschen > this.volk.size()) {
             return false;

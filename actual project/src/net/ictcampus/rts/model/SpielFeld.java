@@ -41,9 +41,7 @@ public class SpielFeld {
 
     // ---------------------------------Methods---------------------------------//
 
-
     public boolean stadtBauen(int xPos, int yPos, Player spieler, String name) {
-
 
         Feld thisField = felder[xPos][yPos];
         Stadt thisCity = thisField.getStadt();
@@ -75,14 +73,14 @@ public class SpielFeld {
         }
 
     }
-    
-    public Stadt getStadt(int xPos, int yPos){
-        
+
+    public Stadt getStadt(int xPos, int yPos) {
+
         Stadt gefundeneStadt = null;
-        
-        for(Stadt s : staedte){
-            if(s.getxPos() == xPos && s.getyPos() == yPos){
-                
+
+        for (Stadt s : staedte) {
+            if (s.getxPos() == xPos && s.getyPos() == yPos) {
+
                 gefundeneStadt = s;
                 break;
             }
@@ -92,8 +90,25 @@ public class SpielFeld {
     }
 
     public void armeeBewegen(int xPos, int yPos, Armee armee) {
+        int xOld = armee.getxPos();
+        int yOld = armee.getyPos();
+        
+        if (armee.armeeBewegen(xPos, yPos)) {
 
-        armee.armeeBewegen(xPos, yPos);
+            List<Armee> neuArmeen = this.felder[xPos][yPos].getEinheiten();
+            neuArmeen.add(armee);
+
+            List<Armee> oldArmeen = this.felder[xOld][yOld].getEinheiten();
+            oldArmeen.remove(oldArmeen.indexOf(armee));
+            
+            if(this.felder[xPos][yPos].getStadt()!= null) {
+                this.felder[xPos][yPos].getStadt().wirdBetreten(armee);
+            }
+            
+            if(this.felder[xPos][yPos].getLoot().size() != 0) {
+                this.felder[xPos][yPos].wirdBetreten(armee);
+            }
+        }
 
     }
 
