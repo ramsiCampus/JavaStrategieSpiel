@@ -1,9 +1,19 @@
 package net.ictcampus.rts.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import net.ictcampus.rts.model.SpielFeld;
+
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.ObjectOutputStream;
+import java.io.OutputStreamWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -16,7 +26,7 @@ import java.net.Socket;
 public class ServerController {
     // ---------------------------variable_declaration---------------------------//
     private ServerSocket listener;
-    private Socket connection;
+    private List<Socket> connections = new ArrayList<Socket>();
 
     // -------------------------------Constructor--------------------------------//
     public ServerController() {
@@ -24,9 +34,9 @@ public class ServerController {
         try {
         	System.out.println(listener.getLocalPort()+" is the local port.");
         	System.out.println(listener.getInetAddress().toString());
-        	connection = listener.accept();
-        	
-            //new Handler(listener.accept()).start();
+        	connections.add(listener.accept());
+        	connections.add(listener.accept());
+            
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -35,21 +45,41 @@ public class ServerController {
     // -----------------------------------Main-----------------------------------//
 
     // ---------------------------------Methods---------------------------------//
-    public void printCommand() throws IOException{
-    	DataInputStream dis = new DataInputStream(connection.getInputStream());
-    	InputStreamReader isr = new InputStreamReader(dis);
-    	BufferedReader br = new BufferedReader(isr);
-    	
-    	
-    	byte[] cbuf = new byte[10];
-    	String ops = "";
-    	
-    	dis.readFully(cbuf, 0, 10);
-    	for(int i = 0; i<cbuf.length; i++) {
-    		ops = ops+((char)cbuf[i]);
+    public void printCommand() throws IOException {
+    	for(int i=0; i<connections.size(); i++) {
+	    	DataInputStream dis = new DataInputStream(connections.get(i).getInputStream());
+	    	InputStreamReader isr = new InputStreamReader(dis);
+	    	BufferedReader br = new BufferedReader(isr);
+	    	
+	    	char[] cbuf = new char[10];
+	    	br.read(cbuf, 0, 10);
+	    	System.out.print(new String(cbuf));
     	}
-    	//br.read(charbuffer, 0, 1/*charbuffer.length*/);
-    	System.out.print(ops);
+    }
+    
+    public void sendMessage(String message) throws IOException {
+    	for(int i=0; i<connections.size(); i++) {
+	    	DataOutputStream dos = new DataOutputStream(connections.get(i).getOutputStream());
+	    	OutputStreamWriter osw = new OutputStreamWriter(dos);
+	    	BufferedWriter bw = new BufferedWriter(osw);
+	    	
+	    	bw.write(message);
+	    	bw.flush();
+	    	
+    	}
+    	
+    }
+    
+    public void sendGameState(SpielFeld spielFeld) throws IOException {
+    	for(int i=0; i<connections.size(); i++) {
+    		DataOutputStream dos = new DataOutputStream(connections.get(i).getOutputStream());
+	    	ObjectOutputStream osw = new ObjectOutputStream(dos);
+	    	
+	    	osw.writeObject(spielFeld);
+	    	osw.flush();
+	    	
+    	}
+    	
     }
 
     // ------------------------------Getter_Setter------------------------------//

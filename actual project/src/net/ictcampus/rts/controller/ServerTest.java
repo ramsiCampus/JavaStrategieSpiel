@@ -25,6 +25,7 @@ public class ServerTest {
     public static void main(String[] args) throws IOException {
         ServerController SC = new ServerController();
         SC.printCommand();
+        SC.sendMessage("server msg");
         ServerSocketFactory.closeServerSocket(ServerSocketFactory.getServerSocket());
         
 

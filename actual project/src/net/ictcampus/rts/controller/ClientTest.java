@@ -18,6 +18,7 @@ public class ClientTest {
 		// TODO Auto-generated method stub
 		ClientController cc = new ClientController();
 		cc.sendCommand(1, 2);
+		cc.getMessage();
 	    ClientSocketFactory.closeClientSocket(ClientSocketFactory.getClientSocket());
 
 	}

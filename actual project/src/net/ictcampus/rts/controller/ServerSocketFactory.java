@@ -16,6 +16,9 @@ public class ServerSocketFactory {
     // ---------------------------variable_declaration---------------------------//
     private static ServerSocket listener;
     private static int PORT = 54269;
+    //private static String hostname = "nkerstingk";
+    //private static String hostname = "nkochjo";
+    private static String hostname = "localhost";
 
     // -------------------------------Constructor--------------------------------//
 
@@ -27,8 +30,9 @@ public class ServerSocketFactory {
      * @return listener
      */
     public static ServerSocket createServerSocket() {
+    	
         try {
-            listener = new ServerSocket(PORT,1, InetAddress.getByName("nkerstingk"));
+            listener = new ServerSocket(PORT,1, InetAddress.getByName(hostname));
         } catch (IOException e) {
             e.printStackTrace();
         }
