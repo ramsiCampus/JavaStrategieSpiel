@@ -66,7 +66,7 @@ public class ButtonActionListener implements ActionListener{
                 throw new InvalidAttributeValueException("CreateHumans invalid Textfield input, number below 1");
             }
             int vorrat = spiel.getSpielFeld().getStadt(frame.getAusgewX(), frame.getAusgewY()).getVorratGUI("Geld");
-            if (vorrat < (anzahl*spiel.getMenschPreis()){
+            if (vorrat < (anzahl*spiel.getMenschPreis())){
                 throw new InvalidAttributeValueException("CreateHumans not possible, money not sufficient");
             }
             String befehl = frame.getPlayerId()+","+frame.getAusgewX()+","+frame.getAusgewY()+"2,1,"+ anzahlString + ",1";
@@ -95,7 +95,7 @@ public class ButtonActionListener implements ActionListener{
             }
             
             int vorrat = spiel.getSpielFeld().getStadt(frame.getAusgewX(), frame.getAusgewY()).getVorratGUI("Geld");
-            if (vorrat < (spiel.getStadtPreis()){
+            if (vorrat < (spiel.getStadtPreis())){
                 throw new InvalidAttributeValueException("CreateCity not possible, money not sufficient");
             }
             String befehl = frame.getPlayerId()+","+frame.getAusgewX()+","+frame.getAusgewY()+",2,3,"+coordinateArr[0]+","+coordinateArr[1];
@@ -113,7 +113,7 @@ public class ButtonActionListener implements ActionListener{
             String[] coordinateArr = coordinates.split("-");
             int x = Integer.parseInt(coordinateArr[0]);
             int y = Integer.parseInt(coordinateArr[1]);
-            if (field.countPlayerEinheiten(frame.getPlayerId()).size() <= 0) {
+            if (field.countPlayerEinheiten(frame.getPlayerId()) <= 0) {
                 throw new InvalidAttributeValueException("No people on the selected field.");
             }
             String befehl = frame.getPlayerId()+","+frame.getAusgewX()+","+frame.getAusgewY()+",1,1,"+coordinateArr[0]+","+coordinateArr[1];
@@ -127,7 +127,7 @@ public class ButtonActionListener implements ActionListener{
     private void transportCitizens() {
         Stadt stadt = spiel.getSpielFeld().getFelder()[frame.getAusgewX()][frame.getAusgewY()].getStadt();
         String coordinates = frame.getTxtTransportPkoo().getText();
-        String numberOfCitizens = frame.getTxtTransportPanz();
+        String numberOfCitizens = frame.getTxtTransportPanz().getText();
         try {
             String[] coordinateArr = coordinates.split("-");
             int x = Integer.parseInt(coordinateArr[0]);

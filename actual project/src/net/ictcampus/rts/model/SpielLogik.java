@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import net.ictcampus.rts.view.Testframe;
+
 /**
  * Klasse SpielLogik,
  * 
@@ -44,6 +46,7 @@ public class SpielLogik {
 
     public static void main(String[] args) {
         SpielLogik sl = new SpielLogik();
+        Testframe tf = new Testframe();
         for(Player p : sl.spiel.getSpieler()){
             System.out.println(p.getName());
         }
