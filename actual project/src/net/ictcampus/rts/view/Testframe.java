@@ -13,6 +13,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import net.ictcampus.rts.model.Spiel;
+
 import java.awt.font.*;
 
 
@@ -25,7 +28,7 @@ public class Testframe extends JFrame {
     private JPanel content;
     private JPanel title;
     private ButtonField[][] field;
-    
+    private Spiel spiel;
 
     private JLabel titleRight = new JLabel();
     
@@ -302,10 +305,6 @@ public class Testframe extends JFrame {
         this.ausgewY = ausgewY;
     }
     
-<<<<<<< HEAD
-
-=======
->>>>>>> 9fba1ca876f9d866bab826f301a392b0309016fe
     public JTextField getTxtCreateP() {
         return txtCreateP;
     }
@@ -325,10 +324,4 @@ public class Testframe extends JFrame {
     public void setField(ButtonField[][] field) {
         this.field = field;
     }
-<<<<<<< HEAD
-    
-
-
-=======
->>>>>>> 9fba1ca876f9d866bab826f301a392b0309016fe
 }
