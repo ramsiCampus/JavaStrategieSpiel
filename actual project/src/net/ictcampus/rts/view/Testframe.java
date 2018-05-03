@@ -23,6 +23,16 @@ public class Testframe extends JFrame {
     private JPanel content;
     private JPanel title;
     private ButtonField[][] field;
+    private JLabel titleRight = new JLabel();
+    private JLabel lblKoordinaten;
+    
+    private int xSize=20;
+    private int ySize=10;
+    
+    private int ausgewX;
+    private int ausgewY;
+    
+    private JavalisationActionLinstener jAl;
 
     /**
      * What was that for?
@@ -44,10 +54,15 @@ public class Testframe extends JFrame {
         map = new JPanel();
         content = new JPanel();
         title = new JPanel();
-
-        addFieldButtons(20, 10);
+        
+        jAl = new JavalisationActionLinstener(this);
+        
+        addFieldButtons();
+        aktiverButton();
         setContent();
         setTitle();
+        
+        
 
         this.add(map, "North");
         this.add(title, "Center");
@@ -55,7 +70,7 @@ public class Testframe extends JFrame {
 
     }
 
-    public void addFieldButtons(int xSize, int ySize) {
+    public void addFieldButtons() {
 
         map.setLayout(new GridLayout(ySize, xSize));
 
@@ -66,9 +81,10 @@ public class Testframe extends JFrame {
                 field[j][i] = new ButtonField(j, i);
                 field[j][i].setBackground(new Color(57, 211, 214));
                 map.add(field[j][i]);
-                // ActionListener added here TODO
+                field[j][i].addActionListener(jAl);
             }
         }
+        field[2][5].setAusgew(true);
     }
 
     public void setContent() {
@@ -113,16 +129,13 @@ public class Testframe extends JFrame {
         title.setLayout(new GridLayout(1, 3));
         JLabel titleLeft = new JLabel("Spielerinfo");
         JLabel titleCenter = new JLabel("Ausgewähltes Feld: ");
-        JLabel titleRight = new JLabel();
+        
 
         Font font = new Font("Calibri", 1, 40);
         titleLeft.setFont(font);
         titleCenter.setFont(font);
         titleRight.setFont(font);
-
-        // titleLeft.setText("Spielerinfo");
-        titleRight.setText("....");
-
+        
         title.add(titleLeft);
         title.add(titleCenter);
         title.add(titleRight);
@@ -206,7 +219,7 @@ public class Testframe extends JFrame {
         JLabel lblInfo = new JLabel("Info");
         JLabel lblFeldart = new JLabel("Stadt");
         JLabel lblBesitzer = new JLabel("Roger");
-        JLabel lblKoordinaten = new JLabel("12°N 10°O");
+        lblKoordinaten= new JLabel();
         JLabel lblAnzahlMenschen = new JLabel("100");
         JLabel lblGesammelteR = new JLabel("1000");
         JLabel lblVerfuegbareR = new JLabel("2000");
@@ -228,5 +241,41 @@ public class Testframe extends JFrame {
         p.add(new JLabel("Verfügbare Ressourcen:"));
         p.add(lblVerfuegbareR);
     }
+    
+    private void aktiverButton() {
+        for (int i = 0; i < ySize; i++) {
+            for (int j = 0; j < xSize; j++) {
+                if(field[j][i].getAusgew()) {
+                    ausgewX=field[j][i].getPosX();
+                    ausgewY=field[j][i].getPosY();
+                    
+                }
+                
+                
+            }
+        }
+    }
+    
+    public void refreshKoordinaten() {
+        titleRight.setText(ausgewY+"°N "+ausgewX+"°O");
+        lblKoordinaten.setText(ausgewY+"°N "+ausgewX+"°O");
+    }
+
+    public int getAusgewX() {
+        return ausgewX;
+    }
+
+    public void setAusgewX(int ausgewX) {
+        this.ausgewX = ausgewX;
+    }
+
+    public int getAusgewY() {
+        return ausgewY;
+    }
+
+    public void setAusgewY(int ausgewY) {
+        this.ausgewY = ausgewY;
+    }
+    
 
 }
