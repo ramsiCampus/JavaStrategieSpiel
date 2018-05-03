@@ -31,7 +31,6 @@ public class Armee extends GameObject {
         name = this.name;
         anzahlMenschen = this.anzahlMenschen;
         menschen = this.menschen;
-       
 
     }
 
@@ -40,38 +39,67 @@ public class Armee extends GameObject {
     // ---------------------------------Methods---------------------------------//
 
     /**
-     * Methode, menschenEinfuegen, fügt anhand mitgegebene Paramter im Konstrukt Mensch Objekte in die Liste armee hinein.
+     * Methode, menschenEinfuegen, fügt anhand mitgegebene Paramter im Konstrukt
+     * Mensch Objekte in die Liste armee hinein.
      */
     public void menschenEinfuegen() {
 
         for (int i = 0; i <= anzahlMenschen; i++) {
             armee.add(menschen.get(i));
         }
+    }
+
+    /**
+     * Methode armeeBewegen, Überprüft ob start Werten kleiner, gleich oder
+     * grösser als mitgebene Parameter sind, und setzt die Positionen gemäss
+     * Vergleich neu
+     * 
+     * @param xPos, xPosition auf dem Spielfeld
+     * @param yPos, yPosition auf dem Spielfeld
+     */
+
+    public void armeeBewegen(int xPos, int yPos) {
+
+        int startX = getxPos();
+        int startY = getyPos();
+
+        if (xPos < startX && yPos > startY) {
+            xPos = startX - xPos;
+            yPos = startY + yPos;
+        }
+        else if (xPos < startX && yPos == startY) {
+            xPos = startX - xPos;
+        }
+        else if (xPos < startX && yPos < startY) {
+            xPos = startX - xPos;
+            yPos = startY - yPos;
+        }
+        else if (xPos == startX && yPos < startY) {
+
+            yPos = startY - yPos;
+        }
+        else if (xPos > startX && yPos < startY) {
+            xPos = startX + xPos;
+            yPos = startY - yPos;
+        }
+        else if (xPos > startX && yPos == startY) {
+            xPos = startX + xPos;
+
+        }
+        else if (xPos > startX && yPos > startY) {
+            xPos = startX + xPos;
+            yPos = startY + yPos;
+        }
+        else if (xPos == startX && yPos > startY) {
+            yPos = startY + yPos;
+        }
+        setxPos(xPos);
+        setyPos(yPos);
 
     }
-    
-    /**
-     * Methode armeeBewegen, MUSS NOCH ÜBERARBEITET UND DURCHDACHT WERDEN
-     * @param xPos
-     * @param yPos
-     */
-    
-    public void armeeBewegen(int xPos, int yPos){
-        
-       int startX = getxPos();
-       int startY = getyPos();  
-       
-       xPos = startX + xPos;
-       yPos = startY + yPos;
-       
-       setxPos(xPos);
-       setyPos(yPos);
-       
-      
-    }
-  
+
     // ------------------------------Getter_Setter------------------------------//
-    
+
     public List<Mensch> getArmee() {
         return armee;
     }
@@ -91,8 +119,5 @@ public class Armee extends GameObject {
     public void setyPos(int yPos) {
         this.yPos = yPos;
     }
-    
-    
-
 
 }
