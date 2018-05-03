@@ -65,8 +65,8 @@ public class ButtonActionListener implements ActionListener{
             if (anzahl <= 0) {
                 throw new InvalidAttributeValueException("CreateHumans invalid Textfield input, number below 1");
             }
-            int vorrat = spiel.getSpielfeld().getStadt(frame.getAusgewX(), frame.getAusgewY()).getVorratGUI("Geld");
-            if (vorrat < (anzal*spiel.getMenschPreis()){
+            int vorrat = spiel.getSpielFeld().getStadt(frame.getAusgewX(), frame.getAusgewY()).getVorratGUI("Geld");
+            if (vorrat < (anzahl*spiel.getMenschPreis()){
                 throw new InvalidAttributeValueException("CreateHumans not possible, money not sufficient");
             }
             String befehl = frame.getPlayerId()+","+frame.getAusgewX()+","+frame.getAusgewY()+"2,1,"+ anzahlString + ",1";
@@ -78,13 +78,13 @@ public class ButtonActionListener implements ActionListener{
 
     //PARTIALLY FINISHED TOCHECK XYMISSING
     private void buildCity() {
-        Feld field = spiel.getSpielfeld().getFelder()[frame.getAusgewX()][frame.getAusgewY()];//TODO
+        Feld field = spiel.getSpielFeld().getFelder()[frame.getAusgewX()][frame.getAusgewY()];//TODO
         String coordinates = frame.getTxtCreateC().getText();
         try {
             String[] coordinateArr = coordinates.split("-");
             int x = Integer.parseInt(coordinateArr[0]);
             int y = Integer.parseInt(coordinateArr[1]);
-            Feld finalField = spiel.getSpielfeld().getFelder()[x][y];
+            Feld finalField = spiel.getSpielFeld().getFelder()[x][y];
             
             if (x < 0 || x > frame.getxSize() || y < 0 || y > frame.getySize()) {
                 throw new InvalidAttributeValueException("Coordinates not inside the Gamearea");
@@ -94,7 +94,7 @@ public class ButtonActionListener implements ActionListener{
                 throw new InvalidAttributeValueException("Coordinates are pointing on a City");
             }
             
-            int vorrat = spiel.getSpielfeld().getStadt(frame.getAusgewX(), frame.getAusgewY()).getVorratGUI("Geld");
+            int vorrat = spiel.getSpielFeld().getStadt(frame.getAusgewX(), frame.getAusgewY()).getVorratGUI("Geld");
             if (vorrat < (spiel.getStadtPreis()){
                 throw new InvalidAttributeValueException("CreateCity not possible, money not sufficient");
             }
@@ -107,7 +107,7 @@ public class ButtonActionListener implements ActionListener{
     
     //
     private void transportHumans() {
-        Feld field = spiel.getSpielfeld().getFelder()[frame.getAusgewX()][frame.getAusgewY()];
+        Feld field = spiel.getSpielFeld().getFelder()[frame.getAusgewX()][frame.getAusgewY()];
         String coordinates = frame.getTxtTransportPkoo().getText();
         try {
             String[] coordinateArr = coordinates.split("-");
@@ -125,7 +125,7 @@ public class ButtonActionListener implements ActionListener{
     
     //
     private void transportCitizens() {
-        Stadt stadt = spiel.getSpielfeld().getFelder()[frame.getAusgewX()][frame.getAusgewY()].getStadt();
+        Stadt stadt = spiel.getSpielFeld().getFelder()[frame.getAusgewX()][frame.getAusgewY()].getStadt();
         String coordinates = frame.getTxtTransportPkoo().getText();
         String numberOfCitizens = frame.getTxtTransportPanz();
         try {

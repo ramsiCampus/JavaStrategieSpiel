@@ -275,44 +275,44 @@ public class Testframe extends JFrame {
 
     public void setBackgroundImg() {
 
-//        for (int i = 0; i < ySize; i++) {
-//            for (int j = 0; j < xSize; j++) {
-//                if (spiel.getSpielfeld().getFelder()[j][i].getStadt() != null) {
-//                    field[j][i].setFeldIcon(2);
-//                }
-//                else if (spiel.getSpielfeld().getFelder()[j][i].getLoot().size() > 0) {
-//                    field[j][i].setFeldIcon(1);
-//                }
-//                else {
-//                    field[j][i].setFeldIcon(0);
-//                }
-//            }
-//        }
+        for (int i = 0; i < ySize; i++) {
+            for (int j = 0; j < xSize; j++) {
+                if (spiel.getSpielFeld().getFelder()[j][i].getStadt() != null) {
+                    field[j][i].setFeldIcon(2);
+                }
+                else if (spiel.getSpielFeld().getFelder()[j][i].getLoot().size() > 0) {
+                    field[j][i].setFeldIcon(1);
+                }
+                else {
+                    field[j][i].setFeldIcon(0);
+                }
+            }
+        }
 
     }
     
     public void refreshDataRight() {
         
-//        if (spiel.getSpielfeld().getFelder()[ausgewX][ausgewY].getStadt() != null) {
-//            lblFeldart.setText("Stadt");
-//            String besitzer = (spiel.getSpielfeld().getFelder()[ausgewX][ausgewY].getStadt().getBesitzer().getName());
-//            lblBesitzer.setText(besitzer);
-//            lblVerfuegbareR.setText("-");
-//            lblAnzahlMenschen.setText(spiel.getSpielfeld().getFelder()[ausgewX][ausgewY].getStadt().getVolk().size());
-//            
-//        }
-//        else if(spiel.getSpielfeld().getFelder()[ausgewX][ausgewY].getLoot().size() > 0) {
-//            lblFeldart.setText("Ressource");
-//            lblBesitzer.setText("-");
-//            lblVerfuegbareR.setText(spiel.getSpielfeld().getFelder()[ausgewX][ausgewY].getAnzahlRessourcen());
-//            lblAnzahlMenschen.setText(spiel.getSpielfeld().getFelder()[ausgewX][ausgewY].getEinheit().size());
-//        }
-//        else {
-//            lblFeldart.setText("Wüste");
-//            lblBesitzer.setText("-");
-//            lblVerfuegbareR.setText("-");
-//            lblAnzahlMenschen.setText(spiel.getSpielfeld().getFelder()[ausgewX][ausgewY].getEinheit().size());
-//        }
+        if (spiel.getSpielFeld().getFelder()[ausgewX][ausgewY].getStadt() != null) {
+            lblFeldart.setText("Stadt");
+            String besitzer = (spiel.getSpielFeld().getFelder()[ausgewX][ausgewY].getStadt().getBesitzer().getName());
+            lblBesitzer.setText(besitzer);
+            lblVerfuegbareR.setText("-");
+            lblAnzahlMenschen.setText(spiel.getSpielFeld().getFelder()[ausgewX][ausgewY].getStadt().getVolk().size());
+            
+        }
+        else if(spiel.getSpielFeld().getFelder()[ausgewX][ausgewY].getLoot().size() > 0) {
+            lblFeldart.setText("Ressource");
+            lblBesitzer.setText("-");
+            lblVerfuegbareR.setText(spiel.getSpielFeld().getFelder()[ausgewX][ausgewY].getAnzahlRessourcen());
+            lblAnzahlMenschen.setText(spiel.getSpielFeld().getFelder()[ausgewX][ausgewY].getEinheit().size());
+        }
+        else {
+            lblFeldart.setText("Wüste");
+            lblBesitzer.setText("-");
+            lblVerfuegbareR.setText("-");
+            lblAnzahlMenschen.setText(spiel.getSpielFeld().getFelder()[ausgewX][ausgewY].getEinheit().size());
+        }
         
         
         
@@ -320,28 +320,28 @@ public class Testframe extends JFrame {
     }
     
     public void refreshDataLeft() {
-//        int anzMenschen=0;
-//        int anzRessourcen=0;
-//        int anzStaedte=0;
-//        int anzMenschenStadt=0;
-//        int anzMenschenSammeln;
-//        for (int i = 0; i < ySize; i++) {
-//          for (int j = 0; j < xSize; j++) {
-//              anzMenschenSammeln+=spiel.getSpielfeld().getFelder()[i][j].countPlayerEinheiten(playerId);
-//              
-//              if (spiel.getSpielfeld().getFelder()[i][j].getStadt().getPlayer().equals(spiel.getPlayerById(playerId))) {
-//                  anzStaedte++;
-//                  anzRessourcen+=spiel.getSpielfeld().getFelder()[i][j].getStadt().getVorrrat("Geld");
-//                  anzMenschenStadt+=spiel.getSpielfeld().getFelder()[i][j].getStadt().getVolk().size();
-//              }
-//            }
-//        }
-//        anzMenschen=anzMenschenSammeln+anzMenschenStadt;
-//        menschenAnzahl.setText(anzMenschen+"");
-//        ressourcenAnzahl.setText(anzRessourcen+"");
-//        stadtAnzahl.setText(anzStaedte+"");
-//        sammelAnzahl.setText(anzMenschenSammeln+"");
-//        menschenInStadtAnzahl.setText(anzMenschenStadt+"");
+        int anzMenschen=0;
+        int anzRessourcen=0;
+        int anzStaedte=0;
+        int anzMenschenStadt=0;
+        int anzMenschenSammeln;
+        for (int i = 0; i < ySize; i++) {
+          for (int j = 0; j < xSize; j++) {
+              anzMenschenSammeln+=spiel.getSpielFeld().getFelder()[i][j].countPlayerEinheiten(playerId);
+              
+              if (spiel.getSpielFeld().getFelder()[i][j].getStadt().getPlayer().equals(spiel.getPlayerByID(playerId))) {
+                  anzStaedte++;
+                  anzRessourcen+=spiel.getSpielFeld().getFelder()[i][j].getStadt().getVorrrat("Geld");
+                  anzMenschenStadt+=spiel.getSpielFeld().getFelder()[i][j].getStadt().getVolk().size();
+              }
+            }
+        }
+        anzMenschen=anzMenschenSammeln+anzMenschenStadt;
+        menschenAnzahl.setText(anzMenschen+"");
+        ressourcenAnzahl.setText(anzRessourcen+"");
+        stadtAnzahl.setText(anzStaedte+"");
+        sammelAnzahl.setText(anzMenschenSammeln+"");
+        menschenInStadtAnzahl.setText(anzMenschenStadt+"");
         
         
         
