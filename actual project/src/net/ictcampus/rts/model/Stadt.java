@@ -23,6 +23,7 @@ public class Stadt extends GameObject {
     private List<Item> vorrat;
     private Player besitzer;
     private int preis;
+    @SuppressWarnings("unused")
     private Armee armee;
 
     // -------------------------------Constructor--------------------------------//
@@ -66,6 +67,27 @@ public class Stadt extends GameObject {
         return true;
     }
 
+    /**
+     * methode menschenDezimieren, wird von Klasse Ereignis aufgerufen, um die
+     * Anzahl der Objekt Mensch in der Liste volk um den parameter todesOpfer zu
+     * reduzieren. Falls todesopfer grösser als volk ist, wird ganzes volk erlöscht
+     * 
+     * @param todesOpfer,
+     *            anzahl als int von Menschen, die entfernt werden
+     */
+
+    public void menschenDezimieren(int todesOpfer) {
+
+        if (todesOpfer >= volk.size()) {
+            volk.clear();
+        }
+        else {
+            for (int i = 0; i <= todesOpfer; i++) {
+                volk.remove(0);
+            }
+        }
+    }
+
     public void vorratErzeugen(String ressourceName, int menge) {
         Item r = new Ressource(ressourceName, menge);
         vorrat.add(r);
@@ -87,11 +109,22 @@ public class Stadt extends GameObject {
         }
     }
 
+    public void vorratVerringern(String ressourceName, int menge) {
+        for (Item i : vorrat) {
+            if (i instanceof Ressource) {
+                if (i.getName().equals(ressourceName)) {
+                    int mengeNeu = ((Ressource) i).getAnzahl() - menge;
+                    ((Ressource) i).setAnzahl(mengeNeu);
+                }
+            }
+        }
+    }
+
     public void wirdBetreten(Mensch mensch) {
 
-        if(mensch.getBesitzer().equals(this.besitzer)) {
-            for(Item i : mensch.getTasche()) {
-                if(i instanceof Ressource) {
+        if (mensch.getBesitzer().equals(this.besitzer)) {
+            for (Item i : mensch.getTasche()) {
+                if (i instanceof Ressource) {
                     vorratAddieren("Geld", ((Ressource) i).getAnzahl());
                 }
                 else {
@@ -101,6 +134,16 @@ public class Stadt extends GameObject {
             mensch.getTasche().clear();
 
             this.volk.add(mensch);
+        }
+    }
+
+    public void wirdBetreten(Armee armee) {
+
+        if (armee.getBesitzer().equals(this.besitzer)) {
+            for (Mensch mensch : armee.getArmee()) {
+                wirdBetreten(mensch);
+                armee.getArmee().remove(mensch);
+            }
         }
     }
 
@@ -117,17 +160,45 @@ public class Stadt extends GameObject {
     }
 
     /**
-     * Methode aremeeErzeugen, erzeugt eine Armee mit Mensch Objekten aus der
-     * Liste volk. die Anzahl wird über einen Input bestimmt.
+     * Methode aremeeErzeugen, erzeugt eine Armee mit Mensch Objekten aus der Liste
+     * volk. die Anzahl wird über einen Input bestimmt.
      */
 
-    public void armeeErzeugen() {
+    public boolean menschenBewegen(int anzahlMenschen) {
+        name = "Testarmee";
+        if (!armeeErzeugen(name, anzahlMenschen)) {
+            return false;
+        }        
+        return true;
+    }
 
-        String name = "test";
-        int anzahlMenschen = 80;
-        armee = new Armee(name, anzahlMenschen, volk);
-        armee.menschenEinfuegen();
+    private boolean armeeErzeugen(String name, int anzahlMenschen) {
 
+        if (anzahlMenschen > this.volk.size()) {
+            return false;
+        }
+        armee = new Armee(this.besitzer, name, anzahlMenschen);
+        for (int i = 0; i < anzahlMenschen; i++) {
+            this.volk.remove(0);
+        }
+        return true;
+    }
+    
+    public boolean kaufeStadt(){
+        
+        int guthaben = checkVorrat("Geld");
+        int kaufpreis = 1000;
+        
+        
+        if(guthaben < kaufpreis){
+            return false;
+        }
+        
+        
+        
+        
+        return true;
+        
     }
 
     // ------------------------------Getter_Setter------------------------------//
@@ -187,6 +258,12 @@ public class Stadt extends GameObject {
     public void setPreis(int preis) {
         this.preis = preis;
 
+    }
+    
+    public int getVorratGUI(String ressource){        
+        
+        int anzahlVorrat = checkVorrat(ressource);        
+        return anzahlVorrat;
     }
 
 }

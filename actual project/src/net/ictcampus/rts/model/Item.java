@@ -18,7 +18,7 @@ public class Item extends GameObject{
 
     public Item(String name) {
         super();
-        name = this.name;
+        this.name = name;
     }
 
 
