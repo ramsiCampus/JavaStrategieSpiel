@@ -41,18 +41,29 @@ public class SpielFeld {
 
     // ---------------------------------Methods---------------------------------//
 
-    public void stadtBauen(int xPos, int yPos, Player spieler, int spielerGeld, String name) {
+    public void stadtBauen(int xPos, int yPos, Player spieler, Stadt stadt, String name) {
 
         int bezahlt;
-        int kosten = felder[xPos][yPos].getStadt().getPreis();
+        int kosten = 1000;
         Feld thisField = felder[xPos][yPos];
         Stadt thisCity = thisField.getStadt();
 
-        if (thisCity != null && kosten >= spielerGeld) {
+        if (thisCity == null && kosten <= stadt.checkVorrat("Geld")) {
             thisField.erzeugeStadt(name, spieler);
-            bezahlt = (spieler.getTestgeld() - kosten);
-            spieler.setTestgeld(bezahlt);
+            bezahlt = stadt.checkVorrat("Geld") - kosten;
+            stadt.vorratVeringern("Geld", bezahlt);
         }
+        
+//        int bezahlt;
+//        int kosten = felder[xPos][yPos].getStadt().getPreis();
+//        Feld thisField = felder[xPos][yPos];
+//        Stadt thisCity = thisField.getStadt();
+//
+//        if (thisCity != null && kosten >= spielerGeld) {
+//            thisField.erzeugeStadt(name, spieler);
+//            bezahlt = (spieler.getTestgeld() - kosten);
+//            spieler.setTestgeld(bezahlt);
+//        }
     }
 
     public void armeeBewegen(int xPos, int yPos, Armee armee) {
