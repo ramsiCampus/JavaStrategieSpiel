@@ -18,7 +18,7 @@ public class Feld {
     // ---------------------------variable_declaration---------------------------//
     private int xPos;
     private int yPos;
-    private List<Mensch> einheiten = new ArrayList<Mensch>();
+    private List<Armee> einheiten = new ArrayList<Armee>();
     private List<Item> loot = new ArrayList<Item>();
     private Stadt stadt;
 
@@ -27,8 +27,10 @@ public class Feld {
    
    
     public Feld(int xPos, int yPos) {
-        xPos = this.xPos;
-        yPos = this.yPos;
+        
+        this.xPos = xPos;
+        this.yPos = yPos;
+        
     }
 
     // -----------------------------------Main-----------------------------------//
@@ -44,10 +46,10 @@ public class Feld {
      * @return true falls Objekt Mensch in Liste vorhanden ist, sonnst false.
      */
 
-    @SuppressWarnings("unlikely-arg-type")
-    public boolean wirdBetreten(Mensch mensch) {
+    
+    public boolean wirdBetreten(Armee armee) {
 
-        einheiten.add(mensch);
+        einheiten.add(armee);
 
         if (einheiten.contains(einheiten)) {
             return true;
@@ -124,11 +126,11 @@ public class Feld {
         this.yPos = yPos;
     }
 
-    public List<Mensch> getEinheiten() {
+    public List<Armee> getEinheiten() {
         return einheiten;
     }
 
-    public void setEinheiten(List<Mensch> einheiten) {
+    public void setEinheiten(List<Armee> einheiten) {
         this.einheiten = einheiten;
     }
 

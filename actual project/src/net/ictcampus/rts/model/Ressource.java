@@ -20,7 +20,7 @@ public class Ressource extends Item {
 
     public Ressource(String name, int anzahl) {
         super(name);
-        anzahl = this.anzahl;
+        this.anzahl = anzahl;
     }
 
     // -----------------------------------Main-----------------------------------//
