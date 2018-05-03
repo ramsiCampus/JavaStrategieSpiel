@@ -41,13 +41,16 @@ public class SpielFeld {
 
     // ---------------------------------Methods---------------------------------//
 
+
     public boolean stadtBauen(int xPos, int yPos, Player spieler, String name) {
+
 
         Feld thisField = felder[xPos][yPos];
         Stadt thisCity = thisField.getStadt();
 
         if (thisCity != null) {
             thisField.erzeugeStadt(name, spieler);
+
             staedte.add(thisField.getStadt());
             return true;
         }
@@ -85,6 +88,7 @@ public class SpielFeld {
             }
         }
         return gefundeneStadt;
+
     }
 
     public void armeeBewegen(int xPos, int yPos, Armee armee) {

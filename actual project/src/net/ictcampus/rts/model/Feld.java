@@ -43,8 +43,8 @@ public class Feld {
      * @return true falls Objekt Mensch in Liste vorhanden ist, sonnst false.
      */
 
+    
     public boolean wirdBetreten(Armee armee) {
-
         if (einheiten.size() > 0) {
             for (Armee i : einheiten) {
                 if (i.getBesitzer().equals(armee.getBesitzer())) {
@@ -55,7 +55,7 @@ public class Feld {
             //possible pvp
         }
         einheiten.add(armee);
-        return true;
+        return true; 
     }
 
     /**
@@ -146,4 +146,12 @@ public class Feld {
         this.stadt = stadt;
     }
 
+    public int getAnzahlRessource() {
+        Item lootie = this.getLoot().get(0);
+        if(lootie instanceof Ressource) {
+            return ((Ressource) lootie).getAnzahl();
+        }
+        return 0;
+        
+    }
 }
