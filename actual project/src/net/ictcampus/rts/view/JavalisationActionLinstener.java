@@ -17,8 +17,11 @@ public class JavalisationActionLinstener implements ActionListener {
         int yClick = ((ButtonField)e.getSource()).getPosY();
         
         frame.setAusgewX(xClick);
-        frame.setAusgewY(9-yClick);
-        frame.refreshKoordinaten();        }
+        frame.setAusgewY(yClick);
+        frame.refreshKoordinaten();
+//      frame.getField()[xClick][yClick].setFeldIcon(1);
+        
+    }
     
     
     

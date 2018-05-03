@@ -23,6 +23,8 @@ public class Testframe extends JFrame {
     private JPanel content;
     private JPanel title;
     private ButtonField[][] field;
+    
+
     private JLabel titleRight = new JLabel();
     private JLabel lblKoordinaten;
     
@@ -257,8 +259,8 @@ public class Testframe extends JFrame {
     }
     
     public void refreshKoordinaten() {
-        titleRight.setText(ausgewY+"衹 "+ausgewX+"記");
-        lblKoordinaten.setText(ausgewY+"衹 "+ausgewX+"記");
+        titleRight.setText(9-ausgewY+"衹 "+ausgewX+"記");
+        lblKoordinaten.setText(9-ausgewY+"衹 "+ausgewX+"記");
     }
 
     public int getAusgewX() {
@@ -275,6 +277,14 @@ public class Testframe extends JFrame {
 
     public void setAusgewY(int ausgewY) {
         this.ausgewY = ausgewY;
+    }
+    
+    public ButtonField[][] getField() {
+        return field;
+    }
+
+    public void setField(ButtonField[][] field) {
+        this.field = field;
     }
     
 

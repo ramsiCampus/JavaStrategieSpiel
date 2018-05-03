@@ -36,7 +36,7 @@ public class ButtonField extends JButton{
             e.printStackTrace();
         }
         
-        icon = new ImageIcon(img3);
+        icon = new ImageIcon(img1);
         this.setIcon(icon);
         
         JLabel content = new JLabel();
@@ -45,6 +45,20 @@ public class ButtonField extends JButton{
         int gradNorth = 9 - y;
         content.setText(Integer.toString(gradNorth)+"°N "+Integer.toString(x)+"°O ");
         this.add(content);
+    }
+    
+    public void setFeldIcon(int feldTyp) {
+        if(feldTyp==0) {
+            icon = new ImageIcon(img1);
+                       
+        }
+        else if(feldTyp==1) {
+            icon = new ImageIcon(img2);
+        }
+        else if(feldTyp==2) {
+            icon = new ImageIcon(img3);
+        }
+        this.setIcon(icon);
     }
 
     public int getPosX() {
