@@ -23,6 +23,8 @@ public class Testframe extends JFrame {
     private JPanel content;
     private JPanel title;
     private ButtonField[][] field;
+    
+
     private JLabel titleRight = new JLabel();
     private JLabel lblKoordinaten;
     private JButton playButton;
@@ -260,8 +262,8 @@ public class Testframe extends JFrame {
     }
     
     public void refreshKoordinaten() {
-        titleRight.setText(ausgewY+"衹 "+ausgewX+"記");
-        lblKoordinaten.setText(ausgewY+"衹 "+ausgewX+"記");
+        titleRight.setText(9-ausgewY+"衹 "+ausgewX+"記");
+        lblKoordinaten.setText(9-ausgewY+"衹 "+ausgewX+"記");
     }
 
     public int getAusgewX() {
@@ -280,6 +282,7 @@ public class Testframe extends JFrame {
         this.ausgewY = ausgewY;
     }
     
+<<<<<<< HEAD
     public JTextField getTxtCreateP() {
         return txtCreateP;
     }
@@ -291,4 +294,15 @@ public class Testframe extends JFrame {
     public JTextField getTxtTransportPanz() {
         return txtTransportPanz;
     }
+=======
+    public ButtonField[][] getField() {
+        return field;
+    }
+
+    public void setField(ButtonField[][] field) {
+        this.field = field;
+    }
+    
+
+>>>>>>> 4f54e9edb2eea8b13ca9cad9dc6ee0d38fad1a97
 }
