@@ -41,8 +41,19 @@ public class SpielFeld {
 
     // ---------------------------------Methods---------------------------------//
 
-    public void stadtBauen(int xPos, int yPos, Player spieler, int spielerGeld, String name) {
-        
+
+    public void stadtBauen(int xPos, int yPos, Player spieler, Stadt stadt, String name) {
+
+        int bezahlt;
+        int kosten = 1000;
+        Feld thisField = felder[xPos][yPos];
+        Stadt thisCity = thisField.getStadt();
+
+        if (thisCity == null && kosten <= stadt.checkVorrat("Geld")) {
+            thisField.erzeugeStadt(name, spieler);
+            bezahlt = stadt.checkVorrat("Geld") - kosten;
+            stadt.vorratVerringern("Geld", bezahlt);
+        }
     }
 
     public void armeeBewegen(int xPos, int yPos, Armee armee) {

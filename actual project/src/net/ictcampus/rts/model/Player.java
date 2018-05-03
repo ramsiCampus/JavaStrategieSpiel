@@ -19,8 +19,7 @@ public class Player {
     private String name;
     private int[] alleID;
     private int ID;
-    private List<Ressource> ressourcen;       // Anschauen!!!
-    private int testgeld;
+    
 
   //-------------------------------Constructor--------------------------------//
 
@@ -38,18 +37,12 @@ public class Player {
     
   //------------------------------Getter_Setter------------------------------//
     
-    public int getTestgeld() {
-        return testgeld;
-    }
+   
 
     public int getID() {
         return ID;
     }
 
-    public void setTestgeld(int testgeld) {
-        this.testgeld = testgeld;
-    }
-    
     
 
 }

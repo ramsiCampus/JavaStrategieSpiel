@@ -20,9 +20,11 @@ public class SpielLogik {
 
     private Spiel spiel;
     private SpielFeld feld;
+    private Mensch protMensch;
     private List<Player> spieler = new ArrayList<Player>();
     private int max = 5;
     private int min = 1;
+    private Stadt stadt;
 
     // -------------------------------Constructor--------------------------------//
 
@@ -33,6 +35,10 @@ public class SpielLogik {
         
         this.spiel = new Spiel(20, 10, spieler.get(0), spieler.get(1));
         this.feld = spiel.getSpielFeld();
+        
+        this.protMensch = new Mensch(null, 10);
+        
+        
 
     }
 
@@ -54,10 +60,21 @@ public class SpielLogik {
         feld.armeeBewegen(xPos, yPos, armee);
     }
     
-    public void menschenKaufen(Player player){       
+    
+    
+    public void menschenKaufen(){
+        feld.getStaedte().get(0).menschKaufen(protMensch);
+    }
+    
+    public void stadtBauen(int xPos, int yPos, Player player, int spielerGeld, String name ){
         
+        feld.stadtBauen(xPos, yPos, player, spielerGeld, name);
+    }
+    
+    public void ressourcenSammeln(){
         
     }
+    
     
     public  void ereignisGenerieren(){
         
