@@ -15,7 +15,7 @@ public class ClientSocketFactory {
   //---------------------------variable_declaration---------------------------//
     private static Socket socket;
     private static int PORT = 4269;
-    private static String serverAddress = "127.0.0.1";
+    private static String serverAddress = "172.16.2.133";
   //-------------------------------Constructor--------------------------------//
 
   //-----------------------------------Main-----------------------------------//
