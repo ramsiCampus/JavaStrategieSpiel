@@ -23,6 +23,7 @@ public class Stadt extends GameObject {
     private List<Item> vorrat;
     private Player besitzer;
     private int preis;
+    private Armee armee;
 
     // -------------------------------Constructor--------------------------------//
 
@@ -124,6 +125,16 @@ public class Stadt extends GameObject {
         }
     }
 
+    public void wirdBetreten(Armee armee) {
+
+        if (armee.getBesitzer().equals(this.besitzer)) {
+            for (Mensch mensch : armee.getArmee()) {
+                wirdBetreten(mensch);
+                armee.getArmee().remove(mensch);
+            }
+        }
+    }
+
     public int checkVorrat(String itemName) {
         int anzahl = 0;
         for (Item i : vorrat) {
@@ -145,11 +156,11 @@ public class Stadt extends GameObject {
 
         String name = "test";
         int anzahlMenschen = 80;
-        
+
         if (anzahlMenschen > this.volk.size()) {
             return false;
         }
-        Armee armee = new Armee(this.besitzer ,name, anzahlMenschen);
+        armee = new Armee(this.besitzer, name, anzahlMenschen);
         for (int i = 0; i < anzahlMenschen; i++) {
             this.volk.remove(0);
         }
