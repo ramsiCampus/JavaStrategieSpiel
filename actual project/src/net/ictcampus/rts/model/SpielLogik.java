@@ -19,74 +19,88 @@ public class SpielLogik {
     // ---------------------------variable_declaration---------------------------//
 
     private Spiel spiel;
-    private SpielFeld feld;
+    private SpielFeld spielfeld;
     private Mensch protMensch;
     private List<Player> spieler = new ArrayList<Player>();
     private int max = 5;
     private int min = 1;
-    private Stadt stadt;
 
     // -------------------------------Constructor--------------------------------//
 
-    public SpielLogik(Player playingSpieler) {
-        
+    public SpielLogik() {
+
         spieler.add(new Player("testperson1", 1));
         spieler.add(new Player("testperson2", 2));
-        
+
         this.spiel = new Spiel(20, 10, spieler.get(0), spieler.get(1));
-        this.feld = spiel.getSpielFeld();
-        
+        this.spielfeld = spiel.getSpielFeld();
+
         this.protMensch = new Mensch(null, 10);
-        
-        
+        spiel.setProtMensch(protMensch);
 
     }
 
     // -----------------------------------Main-----------------------------------//
-    
-  
+
+    public static void main(String[] args) {
+        SpielLogik sl = new SpielLogik();
+        for(Player p : sl.spiel.getSpieler()){
+            System.out.println(p.getName());
+        }
+        for (Stadt i : sl.spielfeld.getStaedte()) {
+            System.out.println(i.getName());
+            System.out.println(i.getBesitzer());
+            System.out.println(i.getVorrat());
+        }
+        sl.ereignisGenerieren();
+    }
+
     // ---------------------------------Methods---------------------------------//
-    
+
     public boolean commandAusfuehren(int int1, int int2) {
         return false;
 
     }
 
-    public void spielerHinzufuegen(Player spieler) {
+    public void spielerHinzufuegen(Player playingSpieler) {
+
+        spieler.add(playingSpieler);
 
     }
-    
-    public void armeeBewegen(int xPos, int yPos, Armee armee){
-        feld.armeeBewegen(xPos, yPos, armee);
+
+    public void armeeBewegen(int xPos, int yPos, Armee armee, Player playingSpieler) {
+
+        if (armee.getBesitzer() == playingSpieler) {
+            spielfeld.armeeBewegen(xPos, yPos, armee);
+        }
     }
-    
-    
-    
-    public void menschenKaufen(){
-        feld.getStaedte().get(0).menschKaufen(protMensch);
+
+    public void menschenKaufen(Player playingSpieler, Stadt stadt) {
+
+        if (stadt.getBesitzer() == playingSpieler) {
+            stadt.menschKaufen(protMensch);
+        }
+
     }
-    
-    public void stadtBauen(int xPos, int yPos, Player player, int spielerGeld, String name ){
-        
-        feld.stadtBauen(xPos, yPos, player, spielerGeld, name);
+
+    public void kaufeStadt(int xPos, int yPos, Player playingSpieler, int spielerGeld, String name,
+            String ursprungsStadtName) {
+
+        spielfeld.stadtKaufen(xPos, yPos, playingSpieler, name, ursprungsStadtName);
     }
-    
-    public void ressourcenSammeln(){
-        
+
+    public void ressourcenSammeln() {
+
     }
-    
-    
-    public  void ereignisGenerieren(){
-        
+
+    public void ereignisGenerieren() {
+
         int zufallszahl;
         Random randomZahl = new Random();
-        zufallszahl = randomZahl.nextInt(max - min) + min;   
-               
-        Ereignis ereignis = new Ereignis("test", feld.getStaedte().get(0),zufallszahl);
-        
+        zufallszahl = randomZahl.nextInt(max - min) + min;
+        Ereignis ereignis = new Ereignis("test", spielfeld.getStaedte().get(0), zufallszahl);
+
     }
-    
-    
 
     // ------------------------------Getter_Setter------------------------------//
 

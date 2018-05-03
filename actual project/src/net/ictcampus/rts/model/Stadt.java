@@ -183,6 +183,23 @@ public class Stadt extends GameObject {
         }
         return true;
     }
+    
+    public boolean kaufeStadt(){
+        
+        int guthaben = checkVorrat("Geld");
+        int kaufpreis = 1000;
+        
+        
+        if(guthaben < kaufpreis){
+            return false;
+        }
+        
+        
+        
+        
+        return true;
+        
+    }
 
     // ------------------------------Getter_Setter------------------------------//
 

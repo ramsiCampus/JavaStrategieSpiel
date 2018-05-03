@@ -26,7 +26,7 @@ public class Player {
    
 
     public Player(String name, int ID){
-        this.name = name;
+        this.setName(name);
         this.ID = ID;
         
     }
@@ -41,6 +41,14 @@ public class Player {
 
     public int getID() {
         return ID;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     

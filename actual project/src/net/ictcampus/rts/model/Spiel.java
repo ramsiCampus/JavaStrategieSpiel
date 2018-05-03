@@ -19,6 +19,8 @@ public class Spiel {
     // ---------------------------variable_declaration---------------------------//
     private SpielFeld spielFeld;
     private List<Player> spieler = new ArrayList<Player>();
+    private Mensch protMensch;
+    private int stadtPreis;
 
     // -------------------------------Constructor--------------------------------//
 
@@ -27,17 +29,16 @@ public class Spiel {
         this.spielFeld = new SpielFeld(xLength, yLength);
         this.spieler.add(spieler1);
         this.spieler.add(spieler2);
-        
-        for(Player i : spieler){
-            
+        this.stadtPreis = 1000;
+
+        for (Player i : spieler) {
+
             int x = 8;
-            int y = 3;            
-            initStadt(i, x, y, 9000, "test");            
-            x = x+3;
-            y= y + 4;
+            int y = 3;
+            initStadt(i, x, y, 9000, "test");
+            x = x + 3;
+            y = y + 4;
         }
-        
-        
 
     }
 
@@ -45,10 +46,17 @@ public class Spiel {
 
     // ---------------------------------Methods---------------------------------//
 
-    private void initStadt(Player spieler,int xPosSstadt, int yPosStadt, int startGeld, String stadtName){
+    private void initStadt(Player spieler, int xPosStadt, int yPosStadt, int startKapital,
+            String stadtName) {
         
-        spielFeld.stadtBauen(xPosSstadt, yPosStadt, spieler, startGeld, stadtName);
+        Stadt stadt = new Stadt(stadtName, xPosStadt, yPosStadt, spieler);
+        spielFeld.getStaedte().add(stadt);
+
+    }
+    
+    public int getStadtPreis(){
         
+        return stadtPreis;
     }
 
     // ------------------------------Getter_Setter------------------------------//
@@ -60,4 +68,13 @@ public class Spiel {
     public List<Player> getSpieler() {
         return spieler;
     }
+
+    public void setProtMensch(Mensch protMensch) {
+        this.protMensch = protMensch;
+    }
+
+    public int getMenschPreis() {
+        return this.protMensch.getPreis().getAnzahl();
+    }
+
 }
