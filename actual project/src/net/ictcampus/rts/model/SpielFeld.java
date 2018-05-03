@@ -121,5 +121,9 @@ public class SpielFeld {
     public List<Stadt> getStaedte() {
         return staedte;
     }
+    
+    public Feld[][] getFelder(){
+        return felder;
+    }
 
 }
