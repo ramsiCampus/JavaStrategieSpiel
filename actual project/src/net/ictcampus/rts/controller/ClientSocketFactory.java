@@ -28,18 +28,22 @@ public class ClientSocketFactory {
      * @return socket
      */
     public static Socket createClientSocket() {
-        try {
-        	
-        	System.out.println("Creating socket 2");
-            socket = new Socket(serverAddress, PORT);
-            System.out.println("Verbindung steht");
-        } catch (UnknownHostException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+        boolean notConnected = true;
+    	while(notConnected) {
+	    	try {
+	        	
+	        	System.out.println("Creating socket 2");
+	            socket = new Socket(serverAddress, PORT);
+	            System.out.println("Verbindung steht");
+	            notConnected = false;
+	        } catch (UnknownHostException e) {
+	            notConnected = false;
+	            e.printStackTrace();
+	        } catch (IOException e) {
+	            notConnected = true;
+	            e.printStackTrace();
+	        }
+    	}
         System.out.println("Server found");
         return socket;
     }
