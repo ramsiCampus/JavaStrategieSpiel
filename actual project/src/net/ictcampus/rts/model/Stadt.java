@@ -168,8 +168,7 @@ public class Stadt extends GameObject {
         name = "Testarmee";
         if (!armeeErzeugen(name, anzahlMenschen)) {
             return false;
-        }
-        
+        }        
         return true;
     }
 
