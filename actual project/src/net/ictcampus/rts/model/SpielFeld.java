@@ -42,17 +42,7 @@ public class SpielFeld {
     // ---------------------------------Methods---------------------------------//
 
     public void stadtBauen(int xPos, int yPos, Player spieler, int spielerGeld, String name) {
-
-        int bezahlt;
-        int kosten = felder[xPos][yPos].getStadt().getPreis();
-        Feld thisField = felder[xPos][yPos];
-        Stadt thisCity = thisField.getStadt();
-
-        if (thisCity != null && kosten >= spielerGeld) {
-            thisField.erzeugeStadt(name, spieler);
-            bezahlt = (spieler.getTestgeld() - kosten);
-            spieler.setTestgeld(bezahlt);
-        }
+        
     }
 
     public void armeeBewegen(int xPos, int yPos, Armee armee) {
