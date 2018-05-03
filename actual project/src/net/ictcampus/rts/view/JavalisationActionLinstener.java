@@ -19,7 +19,7 @@ public class JavalisationActionLinstener implements ActionListener {
         frame.setAusgewX(xClick);
         frame.setAusgewY(yClick);
         frame.refreshKoordinaten();
-//      frame.getField()[xClick][yClick].setFeldIcon(1);
+      frame.getField()[xClick][yClick].setFeldIcon(1);
         
     }
     

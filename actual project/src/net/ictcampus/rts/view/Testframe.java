@@ -19,6 +19,8 @@ import java.awt.font.*;
 
 public class Testframe extends JFrame {
 
+    
+    
     private JPanel map;
     private JPanel content;
     private JPanel title;
@@ -26,11 +28,25 @@ public class Testframe extends JFrame {
     
 
     private JLabel titleRight = new JLabel();
-    private JLabel lblKoordinaten;
+    
     private JButton playButton;
     private JTextField txtCreateP;
     private JTextField txtTransportPkoo;
     private JTextField txtTransportPanz;
+    
+    private JLabel menschenAnzahl;
+    private JLabel ressourcenAnzahl;
+    private JLabel stadtAnzahl;
+    private JLabel sammelAnzahl;
+    private JLabel menschenInStadtAnzahl;
+    
+    private JLabel lblKoordinaten;
+    private JLabel lblInfo;
+    private JLabel lblFeldart;
+    private JLabel lblBesitzer;
+    private JLabel lblAnzahlMenschen;
+    private JLabel lblGesammelteR;
+    private JLabel lblVerfuegbareR;
     
     private int xSize=20;
     private int ySize=10;
@@ -154,11 +170,11 @@ public class Testframe extends JFrame {
         
         contentBorderLeft.setBackground(new Color(92, 255, 150));
         
-        JLabel menschenAnzahl = new JLabel("800000");
-        JLabel ressourcenAnzahl = new JLabel("2022541100");
-        JLabel stadtAnzahl = new JLabel("6");
-        JLabel sammelAnzahl = new JLabel("600023");
-        JLabel menschenInStadtAnzahl = new JLabel("400000");
+        menschenAnzahl = new JLabel("800000");
+        ressourcenAnzahl = new JLabel("2022541100");
+        stadtAnzahl = new JLabel("6");
+        sammelAnzahl = new JLabel("600023");
+        menschenInStadtAnzahl = new JLabel("400000");
 
         contentBorderLeft.add(new JLabel("Menschen:"));
         contentBorderLeft.add(menschenAnzahl);
@@ -224,13 +240,13 @@ public class Testframe extends JFrame {
     private void setContentRight(JPanel p,Font titel) {
         p.setLayout(new GridLayout(7, 2));
         p.setBackground(new Color(247, 76, 76));
-        JLabel lblInfo = new JLabel("Info");
-        JLabel lblFeldart = new JLabel("Stadt");
-        JLabel lblBesitzer = new JLabel("Roger");
-        lblKoordinaten= new JLabel();
-        JLabel lblAnzahlMenschen = new JLabel("100");
-        JLabel lblGesammelteR = new JLabel("1000");
-        JLabel lblVerfuegbareR = new JLabel("2000");
+        lblInfo = new JLabel("Info");
+        lblFeldart = new JLabel("-");
+        lblBesitzer = new JLabel("-");
+        lblKoordinaten= new JLabel("-");
+        lblAnzahlMenschen = new JLabel("-");
+        lblGesammelteR = new JLabel("-");
+        lblVerfuegbareR = new JLabel("-");
         
         lblInfo.setFont(titel);
         
@@ -265,6 +281,10 @@ public class Testframe extends JFrame {
         titleRight.setText(9-ausgewY+"°N "+ausgewX+"°O");
         lblKoordinaten.setText(9-ausgewY+"°N "+ausgewX+"°O");
     }
+    
+    public void refreshInfo() {
+        
+    }
 
     public int getAusgewX() {
         return ausgewX;
@@ -282,7 +302,7 @@ public class Testframe extends JFrame {
         this.ausgewY = ausgewY;
     }
     
-<<<<<<< HEAD
+
     public JTextField getTxtCreateP() {
         return txtCreateP;
     }
@@ -294,7 +314,7 @@ public class Testframe extends JFrame {
     public JTextField getTxtTransportPanz() {
         return txtTransportPanz;
     }
-=======
+
     public ButtonField[][] getField() {
         return field;
     }
@@ -304,5 +324,5 @@ public class Testframe extends JFrame {
     }
     
 
->>>>>>> 4f54e9edb2eea8b13ca9cad9dc6ee0d38fad1a97
+
 }
