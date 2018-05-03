@@ -302,7 +302,10 @@ public class Testframe extends JFrame {
         this.ausgewY = ausgewY;
     }
     
+<<<<<<< HEAD
 
+=======
+>>>>>>> 9fba1ca876f9d866bab826f301a392b0309016fe
     public JTextField getTxtCreateP() {
         return txtCreateP;
     }
@@ -322,7 +325,10 @@ public class Testframe extends JFrame {
     public void setField(ButtonField[][] field) {
         this.field = field;
     }
+<<<<<<< HEAD
     
 
 
+=======
+>>>>>>> 9fba1ca876f9d866bab826f301a392b0309016fe
 }
