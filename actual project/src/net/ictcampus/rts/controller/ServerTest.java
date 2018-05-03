@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
  * @version 1.0
  */
 
-public class ClientServerTest {
+public class ServerTest {
 
     // ---------------------------variable_declaration---------------------------//
 
@@ -24,10 +24,7 @@ public class ClientServerTest {
     // -----------------------------------Main-----------------------------------//
     public static void main(String[] args) throws IOException {
         ServerController SC = new ServerController();
-        ClientController CC = new ClientController();
-       // servermet();
-       // clientmet();
-        ClientSocketFactory.closeClientSocket(ClientSocketFactory.getClientSocket());
+        
         ServerSocketFactory.closeServerSocket(ServerSocketFactory.getServerSocket());
         
 
@@ -52,13 +49,4 @@ public class ClientServerTest {
 
     }
     
-    public static void clientmet() throws IOException {
-        BufferedReader input =
-                new BufferedReader(new InputStreamReader((ClientSocketFactory.getClientSocket()).getInputStream()));
-            String answer = input.readLine();
-            JOptionPane.showMessageDialog(null, answer);
-
-    }
-
-    // ------------------------------Getter_Setter------------------------------//
 }
