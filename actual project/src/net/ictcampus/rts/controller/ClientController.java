@@ -62,20 +62,11 @@ public class ClientController {
             bw.flush();
 
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
+            return false;
         }
-        // finally {
-        // // Close Socket
-        // // TODO notwendig???
-        // // nope ist es nicht
-        // try {
-        // socket.close();
-        // } catch (Exception e) {
-        // e.printStackTrace();
-        // }
-        // }
-
+        
+        
         return true;
     }
     // ------------------------------Getter_Setter------------------------------//
