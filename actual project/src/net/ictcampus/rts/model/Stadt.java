@@ -66,6 +66,27 @@ public class Stadt extends GameObject {
         return true;
     }
 
+    /**
+     * methode menschenDezimieren, wird von Klasse Ereignis aufgerufen, um die
+     * Anzahl der Objekt Mensch in der Liste volk um den parameter todesOpfer zu
+     * reduzieren. Falls todesopfer grösser als volk ist, wird ganzes volk erlöscht
+     * 
+     * @param todesOpfer,
+     *            anzahl als int von Menschen, die entfernt werden
+     */
+
+    public void menschenDezimieren(int todesOpfer) {
+
+        if (todesOpfer >= volk.size()) {
+            volk.clear();
+        }
+        else {
+            for (int i = 0; i <= todesOpfer; i++) {
+                volk.remove(0);
+            }
+        }
+    }
+
     public void vorratErzeugen(String ressourceName, int menge) {
         Item r = new Ressource(ressourceName, menge);
         vorrat.add(r);
@@ -89,9 +110,9 @@ public class Stadt extends GameObject {
 
     public void wirdBetreten(Mensch mensch) {
 
-        if(mensch.getBesitzer().equals(this.besitzer)) {
-            for(Item i : mensch.getTasche()) {
-                if(i instanceof Ressource) {
+        if (mensch.getBesitzer().equals(this.besitzer)) {
+            for (Item i : mensch.getTasche()) {
+                if (i instanceof Ressource) {
                     vorratAddieren("Geld", ((Ressource) i).getAnzahl());
                 }
                 else {
