@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.net.Socket;
 
-
 /**
  * ClientController, Verbindet sich mit dem Server, sendet Befehle an den Server
  * und empfängt den Spielstand
@@ -56,8 +55,7 @@ public class ClientController {
             osw = new OutputStreamWriter(os);
             bw = new BufferedWriter(osw);
 
-            // kann man beide param einzeln senden oder sollten diese gleichzeitig versendet
-            // werden?
+            // Variabeln werden gesammelt um anschliessend versendet zu werden
             bw.write(eins);
             bw.write(zwei);
 
@@ -66,22 +64,19 @@ public class ClientController {
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-        } 
-//        finally {
-//            // Close Socket
-//            // TODO notwendig???
-//            // nope ist es nicht
-//            try {
-//                socket.close();
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
-//        }
+        }
+        // finally {
+        // // Close Socket
+        // // TODO notwendig???
+        // // nope ist es nicht
+        // try {
+        // socket.close();
+        // } catch (Exception e) {
+        // e.printStackTrace();
+        // }
+        // }
 
         return true;
     }
     // ------------------------------Getter_Setter------------------------------//
-    // public Spiel getSpielStatus() {
-    // return Spiel;
-    // }
 }
