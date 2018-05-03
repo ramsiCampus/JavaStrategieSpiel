@@ -19,6 +19,7 @@ public class Feld {
     private int xPos;
     private int yPos;
     private List<Armee> einheiten = new ArrayList<Armee>();
+
     private List<Item> loot = new ArrayList<Item>();
     private Stadt stadt;
 
@@ -35,15 +36,14 @@ public class Feld {
     // ---------------------------------Methods---------------------------------//
 
     /**
-     * wirdBetreten, fügt Objekt Mensch der Liste einheiten hinzu und überprüft ob
-     * die Liste Objekte des Typs Mensch erhalten.
+     * wirdBetreten, fügt Objekt Mensch der Liste einheiten hinzu und überprüft
+     * ob die Liste Objekte des Typs Mensch erhalten.
      * 
      * @param mensch,
      *            Objeckt Mensch als Parameter wird mitgegeben
      * @return true falls Objekt Mensch in Liste vorhanden ist, sonnst false.
      */
 
-    
     public boolean wirdBetreten(Armee armee) {
         if (einheiten.size() > 0) {
             for (Armee i : einheiten) {
@@ -52,15 +52,15 @@ public class Feld {
                     return true;
                 }
             }
-            //possible pvp
+            // possible pvp
         }
         einheiten.add(armee);
-        return true; 
+        return true;
     }
 
     /**
-     * erzeugeLoot, erstellt ein neues Item als Ressource und fügt diese der Liste
-     * "loot" hinzu
+     * erzeugeLoot, erstellt ein neues Item als Ressource und fügt diese der
+     * Liste "loot" hinzu
      */
 
     public void erzeugeLoot() {
@@ -91,8 +91,8 @@ public class Feld {
     }
 
     /**
-     * anzahlRessource, generiert eine Zahl zwischen 100 und 1000 und gibt sie als
-     * int-Wert zurück @return, generierte Zahl als int
+     * anzahlRessource, generiert eine Zahl zwischen 100 und 1000 und gibt sie
+     * als int-Wert zurück @return, generierte Zahl als int
      */
 
     private int anzahlRessourcen() {
@@ -148,10 +148,22 @@ public class Feld {
 
     public int getAnzahlRessource() {
         Item lootie = this.getLoot().get(0);
-        if(lootie instanceof Ressource) {
+        if (lootie instanceof Ressource) {
             return ((Ressource) lootie).getAnzahl();
         }
         return 0;
-        
+    }
+
+    public int countPlayerEinheiten(int playerID) {
+
+            int anzahlMensch = 0;
+            
+            for( Armee a : einheiten){
+                if(playerID == a.getBesitzer().getID()){
+                    anzahlMensch += a.getArmee().size();
+                    break;
+                }               
+            }          
+            return anzahlMensch;
     }
 }

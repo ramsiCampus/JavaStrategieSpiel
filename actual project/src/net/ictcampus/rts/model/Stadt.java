@@ -259,5 +259,11 @@ public class Stadt extends GameObject {
         this.preis = preis;
 
     }
+    
+    public int getVorratGUI(String ressource){        
+        
+        int anzahlVorrat = checkVorrat(ressource);        
+        return anzahlVorrat;
+    }
 
 }

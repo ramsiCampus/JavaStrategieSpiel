@@ -51,8 +51,13 @@ public class SpielLogik {
             System.out.println(i.getName());
             System.out.println(i.getBesitzer());
             System.out.println(i.getVorrat());
+            
         }
-        sl.ereignisGenerieren();
+        
+       
+//       sl.ereignisGenerieren();
+        System.out.println(sl.spiel.getMenschPreis());
+       
     }
 
     // ---------------------------------Methods---------------------------------//
@@ -93,12 +98,13 @@ public class SpielLogik {
 
     }
 
-    public void ereignisGenerieren() {
+    public Ereignis ereignisGenerieren() {
 
         int zufallszahl;
         Random randomZahl = new Random();
         zufallszahl = randomZahl.nextInt(max - min) + min;
         Ereignis ereignis = new Ereignis("test", spielfeld.getStaedte().get(0), zufallszahl);
+        return ereignis;
 
     }
 
