@@ -51,7 +51,7 @@ public class SpielFeld {
         if (thisCity == null && kosten <= stadt.checkVorrat("Geld")) {
             thisField.erzeugeStadt(name, spieler);
             bezahlt = stadt.checkVorrat("Geld") - kosten;
-            stadt.vorratVeringern("Geld", bezahlt);
+            stadt.vorratVerringern("Geld", bezahlt);
         }
         
 //        int bezahlt;
