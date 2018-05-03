@@ -66,50 +66,21 @@ public class Armee extends GameObject {
      * Methode armeeBewegen, Überprüft ob start Werten kleiner, gleich oder grösser
      * als mitgebene Parameter sind, und setzt die Positionen gemäss Vergleich neu
      * 
-     * @param xPos,
+     * @param xGoal,
      *            xPosition auf dem Spielfeld
-     * @param yPos,
+     * @param yGoal,
      *            yPosition auf dem Spielfeld
      */
 
-    public void armeeBewegen(int xPos, int yPos) {
+    public boolean armeeBewegen(int xGoal, int yGoal) {
 
-        int startX = getxPos();
-        int startY = getyPos();
-
-        if (xPos < startX && yPos > startY) {
-            xPos = startX - xPos;
-            yPos = startY + yPos;
+        int distanz = Math.abs(xPos-xGoal) + Math.abs(yPos-yGoal);
+        if(distanz<=this.ausdauer) {
+            this.xPos = xGoal;
+            this.yPos = yGoal;
+            return true;
         }
-        else if (xPos < startX && yPos == startY) {
-            xPos = startX - xPos;
-        }
-        else if (xPos < startX && yPos < startY) {
-            xPos = startX - xPos;
-            yPos = startY - yPos;
-        }
-        else if (xPos == startX && yPos < startY) {
-
-            yPos = startY - yPos;
-        }
-        else if (xPos > startX && yPos < startY) {
-            xPos = startX + xPos;
-            yPos = startY - yPos;
-        }
-        else if (xPos > startX && yPos == startY) {
-            xPos = startX + xPos;
-
-        }
-        else if (xPos > startX && yPos > startY) {
-            xPos = startX + xPos;
-            yPos = startY + yPos;
-        }
-        else if (xPos == startX && yPos > startY) {
-            yPos = startY + yPos;
-        }
-        setxPos(xPos);
-        setyPos(yPos);
-
+        return false;
     }
 
     // ------------------------------Getter_Setter------------------------------//

@@ -108,6 +108,17 @@ public class Stadt extends GameObject {
         }
     }
 
+    public void vorratVerringern(String ressourceName, int menge) {
+        for (Item i : vorrat) {
+            if (i instanceof Ressource) {
+                if (i.getName().equals(ressourceName)) {
+                    int mengeNeu = ((Ressource) i).getAnzahl() - menge;
+                    ((Ressource) i).setAnzahl(mengeNeu);
+                }
+            }
+        }
+    }
+
     public void wirdBetreten(Mensch mensch) {
 
         if (mensch.getBesitzer().equals(this.besitzer)) {
@@ -152,10 +163,16 @@ public class Stadt extends GameObject {
      * volk. die Anzahl wird über einen Input bestimmt.
      */
 
-    public boolean armeeErzeugen() {
+    public boolean menschenBewegen(int anzahlMenschen) {
+        name = "Testarmee";
+        if (!armeeErzeugen(name, anzahlMenschen)) {
+            return false;
+        }
 
-        String name = "test";
-        int anzahlMenschen = 80;
+        return true;
+    }
+
+    public boolean armeeErzeugen(String name, int anzahlMenschen) {
 
         if (anzahlMenschen > this.volk.size()) {
             return false;
