@@ -14,8 +14,9 @@ import java.net.UnknownHostException;
 public class ClientSocketFactory {
   //---------------------------variable_declaration---------------------------//
     private static Socket socket;
-    private static int PORT = 4269;
-    private static String serverAddress = "172.16.2.133";
+    private static int PORT = 54269;
+    //private static String serverAddress = "172.16.2.133";
+    private static String serverAddress = "127.0.0.1";
   //-------------------------------Constructor--------------------------------//
 
   //-----------------------------------Main-----------------------------------//
@@ -27,6 +28,7 @@ public class ClientSocketFactory {
      */
     public static Socket createClientSocket() {
         try {
+        	System.out.println("Creating socket 2");
             socket = new Socket(serverAddress, PORT);
         } catch (UnknownHostException e) {
             // TODO Auto-generated catch block
@@ -35,6 +37,7 @@ public class ClientSocketFactory {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+        System.out.println("Server found");
         return socket;
     }
     
@@ -44,7 +47,9 @@ public class ClientSocketFactory {
      */
     public static Socket getClientSocket(){
         if (socket == null) {
+        	System.out.println("Creating socket 1");
             socket = createClientSocket();
+            System.out.println("Socket created");
         }
         return socket;
     }

@@ -32,6 +32,7 @@ public class ClientController {
     public ClientController() {
         // Setup networking
         socket = ClientSocketFactory.createClientSocket();
+        System.out.println("Socket bound and open");
     }
 
     // -----------------------------------Main-----------------------------------//
@@ -56,8 +57,7 @@ public class ClientController {
             bw = new BufferedWriter(osw);
 
             // Variabeln werden gesammelt um anschliessend versendet zu werden
-            bw.write(eins);
-            bw.write(zwei);
+            bw.write("Hallo Welt".toCharArray());
 
             bw.flush();
 

@@ -22,15 +22,13 @@ public class ServerController {
     public ServerController() {
         listener = ServerSocketFactory.createServerSocket();
         try {
-            while(true) {
-                try {
-                	connection = listener.accept();
-                	
-                    //new Handler(listener.accept()).start();
-                } catch (IOException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
+            try {
+            	connection = listener.accept();
+            	
+                //new Handler(listener.accept()).start();
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
             }
         }finally {
             ServerSocketFactory.closeServerSocket(listener);
@@ -44,7 +42,16 @@ public class ServerController {
     	InputStreamReader isr = new InputStreamReader(dis);
     	BufferedReader br = new BufferedReader(isr);
     	
-    	System.out.print(br.read());
+    	
+    	byte[] cbuf = new byte[10];
+    	String ops = "";
+    	
+    	dis.readFully(cbuf, 0, 10);
+    	for(int i = 0; i<cbuf.length; i++) {
+    		ops = ops+((char)cbuf[i]);
+    	}
+    	//br.read(charbuffer, 0, 1/*charbuffer.length*/);
+    	System.out.print(ops);
     }
 
     // ------------------------------Getter_Setter------------------------------//

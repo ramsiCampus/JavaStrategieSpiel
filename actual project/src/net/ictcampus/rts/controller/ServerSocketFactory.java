@@ -14,7 +14,7 @@ import java.net.Socket;
 public class ServerSocketFactory {
     // ---------------------------variable_declaration---------------------------//
     private static ServerSocket listener;
-    private static int PORT = 4269;
+    private static int PORT = 54269;
 
     // -------------------------------Constructor--------------------------------//
 
