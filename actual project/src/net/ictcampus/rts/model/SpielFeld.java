@@ -29,8 +29,8 @@ public class SpielFeld {
 
         felder = new Feld[xLength][yLength];
 
-        for (int i = 0; i <= xLength; i++) {
-            for (int j = 0; j <= yLength; j++) {
+        for (int j = 0; j <= yLength; j++) {
+            for (int i = 0; i <= xLength; i++) {
                 Feld feld = new Feld(i, j);
                 felder[i][j] = feld;
             }
@@ -61,5 +61,17 @@ public class SpielFeld {
         
     }
 
+   
+
     // ------------------------------Getter_Setter------------------------------//
+    
+    public List<Armee> getArmies() {
+        return armies;
+    }
+
+    public List<Stadt> getStaedte() {
+        return staedte;
+    }
+    
+    
 }

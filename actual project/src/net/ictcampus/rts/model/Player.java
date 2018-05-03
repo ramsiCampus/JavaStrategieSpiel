@@ -49,5 +49,7 @@ public class Player {
     public void setTestgeld(int testgeld) {
         this.testgeld = testgeld;
     }
+    
+    
 
 }

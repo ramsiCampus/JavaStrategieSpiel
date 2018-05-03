@@ -27,6 +27,17 @@ public class Spiel {
         this.spielFeld = new SpielFeld(xLength, yLength);
         this.spieler.add(spieler1);
         this.spieler.add(spieler2);
+        
+        for(Player i : spieler){
+            
+            int x = 8;
+            int y = 3;            
+            initStadt(i, x, y, 9000, "test");            
+            x = x+3;
+            y= y + 4;
+        }
+        
+        
 
     }
 
@@ -34,14 +45,11 @@ public class Spiel {
 
     // ---------------------------------Methods---------------------------------//
 
-    public boolean commandAusfuehren(int int1, int int2) {
-        return false;
-
+    private void initStadt(Player spieler,int xPosSstadt, int yPosStadt, int startGeld, String stadtName){
+        
+        spielFeld.stadtBauen(xPosSstadt, yPosStadt, spieler, startGeld, stadtName);
+        
     }
-
-//    public void spielerHinzufuegen(Player spieler) {
-//
-//    }
 
     // ------------------------------Getter_Setter------------------------------//
 

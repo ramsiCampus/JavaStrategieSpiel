@@ -5,6 +5,7 @@ package net.ictcampus.rts.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Klasse SpielLogik,
@@ -19,17 +20,56 @@ public class SpielLogik {
 
     private Spiel spiel;
     private SpielFeld feld;
-    private List<Player> spieler;
+    private List<Player> spieler = new ArrayList<Player>();
+    private int max = 5;
+    private int min = 1;
 
     // -------------------------------Constructor--------------------------------//
 
-    public SpielLogik(ArrayList<Player> spieler) {
+    public SpielLogik(Player playingSpieler) {
+        
+        spieler.add(new Player("testperson1", 1));
+        spieler.add(new Player("testperson2", 2));
+        
+        this.spiel = new Spiel(20, 10, spieler.get(0), spieler.get(1));
+        this.feld = spiel.getSpielFeld();
 
     }
 
     // -----------------------------------Main-----------------------------------//
-
+    
+  
     // ---------------------------------Methods---------------------------------//
+    
+    public boolean commandAusfuehren(int int1, int int2) {
+        return false;
+
+    }
+
+    public void spielerHinzufuegen(Player spieler) {
+
+    }
+    
+    public void armeeBewegen(int xPos, int yPos, Armee armee){
+        feld.armeeBewegen(xPos, yPos, armee);
+    }
+    
+    public void menschenKaufen(Player player){       
+        
+        
+    }
+    
+    public  void ereignisGenerieren(){
+        
+        int zufallszahl;
+        Random randomZahl = new Random();
+        zufallszahl = randomZahl.nextInt(max - min) + min;   
+               
+        Ereignis ereignis = new Ereignis("test", feld.getStaedte().get(0),zufallszahl);
+        
+    }
+    
+    
 
     // ------------------------------Getter_Setter------------------------------//
 
