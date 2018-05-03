@@ -53,9 +53,9 @@ public class ClientSocketFactory {
      * closeSocket() schliesst ClientSocket
      * @param socket
      */
-    public static void closeClientSocket(Socket socket) {
+    public static void closeClientSocket(Socket socketToClose) {
         try {
-            socket.close();
+            socketToClose.close();
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

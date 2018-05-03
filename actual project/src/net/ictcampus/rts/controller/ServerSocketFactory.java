@@ -22,12 +22,12 @@ public class ServerSocketFactory {
 
     // ---------------------------------Methods---------------------------------//
     /**
-     * createServerSocket() ersellt Serversocket
+     * createServerSocket() erstellt Serversocket
      * @return listener
      */
     public static ServerSocket createServerSocket() {
         try {
-            ServerSocket listener = new ServerSocket(PORT);
+            listener = new ServerSocket(PORT);
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -50,9 +50,9 @@ public class ServerSocketFactory {
      * closeSocket() schliesst ServerSocket
      * @param Serversocket
      */
-    public static void closeServerSocket(ServerSocket listener) {
+    public static void closeServerSocket(ServerSocket listenerToClose) {
         try {
-            listener.close();
+            listenerToClose.close();
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
