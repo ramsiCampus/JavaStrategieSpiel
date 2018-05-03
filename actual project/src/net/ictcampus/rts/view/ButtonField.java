@@ -36,7 +36,7 @@ public class ButtonField extends JButton{
             e.printStackTrace();
         }
         
-        icon = new ImageIcon(img3);
+        icon = new ImageIcon(img1);
         this.setIcon(icon);
         
         JLabel content = new JLabel();

@@ -25,6 +25,10 @@ public class Testframe extends JFrame {
     private ButtonField[][] field;
     private JLabel titleRight = new JLabel();
     private JLabel lblKoordinaten;
+    private JButton playButton;
+    private JTextField txtCreateP;
+    private JTextField txtTransportPkoo;
+    private JTextField txtTransportPanz;
     
     private int xSize=20;
     private int ySize=10;
@@ -126,9 +130,10 @@ public class Testframe extends JFrame {
     }
 
     public void setTitle() {
-        title.setLayout(new GridLayout(1, 3));
+        title.setLayout(new GridLayout(1, 4));
         JLabel titleLeft = new JLabel("Spielerinfo");
         JLabel titleCenter = new JLabel("Ausgewähltes Feld: ");
+        playButton = new JButton("Play");
         
 
         Font font = new Font("Calibri", 1, 40);
@@ -139,6 +144,7 @@ public class Testframe extends JFrame {
         title.add(titleLeft);
         title.add(titleCenter);
         title.add(titleRight);
+        title.add(playButton);
     }
 
     private void setContentLeft(JPanel contentBorderLeft) {
@@ -176,9 +182,9 @@ public class Testframe extends JFrame {
         JButton btnCollectR = new JButton("Ressourcen sammenln");
         JButton btnStoreR = new JButton("Ressourcen lagern");
         JButton btnTransportP = new JButton("Menschen transportieren");
-        JTextField txtCreateP = new JTextField();
-        JTextField txtTransportPkoo = new JTextField();
-        JTextField txtTransportPanz = new JTextField();
+        txtCreateP = new JTextField();
+        txtTransportPkoo = new JTextField();
+        txtTransportPanz = new JTextField();
 
         
         lblTitel.setFont(titel);
@@ -248,10 +254,7 @@ public class Testframe extends JFrame {
                 if(field[j][i].getAusgew()) {
                     ausgewX=field[j][i].getPosX();
                     ausgewY=field[j][i].getPosY();
-                    
                 }
-                
-                
             }
         }
     }
@@ -277,5 +280,15 @@ public class Testframe extends JFrame {
         this.ausgewY = ausgewY;
     }
     
-
+    public JTextField getTxtCreateP() {
+        return txtCreateP;
+    }
+    
+    public JTextField getTxtTransportPkoo() {
+        return txtTransportPkoo;
+    }
+    
+    public JTextField getTxtTransportPanz() {
+        return txtTransportPanz;
+    }
 }
