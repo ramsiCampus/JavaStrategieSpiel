@@ -32,9 +32,9 @@ public class Ressource extends Item {
     public int getAnzahl() {
         return anzahl;
     }
-    
+
     public void setAnzahl(int anzahl) {
         this.anzahl = anzahl;
     }
-    
+
 }
