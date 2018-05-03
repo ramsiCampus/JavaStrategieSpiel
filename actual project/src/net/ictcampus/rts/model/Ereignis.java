@@ -14,8 +14,17 @@ public class Ereignis {
 
     private String name;
     private int staerke;
+    private Player betroffeneSpieler;
 
     // -------------------------------Constructor--------------------------------//
+    
+    public Ereignis(String name, int staerke, Player spieler){
+        
+        this.name = name;
+        this.staerke = staerke;
+        this.betroffeneSpieler = spieler;
+      
+    }
 
     // -----------------------------------Main-----------------------------------//
 

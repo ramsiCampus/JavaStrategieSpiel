@@ -28,8 +28,14 @@ public class Mensch extends GameObject {
 
     public Mensch(Player besitzer, int preisZahl) {
         super();
-        besitzer = this.besitzer;
+
+        this.besitzer= besitzer ;
         preis.setAnzahl(preisZahl);
+
+//        this.besitzer = besitzer;
+//        Ressource r = new Ressource("Geld",10);
+//        r.setAnzahl(preisZahl);
+//        this.preis = r;
     }
 
     // -----------------------------------Main-----------------------------------//

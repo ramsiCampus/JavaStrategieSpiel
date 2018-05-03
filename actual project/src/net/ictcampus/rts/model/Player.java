@@ -27,8 +27,8 @@ public class Player {
    
 
     public Player(String name, int ID){
-        name = this.name;
-        ID = this.ID;
+        this.name = name;
+        this.ID = ID;
         
     }
   //-----------------------------------Main-----------------------------------//
@@ -40,6 +40,10 @@ public class Player {
     
     public int getTestgeld() {
         return testgeld;
+    }
+
+    public int getID() {
+        return ID;
     }
 
     public void setTestgeld(int testgeld) {
