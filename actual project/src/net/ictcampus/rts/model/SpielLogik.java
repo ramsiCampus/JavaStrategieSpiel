@@ -42,6 +42,7 @@ public class SpielLogik {
         
         this.spiel = new Spiel(20, 10, spieler.get(1), spieler.get(2), protMensch);
         
+        
         this.spielfeld = spiel.getSpielFeld();
 
         
@@ -52,9 +53,12 @@ public class SpielLogik {
 
     public static void main(String[] args) {
         SpielLogik sl = new SpielLogik();
-        for(Player p : sl.spiel.getSpieler()){
-            System.out.println(p.getName());
-        }
+//        for(Player p : sl.spiel.getSpieler()){
+//            System.out.println(p.getName());
+//        }
+        
+        sl.kaufeStadt(10, 8, sl.spieler.get(1), 10000, "Hauptsadt1","dinni", sl.protMensch);
+        
         
        
         
@@ -68,14 +72,14 @@ public class SpielLogik {
             
         }
         
-      sl.spielfeld.getStadt(8, 3).menschenBewegen(10);
-      System.out.println(sl.spielfeld.getStadt(8, 3).getArmee().getArmee().size());
-      System.out.println(sl.spielfeld.getStadt(8, 3).getVolk().size());
+//      sl.spielfeld.getStadt(8, 3).menschenBewegen(10);
+//      System.out.println(sl.spielfeld.getStadt(8, 3).getArmee().getArmee().size());
+//      System.out.println(sl.spielfeld.getStadt(8, 3).getVolk().size());
+//       
+//       sl.ereignisGenerieren();
+//       System.out.println(sl.spielfeld.getStadt(8, 3).getVolk().size());
        
-       sl.ereignisGenerieren();
-       System.out.println(sl.spielfeld.getStadt(8, 3).getVolk().size());
-       
-       Testframe tf = new Testframe(sl);
+//       Testframe tf = new Testframe(sl);
        
 //        System.out.println(sl.spiel.getMenschPreis());
        
@@ -109,8 +113,8 @@ public class SpielLogik {
 
     }
 
-    public void kaufeStadt(int xPos, int yPos, Player playingSpieler, int spielerGeld, String name,
-            String ursprungsStadtName, int startKapital, Mensch protMensch) {
+    public void kaufeStadt(int xPos, int yPos, Player playingSpieler, int startKapital,
+            String ursprungsStadtName, String name, Mensch protMensch) {
 
         spielfeld.stadtKaufen(xPos, yPos, playingSpieler, name, ursprungsStadtName, startKapital, protMensch);
     }

@@ -34,6 +34,9 @@ public class SpielFeld implements Serializable{
             for (int i = 0; i < xLength; i++) {
                 Feld feld = new Feld(i, j);
                 felder[i][j] = feld;
+                if(Math.random()<0.3) {
+                    feld.erzeugeLoot();
+                }
             }
         }
     }
@@ -60,6 +63,7 @@ public class SpielFeld implements Serializable{
             String ursprungsStadt, int startKapital, Mensch protMensch) {
 
         Feld thisField = felder[xPos][yPos];
+                
         for (Stadt s : staedte) {
 
             if (s.getBesitzer() == spieler && s.getName() == ursprungsStadt) {
