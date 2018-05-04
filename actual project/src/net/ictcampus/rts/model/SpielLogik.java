@@ -104,10 +104,6 @@ public class SpielLogik {
         spielfeld.stadtKaufen(xPos, yPos, playingSpieler, name, ursprungsStadtName, startKapital, protMensch);
     }
 
-    public void ressourcenSammeln() {
-
-    }
-
     public Ereignis ereignisGenerieren() {
 
         int zufallszahl;
