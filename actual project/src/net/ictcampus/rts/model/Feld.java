@@ -51,7 +51,6 @@ public class Feld implements Serializable {
                 if (i.getArmee().size() > 0) {
                     if (i.getBesitzer().equals(armee.getBesitzer())) {
                         i.menschenHinzufuegen(armee.getArmee());
-                        armee.getArmee().clear();
                         return true;
                     }
                 }
