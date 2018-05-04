@@ -30,6 +30,7 @@ public class ClientController extends Thread{
     private DataOutputStream os;
     private OutputStreamWriter osw;
     private BufferedWriter bw;
+    private Thread protocol;
     
     private static boolean clientIsReady;
     private static boolean gameIsReady;
@@ -52,6 +53,10 @@ public class ClientController extends Thread{
         clientIsReady = true;
         message = this.getMessageFromServer();
         player = new Player(name, Integer.parseInt(message));
+        this.netzSpiel = getGameStateFromServer();
+        gameIsReady = true;
+        protocol = new Thread(this);
+        protocol.start();
     }
 
     // -----------------------------------Main-----------------------------------//
@@ -141,7 +146,6 @@ public class ClientController extends Thread{
             if(message.equals("0")) {
                 if(this.clientIsReady) {
                     String response = Integer.toString(player.getID())+",0,0,0,0,0,0";
-                    gameIsReady = false;
                     this.sendCommand(response);
                 } else {
                     String response = Integer.toString(player.getID())+",-1,0,0,0,0,0";
@@ -179,6 +183,7 @@ public class ClientController extends Thread{
     }
 
     public static Spiel getNetzSpiel() {
+        ClientController.gameIsReady = false;
         return netzSpiel;
     }
 
