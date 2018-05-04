@@ -8,30 +8,13 @@ import net.ictcampus.rts.model.*;
 
 public class Testdata {
 
-    
-    /*
+    //PLAYER
+    Player p1 = new Player("Flo",1);
+    Player p2 = new Player("Sven",2);
     //SPIEL
-    Spiel spiel = new Spiel(20,10);
-    private SpielFeld spielfeld = new SpielFeld(20,10);
-    private List<Player> spieler = new ArrayList<Player>();
-    //SPIELFELD
-    private List<Armee> armies = new ArrayList<Armee>();
-    private List<Stadt> staedte;
-    //------> getter für Feld[][] felder vorhanden getFelder();
-    //ARMEE
-    private List<Mensch> armee = new ArrayList<Mensch>();
-    private int anzahlMenschen;
-    //MENSCH
+    Spiel spiel = new Spiel(20,10,p1,p2);
 
-    public void Testdata() {
-        //SPIEL
-        spieler.add(new Player("Flo",1));
-        spieler.add(new Player("Sven",2));
-        //ARMEE
-        armies.add(new Armee())
-        //MENSCH
-        
+    public Spiel getSpiel(){
+        return spiel;
     }
-    
-    */
 }

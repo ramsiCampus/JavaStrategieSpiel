@@ -69,7 +69,7 @@ public class ButtonActionListener implements ActionListener{
             if (vorrat < (anzahl*spiel.getMenschPreis())){
                 throw new InvalidAttributeValueException("CreateHumans not possible, money not sufficient");
             }
-            String befehl = frame.getPlayerId()+","+frame.getAusgewX()+","+frame.getAusgewY()+"2,1,"+ anzahlString + ",1";
+            String befehl = frame.getPlayerId()+",1,"+frame.getAusgewX()+","+frame.getAusgewY()+","+frame.getAusgewX()+","+frame.getAusgewY()+","+anzahlString;
             frame.setCommand(befehl);
         } catch (Exception e){
             System.out.println("CreateHumans invalid textfield input - no action was triggered.");
@@ -100,7 +100,7 @@ public class ButtonActionListener implements ActionListener{
                 if (vorrat < (spiel.getStadtPreis())){
                     throw new InvalidAttributeValueException("CreateCity not possible, money not sufficient");
                 }
-                String befehl = frame.getPlayerId()+","+frame.getAusgewX()+","+frame.getAusgewY()+",2,3,"+coordinateArr[0]+","+coordinateArr[1];
+                String befehl = frame.getPlayerId()+",3,"+frame.getAusgewX()+","+frame.getAusgewY()+","+coordinateArr[0]+","+coordinateArr[1]+",0";
                 frame.setCommand(befehl);
             } catch (Exception e){
                 System.out.println("CreateCity invalid textfield input or money not sufficient - no action was triggered.");
@@ -123,7 +123,7 @@ public class ButtonActionListener implements ActionListener{
                 if (field.countPlayerEinheiten(frame.getPlayerId()) <= 0) {
                     throw new InvalidAttributeValueException("No people on the selected field.");
                 }
-                String befehl = frame.getPlayerId()+","+frame.getAusgewX()+","+frame.getAusgewY()+",1,1,"+coordinateArr[0]+","+coordinateArr[1];
+                String befehl = frame.getPlayerId()+",4,"+frame.getAusgewX()+","+frame.getAusgewY()+","+coordinateArr[0]+","+coordinateArr[1]+","+0;
                 frame.setCommand(befehl);
             } catch (Exception e) {
                 System.out.println("No people on the selected field - no action was triggered.");
@@ -152,7 +152,7 @@ public class ButtonActionListener implements ActionListener{
                 if (stadt.getVolk().size() <= Integer.parseInt(numberOfCitizens)) {
                     throw new InvalidAttributeValueException("Selected to send more people than existing in the city.");
                 }
-                String befehl = frame.getPlayerId()+","+frame.getAusgewX()+","+frame.getAusgewY()+",2,3,"+coordinateArr[0]+","+coordinateArr[1]+","+numberOfCitizens;
+                String befehl = frame.getPlayerId()+",2,"+frame.getAusgewX()+","+frame.getAusgewY()+","+coordinateArr[0]+","+coordinateArr[1]+","+numberOfCitizens;
                 frame.setCommand(befehl);
             } catch (Exception e) {
                 System.out.println("No or not enaugh people on the selected field - no action was triggered.");
