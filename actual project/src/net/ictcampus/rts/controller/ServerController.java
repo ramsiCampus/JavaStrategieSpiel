@@ -27,23 +27,28 @@ import java.net.Socket;
 public class ServerController {
     // ---------------------------variable_declaration---------------------------//
     private ServerSocket listener;
+    private ServerSocket dlistener;
     private List<Socket> connections = new ArrayList<Socket>();
+    private List<Socket> datasend = new ArrayList<Socket>();
     private List<ObjectOutputStream> osw = new ArrayList<ObjectOutputStream>();
 
     // -------------------------------Constructor--------------------------------//
     public ServerController(int anzConnections) {
         listener = ServerSocketFactory.createServerSocket();
+        dlistener = ServerSocketFactory.createServerSocket(54270);
         try {
         	System.out.println(listener.getLocalPort()+" is the local port.");
         	System.out.println(listener.getInetAddress().toString());
         	for(int i=0; i<anzConnections; i++) {
         	    
         	    connections.add(listener.accept());
+        	    datasend.add(dlistener.accept());
         	    this.sendMessageToClient(connections.get(i), Integer.toString(i));
         	    
+        	    ObjectOutputStream oos = new ObjectOutputStream(datasend.get(i).getOutputStream());
         	    //DataOutputStream dos = new DataOutputStream(connections.get(i).getOutputStream());
-        	    ObjectOutputStream oos = new ObjectOutputStream(connections.get(i).getOutputStream());
-        	    oos.reset();
+        	    
+        	    //oos.reset();
         	    osw.add(oos);
         	    
         	}

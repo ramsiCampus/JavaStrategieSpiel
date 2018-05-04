@@ -49,6 +49,27 @@ public class ClientSocketFactory {
         return socket;
     }
     
+    public static Socket createClientSocket(int porterino) {
+//      int addForGameState = 0;
+//      if(isUsedForGameState){ addForGameState++; }
+        
+        boolean notConnected = true;
+        while(notConnected) {
+            try {
+                socket = new Socket(serverAddress, porterino);
+                notConnected = false;
+            } catch (UnknownHostException e) {
+                notConnected = false;
+                e.printStackTrace();
+            } catch (IOException e) {
+                notConnected = true;
+                e.printStackTrace();
+            }
+        }
+        
+        return socket;
+    }
+    
     
     /**
      * getSocket() holt ClientSocket, falls es keinen hat, wird einer erstellt

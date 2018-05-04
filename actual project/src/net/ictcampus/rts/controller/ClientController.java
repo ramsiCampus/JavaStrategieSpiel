@@ -27,6 +27,7 @@ public class ClientController extends Thread{
     // ---------------------------variable_declaration---------------------------//
     // socket (Client)
     private Socket socket;
+    private Socket dataSocket;
     private DataOutputStream os;
     private OutputStreamWriter osw;
     private BufferedWriter bw;
@@ -51,6 +52,7 @@ public class ClientController extends Thread{
     public ClientController(String name) {
         // Setup networking
         socket = ClientSocketFactory.createClientSocket();
+        dataSocket = ClientSocketFactory.createClientSocket(56270);
         clientIsReady = true;
         message = this.getMessageFromServer();
         System.out.println(message);

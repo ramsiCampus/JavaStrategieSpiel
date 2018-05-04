@@ -39,6 +39,16 @@ public class ServerSocketFactory {
         return listener;
     }
     
+    public static ServerSocket createServerSocket(int porterino) {
+        
+        try {
+            listener = new ServerSocket(porterino,1, InetAddress.getByName(hostname));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return listener;
+    }
+    
     /**
      * getSocket() holt ServerSocket, falls es keinen hat, wird einer erstellt
      * @return ServerSocket
