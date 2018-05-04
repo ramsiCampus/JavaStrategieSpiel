@@ -79,7 +79,7 @@ public class SpielLogik {
 //       sl.ereignisGenerieren();
 //       System.out.println(sl.spielfeld.getStadt(8, 3).getVolk().size());
        
-//       Testframe tf = new Testframe(sl);
+       Testframe tf = new Testframe(sl);
        
 //        System.out.println(sl.spiel.getMenschPreis());
        
