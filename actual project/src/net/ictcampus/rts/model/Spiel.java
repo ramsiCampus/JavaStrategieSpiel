@@ -78,6 +78,10 @@ public class Spiel implements Serializable {
     public void setProtMensch(Mensch protMensch) {
         this.protMensch = protMensch;
     }
+    
+    public Mensch getProtMensch() {
+        return protMensch;
+    }
 
     public int getMenschPreis() {
         return this.protMensch.getPreis().getAnzahl();
