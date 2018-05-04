@@ -22,5 +22,6 @@ public class Testdata {
         spiel.getSpielFeld().getFelder()[2][2].erzeugeStadt("NeueStadt", p1);
         spiel.getSpielFeld().getFelder()[8][5].erzeugeStadt("NeueStadt", p2);
         spiel.getSpielFeld().getFelder()[8][6].erzeugeLoot();
+        spiel.getSpielFeld().getFelder()[8][5].getStadt().vorratErzeugen("Geld", 10000000);
     }
 }

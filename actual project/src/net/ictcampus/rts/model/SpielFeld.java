@@ -86,7 +86,6 @@ public class SpielFeld {
             }
         }
         return gefundeneStadt;
-
     }
 
     public void armeeBewegen(int xPos, int yPos, Armee armee) {
