@@ -24,20 +24,27 @@ public class Spiel {
 
     // -------------------------------Constructor--------------------------------//
 
-    public Spiel(int xLength, int yLength, Player spieler1, Player spieler2) {
+    public Spiel(int xLength, int yLength, Player spieler1, Player spieler2, Mensch protMensch) {
 
         this.spielFeld = new SpielFeld(xLength, yLength);
         this.spieler.add(spieler1);
         this.spieler.add(spieler2);
         this.stadtPreis = 1000;
+        this.protMensch = protMensch;
+        
+        
+        
+        String s = "Hauptsadt1";
 
         for (Player i : spieler) {
 
             int x = 8;
             int y = 3;
-            initStadt(i, x, y, 9000, "test");
+          
+            initStadt(i, x, y, stadtPreis, s, protMensch);
             x = x + 3;
             y = y + 4;
+            s = "zweiteHauptstadt";
         }
 
     }
@@ -47,17 +54,14 @@ public class Spiel {
     // ---------------------------------Methods---------------------------------//
 
     private void initStadt(Player spieler, int xPosStadt, int yPosStadt, int startKapital,
-            String stadtName) {
+            String stadtName, Mensch protMensch) {
 
-        Stadt stadt = new Stadt(stadtName, xPosStadt, yPosStadt, spieler);
+        Stadt stadt = new Stadt(stadtName, xPosStadt, yPosStadt, spieler, startKapital, protMensch);
         spielFeld.getStaedte().add(stadt);
 
     }
 
-    public int getStadtPreis() {
-
-        return stadtPreis;
-    }
+    
 
     // ------------------------------Getter_Setter------------------------------//
 
@@ -89,6 +93,11 @@ public class Spiel {
         }
 
         return gesuchteSpieler;
+    }
+    
+    public int getStadtPreis() {
+
+        return stadtPreis;
     }
 
 }

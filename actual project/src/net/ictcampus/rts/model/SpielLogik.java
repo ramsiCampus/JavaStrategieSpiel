@@ -31,14 +31,17 @@ public class SpielLogik {
 
     public SpielLogik() {
 
-        spieler.add(new Player("testperson1", 1));
-        spieler.add(new Player("testperson2", 2));
+        spieler.add(new Player("Game",0));
+        spieler.add(new Player("Winnie", 1));
+        spieler.add(new Player("rämsi", 2));
 
-        this.spiel = new Spiel(20, 10, spieler.get(0), spieler.get(1));
+        this.protMensch = new Mensch(spieler.get(0), 10);        
+        
+        this.spiel = new Spiel(20, 10, spieler.get(1), spieler.get(2), protMensch);
+        
         this.spielfeld = spiel.getSpielFeld();
 
-        this.protMensch = new Mensch(null, 10);
-        spiel.setProtMensch(protMensch);
+        
 
     }
 
@@ -46,20 +49,24 @@ public class SpielLogik {
 
     public static void main(String[] args) {
         SpielLogik sl = new SpielLogik();
-        Testframe tf = new Testframe();
+//        Testframe tf = new Testframe();
         for(Player p : sl.spiel.getSpieler()){
             System.out.println(p.getName());
         }
+        
+       
+        
+        
+        
         for (Stadt i : sl.spielfeld.getStaedte()) {
             System.out.println(i.getName());
-            System.out.println(i.getBesitzer());
-            System.out.println(i.getVorrat());
+            System.out.println(i.getVorratGUI("Geld"));
             
         }
         
        
-//       sl.ereignisGenerieren();
-        System.out.println(sl.spiel.getMenschPreis());
+       sl.ereignisGenerieren();
+//        System.out.println(sl.spiel.getMenschPreis());
        
     }
 
@@ -83,18 +90,18 @@ public class SpielLogik {
         }
     }
 
-    public void menschenKaufen(Player playingSpieler, Stadt stadt) {
+    public void menschenKaufen(Player playingSpieler, Stadt stadt, int mengeMenschen) {
 
         if (stadt.getBesitzer() == playingSpieler) {
-            stadt.menschKaufen(protMensch);
+            stadt.menschKaufen(protMensch,mengeMenschen);
         }
 
     }
 
     public void kaufeStadt(int xPos, int yPos, Player playingSpieler, int spielerGeld, String name,
-            String ursprungsStadtName) {
+            String ursprungsStadtName, int startKapital, Mensch protMensch) {
 
-        spielfeld.stadtKaufen(xPos, yPos, playingSpieler, name, ursprungsStadtName);
+        spielfeld.stadtKaufen(xPos, yPos, playingSpieler, name, ursprungsStadtName, startKapital, protMensch);
     }
 
     public void ressourcenSammeln() {
