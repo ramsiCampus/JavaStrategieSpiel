@@ -154,12 +154,7 @@ public class Stadt extends GameObject {
         }
     }
 
-    /**
-     * @deprecated Use {@link #getVorratGUI(String)} instead
-     */
-    public int checkVorrat(String itemName) {
-        return getVorratGUI(itemName);
-    }
+  
 
     public int getVorratGUI(String itemName) {
         int anzahl = 0;
@@ -201,17 +196,14 @@ public class Stadt extends GameObject {
     public boolean kaufeStadt(){
         
         int guthaben = getVorratGUI("Geld");
-        int kaufpreis = 1000;
+        int kaufpreis = 200;
         
         
         if(guthaben < kaufpreis){
             return false;
-        }
-        
-        
-        
-        
-        return true;
+        }       
+              
+                return true;
         
     }
 
