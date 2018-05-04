@@ -120,7 +120,7 @@ public class SpielFeld implements Serializable {
                 this.felder[xPos][yPos].getStadt().wirdBetreten(armee);
             }
 
-            if (this.felder[xPos][yPos].getLoot().size() != 0) {
+            else {
                 this.felder[xPos][yPos].wirdBetreten(armee);
             }
         }

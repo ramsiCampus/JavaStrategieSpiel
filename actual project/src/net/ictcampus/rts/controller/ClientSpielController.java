@@ -28,7 +28,7 @@ public class ClientSpielController {
         while(!cltCtrl.isGameIsReady()) {
             spiel = cltCtrl.getNetzSpiel();
         }
-        tF = new Testframe();
+        //tF = new Testframe();
         supiDupiGame();
 
     }
