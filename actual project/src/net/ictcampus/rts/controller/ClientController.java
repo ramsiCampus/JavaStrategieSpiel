@@ -31,7 +31,8 @@ public class ClientController extends Thread{
     private OutputStreamWriter osw;
     private BufferedWriter bw;
     
-    private static boolean isReady;
+    private static boolean clientIsReady;
+    private static boolean gameIsReady;
     private static String message;
     private static String cmd;
     private static Spiel netzSpiel;
@@ -48,7 +49,7 @@ public class ClientController extends Thread{
     public ClientController(String name) {
         // Setup networking
         socket = ClientSocketFactory.createClientSocket();
-        isReady = true;
+        clientIsReady = true;
         message = this.getMessageFromServer();
         player = new Player(name, Integer.parseInt(message));
     }
@@ -137,8 +138,9 @@ public class ClientController extends Thread{
             message = getMessageFromServer();
             
             if(message.equals("0")) {
-                if(this.isReady) {
+                if(this.clientIsReady) {
                     String response = Integer.toString(player.getID())+",0,0,0,0,0,0";
+                    gameIsReady = false;
                     this.sendCommand(response);
                 } else {
                     String response = Integer.toString(player.getID())+",-1,0,0,0,0,0";
@@ -147,10 +149,11 @@ public class ClientController extends Thread{
             }
             else if(message.equals("1")) {
                 this.sendCommand(cmd);
-                this.isReady = false;
+                this.clientIsReady = false;
             }
             else if(message.equals("2")) {
                 this.netzSpiel = getGameStateFromServer();
+                gameIsReady = true;
             }
             
         }
@@ -163,7 +166,7 @@ public class ClientController extends Thread{
     
 
     public static void setReady(boolean isReady) {
-        ClientController.isReady = isReady;
+        ClientController.clientIsReady = isReady;
     }
     
     public static void setMessage(String message) {
@@ -180,6 +183,7 @@ public class ClientController extends Thread{
 
     public static void setCmd(String cmd) {
         ClientController.cmd = cmd;
+        ClientController.clientIsReady = true;
     }
     
     
