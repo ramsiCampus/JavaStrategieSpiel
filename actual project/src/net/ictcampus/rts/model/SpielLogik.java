@@ -57,7 +57,7 @@ public class SpielLogik {
 //            System.out.println(p.getName());
 //        }
         
-        sl.kaufeStadt(10, 8, sl.spieler.get(1), 10000, "Hauptsadt1","dinni", sl.protMensch);
+//        sl.kaufeStadt(10, 8, sl.spieler.get(1), 10000, "Hauptsadt1","dinni", sl.protMensch);
         
         
        
