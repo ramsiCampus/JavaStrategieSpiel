@@ -5,6 +5,7 @@ import java.io.IOException;
 import net.ictcampus.rts.model.SpielLogik;
 
 public class ServerSpielController {
+
 	private int anzSpieler = 2;
 	private static final int COMMANDCOUNT = 7;
 	SpielLogik spielLogik;
@@ -45,9 +46,5 @@ public class ServerSpielController {
 			System.out.println("");
 		}
 	}
-	
-	
-	
-	
 	
 }
