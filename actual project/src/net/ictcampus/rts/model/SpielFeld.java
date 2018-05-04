@@ -87,7 +87,6 @@ public class SpielFeld implements Serializable{
             }
         }
         return gefundeneStadt;
-
     }
 
     public void armeeBewegen(int xPos, int yPos, Armee armee) {

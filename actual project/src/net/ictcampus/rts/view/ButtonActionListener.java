@@ -66,14 +66,16 @@ public class ButtonActionListener implements ActionListener{
             if (anzahl <= 0) {
                 throw new InvalidAttributeValueException("CreateHumans invalid textfield input, number below 1");
             }
+            //FEHLER UNTER DEM HIER
             int vorrat = spiel.getSpielFeld().getStadt(frame.getAusgewX(), frame.getAusgewY()).getVorratGUI("Geld");
+            //FEHLER èBER DEM HIER
             if (vorrat < (anzahl*spiel.getMenschPreis())){
                 throw new InvalidAttributeValueException("CreateHumans not possible, money not sufficient");
             }
             String befehl = frame.getPlayerId()+",1,"+frame.getAusgewX()+","+frame.getAusgewY()+","+frame.getAusgewX()+","+frame.getAusgewY()+","+anzahlString;
             frame.setCommand(befehl);
         } catch (Exception e){
-            System.out.println("CreateHumans invalid textfield input - no action was triggered.");
+            System.out.println("CreateHumans invalid textfield input - no action was triggered." +"\n" + e.toString() +" "+ e.getMessage());
         }
     }
 
