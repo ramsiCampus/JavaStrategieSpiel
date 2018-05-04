@@ -54,28 +54,29 @@ public class SpielLogik {
         
         int[] command = new int[]{1,2,8,3,8,2,10};
         int[] command2 = new int[]{1,4,8,2,7,2,10};
+        int[] command3 = new int[]{1,3,8,3,17,2,0};
 //        int[] command3 = new int[]{1,2,8,3,8,2,10};
        
         sl.commandAusfuehren(command);
         sl.commandAusfuehren(command2);
-//        sl.commandAusfuehren(command3);        
+        sl.commandAusfuehren(command3);        
              
         System.out.println(sl.spielfeld.getStadt(8, 3).getVolk().size());
        
-        for (Stadt i : sl.spielfeld.getStaedte()) {
-            System.out.println("Stadtname" + i.getName());
-            System.out.println(i.getVorratGUI("Geld"));
-            System.out.println(i.getxPos());
-            System.out.println(i.getyPos());
-
-        }
+//        for (Stadt i : sl.spielfeld.getStaedte()) {
+//            System.out.println("Stadtname" + i.getName());
+//            System.out.println(i.getVorratGUI("Geld"));
+//            System.out.println(i.getxPos());
+//            System.out.println(i.getyPos());
+//
+//        }
 
 
         Testframe tf = new Testframe(sl);
 
 
 //        System.out.println("Armee 1: "+sl.spielfeld.getFelder()[8][3].getEinheiten().get(0).getArmee().size());
-        System.out.println("Armee 2: "+sl.spielfeld.getFelder()[7][2].getEinheiten().get(0).getArmee().size());
+//        System.out.println("Armee 2: "+sl.spielfeld.getFelder()[7][2].getEinheiten().get(0).getArmee().size());
         
         
 

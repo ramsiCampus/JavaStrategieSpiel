@@ -366,10 +366,6 @@ public class Testframe extends JFrame {
             lblVerfuegbareR.setText("-");
             lblAnzahlMenschen.setText(spiel.getSpielFeld().getFelder()[ausgewX][ausgewY].countPlayerEinheiten(playerId)+"");
         }
-        
-        
-        
-        
     }
     
     public void refreshDataLeft() {
