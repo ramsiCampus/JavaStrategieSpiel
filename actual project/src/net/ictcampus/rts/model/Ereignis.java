@@ -1,6 +1,5 @@
 //packages
 package net.ictcampus.rts.model;
-
 //imports
 import java.util.Random;
 
@@ -27,19 +26,19 @@ public class Ereignis {
 
         switch (ereignisZahl) {
         case 1:
-            feuerAusbruch(50, 100);
+            ausbruch("Feuer",10, 22);
             break;
         case 2:
-            pestAusbruch(200, 1000);
+            ausbruch("Pest",20, 100);
             break;
         case 3:
-            tornadoAusbruch(10, 30);
+            ausbruch("Tornado",1, 15);
             break;
         case 4:
-            revolteAusbruch(600, 1000);
+            ausbruch("Revolte",44, 100);
             break;
         case 5:
-            erdbebenAusbrauch(80, 300);
+            ausbruch("Erdbeben",30, 30);
         }
         
     }
@@ -54,7 +53,7 @@ public class Ereignis {
      * auf und generiert eine Zufallszahl zwischen 10 und 30, welche die Anzahl
      * an Menschen entfernen
      */
-    public void feuerAusbruch(int min, int max) {
+    private void ausbruch(String name,int min, int max) {
 
         Random randomZahl = new Random();
         todesOpfer = randomZahl.nextInt(max - min) + min;
@@ -62,33 +61,7 @@ public class Ereignis {
 
     }
 
-    public void pestAusbruch(int min, int max) {
 
-        Random randomZahl = new Random();
-        todesOpfer = randomZahl.nextInt(max - min) + min;
-        betroffeneStadt.menschenDezimieren(todesOpfer);
-    }
-
-    public void tornadoAusbruch(int min, int max) {
-
-        Random randomZahl = new Random();
-        todesOpfer = randomZahl.nextInt(max - min) + min;
-        betroffeneStadt.menschenDezimieren(todesOpfer);
-    }
-
-    public void revolteAusbruch(int min, int max) {
-
-        Random randomZahl = new Random();
-        todesOpfer = randomZahl.nextInt(max - min) + min;
-        betroffeneStadt.menschenDezimieren(todesOpfer);
-    }
-    
-    public void erdbebenAusbrauch(int min, int max){
-        
-        Random randomZahl = new Random();
-        todesOpfer = randomZahl.nextInt(max - min) + min;
-        betroffeneStadt.menschenDezimieren(todesOpfer);
-    }
     // ------------------------------Getter_Setter------------------------------//
 
     public String getName() {

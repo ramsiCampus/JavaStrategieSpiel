@@ -4,6 +4,7 @@ package net.ictcampus.rts.model;
 //imports
 import java.util.List;
 import java.util.Random;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -13,7 +14,7 @@ import java.util.ArrayList;
  *
  */
 
-public class Feld {
+public class Feld implements Serializable {
 
     // ---------------------------variable_declaration---------------------------//
     private int xPos;
@@ -47,9 +48,12 @@ public class Feld {
     public boolean wirdBetreten(Armee armee) {
         if (einheiten.size() > 0) {
             for (Armee i : einheiten) {
-                if (i.getBesitzer().equals(armee.getBesitzer())) {
-                    i.menschenHinzufuegen(armee.getArmee());
-                    return true;
+                if (i.getArmee().size() > 0) {
+                    if (i.getBesitzer().equals(armee.getBesitzer())) {
+                        i.menschenHinzufuegen(armee.getArmee());
+                        armee.getArmee().clear();
+                        return true;
+                    }
                 }
             }
             // possible pvp
@@ -70,8 +74,8 @@ public class Feld {
 
     }
 
-    public void erzeugeStadt(String name, Player spieler) {
-        stadt = new Stadt(name, this.xPos, this.yPos, spieler);
+    public void erzeugeStadt(String name, Player spieler, int startKapital, Mensch protMensch) {
+        stadt = new Stadt(name, this.xPos, this.yPos, spieler, startKapital, protMensch);
         setStadt(stadt);
     }
 
@@ -165,5 +169,6 @@ public class Feld {
                 }               
             }          
             return anzahlMensch;
+
     }
 }

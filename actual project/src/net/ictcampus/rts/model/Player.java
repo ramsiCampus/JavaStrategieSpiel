@@ -2,6 +2,10 @@
 package net.ictcampus.rts.model;
 //imports
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
 //import java.util.List;
 //
 //import com.sun.javafx.collections.MappingChange.Map;
@@ -12,13 +16,12 @@ package net.ictcampus.rts.model;
  * @author lauwrensw
  * @version 1.0
  */
-public class Player {
+public class Player implements Serializable{
 
     // ---------------------------variable_declaration---------------------------//
 
     private String name;
-    @SuppressWarnings("unused")
-    private int[] alleID;
+    private static List<Integer> alleID = new ArrayList<Integer>();
     private int ID;
     
 
@@ -29,7 +32,7 @@ public class Player {
     public Player(String name, int ID){
         this.setName(name);
         this.ID = ID;
-        
+        alleID.add(ID);
     }
   //-----------------------------------Main-----------------------------------//
 
