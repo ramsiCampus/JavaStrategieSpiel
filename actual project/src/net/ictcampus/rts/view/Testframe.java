@@ -24,7 +24,7 @@ public class Testframe extends JFrame {
     private JPanel content;
     private JPanel title;
     private ButtonField[][] field;
-    private Spiel spiel;
+    private Spiel spiel = getSpiel();
 
     private JLabel titleRight = new JLabel();
 
@@ -40,6 +40,9 @@ public class Testframe extends JFrame {
     private JLabel sammelAnzahl;
     private JLabel menschenInStadtAnzahl;
     private JButton btnCreateP;
+    private JButton btnBuildC;
+    private JButton btnTransportP;
+    private JPanel contentBorderCenter;
 
     private JLabel lblKoordinaten;
     private JLabel lblInfo;
@@ -88,6 +91,9 @@ public class Testframe extends JFrame {
         aktiverButton();
         setContent();
         setTitle();
+//        setBackgroundImg();
+//        refreshDataRight();
+//        refreshDataLeft();
 
         this.add(map, "North");
         this.add(title, "Center");
@@ -116,7 +122,7 @@ public class Testframe extends JFrame {
         JPanel contentLeft = new JPanel();
         JPanel contentCenter = new JPanel();
         JPanel contentRight = new JPanel();
-        JPanel contentBorderCenter = new JPanel();
+        contentBorderCenter = new JPanel();
         JPanel contentBorderRight = new JPanel();
         JPanel contentBorderLeft = new JPanel();
 
@@ -197,8 +203,9 @@ public class Testframe extends JFrame {
 
         JLabel lblTitel = new JLabel("Aktionen");
         btnCreateP = new JButton("Menschen erstellen");
-        JButton btnBuildC = new JButton("Stadt bauen");
-        JButton btnTransportP = new JButton("Menschen transportieren");
+        btnBuildC = new JButton("Stadt bauen");
+        btnTransportP = new JButton("Menschen transportieren");
+        
         btnCreateP.addActionListener(new ButtonActionListener(this, spiel));
         btnBuildC.addActionListener(new ButtonActionListener(this, spiel));
         btnTransportP.addActionListener(new ButtonActionListener(this, spiel));     
@@ -229,7 +236,23 @@ public class Testframe extends JFrame {
         p.add(new JLabel(""));
         p.add(new JLabel("Koordinaten"));
         p.add(new JLabel("Anzahl"));
+        
+        disableContentCenter(true);
+        btnTransportP.setBackground(new Color(255,255,255));
+        btnCreateP.setBackground(new Color(255,255,255));
+        btnBuildC.setBackground(new Color(255,255,255));
+        
 
+    }
+    
+    public void disableContentCenter(boolean b) {
+        
+        
+        this.getContentBorderCenter().setVisible(!b);
+        btnTransportP.setBackground(new Color(255,255,255));
+        
+        
+        
     }
 
     private void setContentRight(JPanel p, Font titel) {
@@ -449,5 +472,29 @@ public class Testframe extends JFrame {
 
     public void setTxtTransportPanz(JTextField txtTransportPanz) {
         this.txtTransportPanz = txtTransportPanz;
+    }
+
+    public JButton getBtnBuildC() {
+        return btnBuildC;
+    }
+
+    public void setBtnBuildC(JButton btnBuildC) {
+        this.btnBuildC = btnBuildC;
+    }
+
+    public JButton getBtnTransportP() {
+        return btnTransportP;
+    }
+
+    public void setBtnTransportP(JButton btnTransportP) {
+        this.btnTransportP = btnTransportP;
+    }
+
+    public JPanel getContentBorderCenter() {
+        return contentBorderCenter;
+    }
+
+    public void setContentBorderCenter(JPanel contentBorderCenter) {
+        this.contentBorderCenter = contentBorderCenter;
     }
 }
