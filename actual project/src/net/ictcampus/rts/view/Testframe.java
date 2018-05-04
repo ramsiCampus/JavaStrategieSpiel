@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import net.ictcampus.rts.model.Spiel;
+import net.ictcampus.rts.model.SpielLogik;
 
 import java.awt.font.*;
 
@@ -25,7 +26,8 @@ public class Testframe extends JFrame {
     private JPanel title;
     private ButtonField[][] field;
     private Testdata testdata = new Testdata();
-    private Spiel spiel = testdata.getSpiel();
+    private Spiel spiel;
+    private SpielLogik spielLogik;
 
     private JLabel titleRight = new JLabel();
 
@@ -71,10 +73,12 @@ public class Testframe extends JFrame {
      */
     // private static final long serialVersionUID = -6325432051352243062L;
 
-    public Testframe() {
+    public Testframe(SpielLogik spielLogik) {
 
         super("Javalisation");
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.spielLogik = spielLogik;
+        this.spiel = spielLogik.getSpiel();
         this.initContent();
         this.setVisible(true);
     }
