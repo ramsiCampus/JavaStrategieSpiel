@@ -35,13 +35,27 @@ public class JavalisationActionLinstener implements ActionListener {
             frame.getBtnBuildC().setEnabled(false);
             frame.getTxtCreateC().setEnabled(false);
             frame.getTxtTransportPanz().setEnabled(false);
+            frame.getBtnTransportP().setEnabled(true);
+            frame.getTxtTransportPkoo().setEnabled(true);
         }
         else {
-            frame.getBtnCreateP().setEnabled(true);
-            frame.getTxtCreateP().setEnabled(true);
-            frame.getBtnBuildC().setEnabled(true);
-            frame.getTxtCreateC().setEnabled(true);
-            frame.getTxtTransportPanz().setEnabled(true);
+            if (frame.getPlayerId() == frame.getSpiel().getSpielFeld().getFelder()[xClick][yClick].getStadt().getBesitzer().getID()) {
+                frame.getBtnCreateP().setEnabled(true);
+                frame.getTxtCreateP().setEnabled(true);
+                frame.getBtnBuildC().setEnabled(true);
+                frame.getTxtCreateC().setEnabled(true);
+                frame.getTxtTransportPanz().setEnabled(true);
+                frame.getBtnTransportP().setEnabled(true);
+                frame.getTxtTransportPkoo().setEnabled(true);
+            } else {
+                frame.getBtnCreateP().setEnabled(false);
+                frame.getTxtCreateP().setEnabled(false);
+                frame.getBtnBuildC().setEnabled(false);
+                frame.getTxtCreateC().setEnabled(false);
+                frame.getTxtTransportPanz().setEnabled(false);
+                frame.getBtnTransportP().setEnabled(false);
+                frame.getTxtTransportPkoo().setEnabled(false);
+            }
         }
     }
 

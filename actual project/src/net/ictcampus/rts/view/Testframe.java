@@ -65,7 +65,7 @@ public class Testframe extends JFrame {
     private String command;
     private Boolean ready;
     
-    private int playerId;
+    private int playerId = 1;
 
     private JavalisationActionLinstener jAl;
 
@@ -76,7 +76,7 @@ public class Testframe extends JFrame {
 
     public Testframe(SpielLogik spielLogik) {
 
-        super("Javalisation (Dini Mueter isch fett)");
+        super("Javalisation (Dini Mueter isch fett(not kidding!))");
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.spielLogik = spielLogik;
         this.spiel = spielLogik.getSpiel();
@@ -365,10 +365,10 @@ public class Testframe extends JFrame {
         int anzMenschenSammeln=0;
         for (int i = 0; i < ySize; i++) {
           for (int j = 0; j < xSize; j++) {
-              anzMenschenSammeln+=spiel.getSpielFeld().getFelder()[j][i].countPlayerEinheiten(1/*playerId*/);
+              anzMenschenSammeln+=spiel.getSpielFeld().getFelder()[j][i].countPlayerEinheiten(playerId);
               
               if(spiel.getSpielFeld().getFelder()[j][i].getStadt()!=null) {
-                  if (spiel.getSpielFeld().getFelder()[j][i].getStadt().getBesitzer().equals(spiel.getPlayerByID(/*playerId*/1))) {
+                  if (spiel.getSpielFeld().getFelder()[j][i].getStadt().getBesitzer().equals(spiel.getPlayerByID(playerId))) {
                       anzStaedte++;
                       anzRessourcen+=spiel.getSpielFeld().getFelder()[j][i].getStadt().getVorratGUI("Geld");
                       anzMenschenStadt+=spiel.getSpielFeld().getFelder()[j][i].getStadt().getVolk().size();

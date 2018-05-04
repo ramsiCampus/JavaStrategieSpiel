@@ -130,8 +130,29 @@ public class ButtonActionListener implements ActionListener{
                 int x = Integer.parseInt(coordinateArr[1]);
                 int y = 9-Integer.parseInt(coordinateArr[0]);
                 coordinateArr[0] = Integer.toString(y);
-                if (field.countPlayerEinheiten(/*frame.getPlayerId()*/1) <= 0) {
+                if (field.countPlayerEinheiten(frame.getPlayerId()) <= 0) {
                     throw new InvalidAttributeValueException("No people on the selected field.");
+                }
+                int verschiebungX = 0;
+                if (x-frame.getAusgewX() > spiel.getProtMensch().getAusdauer()) {
+                    throw new InvalidAttributeValueException("Stamina not sufficient for the travel in X-direction");
+                }
+                if(x-frame.getAusgewX() < 0) {
+                    verschiebungX = frame.getAusgewX()-x;
+                } else {
+                    verschiebungX = x-frame.getAusgewX();
+                }
+                int verschiebungY;
+                if (y-frame.getAusgewY() > spiel.getProtMensch().getAusdauer()) {
+                    throw new InvalidAttributeValueException("Stamina not sufficient for the travel in Y-direction");
+                }
+                if(y-frame.getAusgewY() < 0) {
+                    verschiebungY = frame.getAusgewY()-y;
+                } else {
+                    verschiebungY = y-frame.getAusgewY();
+                }
+                if(verschiebungY + verschiebungX > spiel.getProtMensch().getAusdauer()) {
+                    throw new InvalidAttributeValueException("Stamina not sufficient for the travel in combined direction");
                 }
                 String befehl = frame.getPlayerId()+",4,"+frame.getAusgewX()+","+frame.getAusgewY()+","+coordinateArr[1]+","+coordinateArr[0]+","+0;
                 frame.setCommand(befehl);
@@ -156,6 +177,27 @@ public class ButtonActionListener implements ActionListener{
                 coordinateArr[0] = Integer.toString(y);
                 if (stadt.getVolk().size() <= 0) {
                     throw new InvalidAttributeValueException("No people on the selected City.");
+                }
+                int verschiebungX = 0;
+                if (x-frame.getAusgewX() > spiel.getProtMensch().getAusdauer()) {
+                    throw new InvalidAttributeValueException("Stamina not sufficient for the travel in X-direction");
+                }
+                if(x-frame.getAusgewX() < 0) {
+                    verschiebungX = frame.getAusgewX()-x;
+                } else {
+                    verschiebungX = x-frame.getAusgewX();
+                }
+                int verschiebungY;
+                if (y-frame.getAusgewY() > spiel.getProtMensch().getAusdauer()) {
+                    throw new InvalidAttributeValueException("Stamina not sufficient for the travel in Y-direction");
+                }
+                if(y-frame.getAusgewY() < 0) {
+                    verschiebungY = frame.getAusgewY()-y;
+                } else {
+                    verschiebungY = y-frame.getAusgewY();
+                }
+                if(verschiebungY + verschiebungX > spiel.getProtMensch().getAusdauer()) {
+                    throw new InvalidAttributeValueException("Stamina not sufficient for the travel in combined direction");
                 }
                 if (Integer.parseInt(numberOfCitizens) <= 0) {
                     throw new InvalidAttributeValueException("No people selected to send.");
