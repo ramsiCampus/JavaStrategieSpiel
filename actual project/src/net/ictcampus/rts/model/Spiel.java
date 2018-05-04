@@ -48,14 +48,14 @@ public class Spiel {
 
     private void initStadt(Player spieler, int xPosStadt, int yPosStadt, int startKapital,
             String stadtName) {
-        
+
         Stadt stadt = new Stadt(stadtName, xPosStadt, yPosStadt, spieler);
         spielFeld.getStaedte().add(stadt);
 
     }
-    
-    public int getStadtPreis(){
-        
+
+    public int getStadtPreis() {
+
         return stadtPreis;
     }
 
@@ -75,6 +75,20 @@ public class Spiel {
 
     public int getMenschPreis() {
         return this.protMensch.getPreis().getAnzahl();
+    }
+
+    public Player getPlayerByID(int id) {
+
+        Player gesuchteSpieler = null;
+
+        for (Player p : spieler) {
+            if (id == p.getID()) {
+                gesuchteSpieler = p;
+                break;
+            }
+        }
+
+        return gesuchteSpieler;
     }
 
 }
