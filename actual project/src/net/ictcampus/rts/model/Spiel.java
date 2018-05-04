@@ -35,11 +35,13 @@ public class Spiel {
         
         
         String s = "Hauptsadt1";
+        
+        int x = 8;
+        int y = 3;
 
         for (Player i : spieler) {
 
-            int x = 8;
-            int y = 3;
+         
           
             initStadt(i, x, y, stadtPreis, s, protMensch);
             x = x + 3;

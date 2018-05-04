@@ -27,19 +27,19 @@ public class Ereignis {
 
         switch (ereignisZahl) {
         case 1:
-            ausbruch("Feuer",50, 100);
+            ausbruch("Feuer",10, 22);
             break;
         case 2:
-            ausbruch("Pest",200, 1000);
+            ausbruch("Pest",20, 100);
             break;
         case 3:
-            ausbruch("Tornado",10, 30);
+            ausbruch("Tornado",1, 15);
             break;
         case 4:
-            ausbruch("Revolte",600, 1000);
+            ausbruch("Revolte",44, 100);
             break;
         case 5:
-            ausbruch("Erdbeben",80, 300);
+            ausbruch("Erdbeben",30, 30);
         }
         
     }

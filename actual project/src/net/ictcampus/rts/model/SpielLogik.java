@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import com.sun.xml.internal.bind.v2.runtime.RuntimeUtil.ToStringAdapter;
+
 import net.ictcampus.rts.view.Testframe;
 
 /**
@@ -61,11 +63,17 @@ public class SpielLogik {
         for (Stadt i : sl.spielfeld.getStaedte()) {
             System.out.println(i.getName());
             System.out.println(i.getVorratGUI("Geld"));
+            System.out.println(i.getxPos());
+            System.out.println(i.getyPos());
             
         }
         
+//       sl.spielfeld.getStadt(8, 3)
+        
        
        sl.ereignisGenerieren();
+       System.out.println(sl.spielfeld.getStadt(8, 3).getVolk().size());
+       
 //        System.out.println(sl.spiel.getMenschPreis());
        
     }
