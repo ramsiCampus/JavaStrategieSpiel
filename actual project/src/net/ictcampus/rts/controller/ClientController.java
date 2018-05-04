@@ -34,7 +34,7 @@ public class ClientController {
      */
     public ClientController() {
         // Setup networking
-        socket = ClientSocketFactory.createClientSocket(false);
+        socket = ClientSocketFactory.createClientSocket();
     }
 
     // -----------------------------------Main-----------------------------------//
@@ -50,7 +50,7 @@ public class ClientController {
      * @param anzahl
      * @return Ob die Funktion erfolgreich geendet hat oder nicht
      */
-    public boolean sendCommand(int playerID, int action, int xCoord, int yCoord, int anzahl) {
+    public boolean sendCommand(String command) {
         try {
             // Stream öffnen zum param senden
             socket = ClientSocketFactory.getClientSocket();
@@ -59,8 +59,8 @@ public class ClientController {
             bw = new BufferedWriter(osw);
 
             // Variabeln werden gesammelt um anschliessend versendet zu werden
-            String condensedCommand = ""+playerID+":"+action+":"+xCoord+":"+yCoord+":"+anzahl;
-            bw.write(condensedCommand);
+            // deprecated: String condensedCommand = ""+playerID+":"+action+":"+xCoord+":"+yCoord+":"+anzahl;
+            bw.write(command);
 
             bw.flush();
             System.out.println(socket.getLocalPort());
@@ -73,7 +73,8 @@ public class ClientController {
         return true;
     }
     
-    public void getMessage() {
+    public String getMessage() {
+        String message = "";
     	try {
     		DataInputStream dis = new DataInputStream(socket.getInputStream());
 	    	InputStreamReader isr = new InputStreamReader(dis);
@@ -81,11 +82,13 @@ public class ClientController {
 	    	
 	    	char[] cbuf = new char[10];
 	    	br.read(cbuf, 0, 10);
-	    	System.out.print(new String(cbuf));
+	    	message = new String(cbuf);
+	    	System.out.print(message);
 
     	} catch (IOException e) {
     		e.printStackTrace();
     	}
+    	return message;
     }
     // ------------------------------Getter_Setter------------------------------//
 }

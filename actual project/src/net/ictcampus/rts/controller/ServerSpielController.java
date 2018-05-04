@@ -6,14 +6,14 @@ import net.ictcampus.rts.model.SpielLogik;
 
 public class ServerSpielController {
 	private int anzSpieler = 2;
-	private static final int COMMANDCOUNT = 5;
+	private static final int COMMANDCOUNT = 7;
 	SpielLogik spielLogik;
 	ServerController srvCtrl;
 	int[][] commands;
 	
 	public ServerSpielController(int anzSpieler){
 		this.spielLogik = new SpielLogik();
-		this.srvCtrl = new ServerController();
+		this.srvCtrl = new ServerController(2);
 		this.anzSpieler = anzSpieler;
 		commands = new int [anzSpieler][COMMANDCOUNT];
 	}
@@ -24,7 +24,7 @@ public class ServerSpielController {
 			allCommands = this.srvCtrl.receiveCommands();
 			String[] commandsByPlayer = allCommands.split("#");
 			for(int i=0; i<anzSpieler; i++){
-				String[] playerCommands = commandsByPlayer[i].split(":");
+				String[] playerCommands = commandsByPlayer[i].split(",");
 				for(int j=0; j<COMMANDCOUNT; j++){
 					commands[i][j] = Integer.parseInt(playerCommands[j]);
 				}
@@ -45,6 +45,8 @@ public class ServerSpielController {
 			System.out.println("");
 		}
 	}
+	
+	
 	
 	
 	

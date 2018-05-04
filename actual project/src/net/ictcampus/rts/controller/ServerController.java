@@ -29,14 +29,15 @@ public class ServerController {
     private List<Socket> connections = new ArrayList<Socket>();
 
     // -------------------------------Constructor--------------------------------//
-    public ServerController() {
+    public ServerController(int anzConnections) {
         listener = ServerSocketFactory.createServerSocket();
         try {
         	System.out.println(listener.getLocalPort()+" is the local port.");
         	System.out.println(listener.getInetAddress().toString());
-        	connections.add(listener.accept());
-        	connections.add(listener.accept());
-            
+        	for(int i=0; i<anzConnections; i++) {
+        	    connections.add(listener.accept());
+        	    this.sendMessageToClient(connections.get(i), Integer.toString(i));
+        	}
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -62,20 +63,23 @@ public class ServerController {
     	return strToReturn;
     }
     
-    public void sendMessage(String message) throws IOException {
+    public void sendMessageToClient(Socket connection, String message) throws IOException {
+            DataOutputStream dos = new DataOutputStream(connection.getOutputStream());
+            OutputStreamWriter osw = new OutputStreamWriter(dos);
+            BufferedWriter bw = new BufferedWriter(osw);
+            
+            bw.write(message);
+            bw.flush();
+    }
+    
+    public void sendMessageToAll(String message) throws IOException {
     	for(int i=0; i<connections.size(); i++) {
-	    	DataOutputStream dos = new DataOutputStream(connections.get(i).getOutputStream());
-	    	OutputStreamWriter osw = new OutputStreamWriter(dos);
-	    	BufferedWriter bw = new BufferedWriter(osw);
-	    	
-	    	bw.write(message);
-	    	bw.flush();
-	    	
+	    	sendMessageToClient(connections.get(i), message);
     	}
     	
     }
     
-    public void sendGameState(SpielFeld spielFeld) throws IOException {
+    public void sendGameStateToAll(SpielFeld spielFeld) throws IOException {
     	for(int i=0; i<connections.size(); i++) {
     		DataOutputStream dos = new DataOutputStream(connections.get(i).getOutputStream());
 	    	ObjectOutputStream osw = new ObjectOutputStream(dos);
