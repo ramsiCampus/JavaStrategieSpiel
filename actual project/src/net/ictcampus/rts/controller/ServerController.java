@@ -3,6 +3,7 @@ package net.ictcampus.rts.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.ictcampus.rts.model.Spiel;
 import net.ictcampus.rts.model.SpielFeld;
 
 import java.io.BufferedReader;
@@ -79,12 +80,12 @@ public class ServerController {
     	
     }
     
-    public void sendGameStateToAll(SpielFeld spielFeld) throws IOException {
+    public void sendGameStateToAll(Spiel spiel) throws IOException {
     	for(int i=0; i<connections.size(); i++) {
     		DataOutputStream dos = new DataOutputStream(connections.get(i).getOutputStream());
 	    	ObjectOutputStream osw = new ObjectOutputStream(dos);
 	    	
-	    	osw.writeObject(spielFeld);
+	    	osw.writeObject(spiel);
 	    	osw.flush();
 	    	
     	}

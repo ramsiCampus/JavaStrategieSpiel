@@ -2,6 +2,7 @@ package net.ictcampus.rts.controller;
 
 import java.io.IOException;
 
+import net.ictcampus.rts.model.Spiel;
 import net.ictcampus.rts.model.SpielLogik;
 
 public class ServerSpielController {
@@ -45,6 +46,47 @@ public class ServerSpielController {
 			}
 			System.out.println("");
 		}
+	}
+	
+	
+	public void sendGame(Spiel game) {
+	    try {
+	        this.srvCtrl.sendGameStateToAll(game);
+	    } catch (IOException e) {
+	        System.out.println("DINI FETTI MUETER SCHWIZT");
+	    }
+	    System.out.println("Holy Mother of God es het klappt wtf");
+	}
+	
+	
+	//-----------------------------Getter & Setter------------------------------------
+	
+	public int getAnzSpieler() {
+	    return anzSpieler;
+	}
+	
+	public void setAnzSpieler(int anzSpieler) {
+	    this.anzSpieler = anzSpieler;
+	}
+	
+	public SpielLogik getSpielLogik() {
+	    return spielLogik;
+	}
+	
+	public void setSpielLogik(SpielLogik spielLogik) {
+	    this.spielLogik = spielLogik;
+	}
+	
+	public ServerController getSrvCtrl() {
+	    return srvCtrl;
+	}
+	
+	public void setSrvCtrl(ServerController srvCtrl) {
+	    this.srvCtrl = srvCtrl;
+	}
+	
+	public void setCommands(int[][] commands) {
+	    this.commands = commands;
 	}
 	
 }

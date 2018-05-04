@@ -9,6 +9,8 @@ import java.sql.Date;
 
 import javax.swing.JOptionPane;
 
+import net.ictcampus.rts.model.*;
+
 /**
  * ClientServerTest, zum Verbindung zwischen Server und Client testen
  * @author kochjo
@@ -27,11 +29,17 @@ public class ServerTest {
 //        System.out.println(SC.receiveCommands());
 //        SC.sendMessage("server msg");
 //        ServerSocketFactory.closeServerSocket(ServerSocketFactory.getServerSocket());
-//        
-
+//      
+        Player testPlayer1 = new Player("Lurith", 0);
+        Player testPlayer2 = new Player("Johanna", 1);
+        Mensch protoMensch = new Mensch(testPlayer1, 10);
+        Spiel TestSpiel = new Spiel(20, 10 , testPlayer1, testPlayer2, protoMensch);
+        
+        
     	ServerSpielController ssc = new ServerSpielController(2);
-    	ssc.getCommands();
-    	ssc.printCommands();
+    	//ssc.getCommands();
+    	//ssc.printCommands();
+    	ssc.sendGame(TestSpiel);
     }
 
     // ---------------------------------Methods---------------------------------//
