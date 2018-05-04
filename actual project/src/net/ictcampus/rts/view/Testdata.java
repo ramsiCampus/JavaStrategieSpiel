@@ -1,6 +1,5 @@
 package net.ictcampus.rts.view;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,5 +15,12 @@ public class Testdata {
 
     public Spiel getSpiel(){
         return spiel;
+    }
+    
+    public Testdata() {
+        //Stadt
+        spiel.getSpielFeld().getFelder()[2][2].erzeugeStadt("NeueStadt", p1);
+        spiel.getSpielFeld().getFelder()[8][5].erzeugeStadt("NeueStadt", p2);
+        spiel.getSpielFeld().getFelder()[8][6].erzeugeLoot();
     }
 }

@@ -54,6 +54,7 @@ public class ButtonActionListener implements ActionListener{
         //TODO, transmit Befehl
         String command = frame.getCommand();
         System.out.println(command);
+        frame.setReady(true);
     }
     
     //PARTIALLY FINISHED TOCHECK XYMISSING

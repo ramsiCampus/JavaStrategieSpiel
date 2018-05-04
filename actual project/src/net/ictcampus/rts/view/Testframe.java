@@ -24,7 +24,8 @@ public class Testframe extends JFrame {
     private JPanel content;
     private JPanel title;
     private ButtonField[][] field;
-    private Spiel spiel = getSpiel();
+    private Testdata testdata = new Testdata();
+    private Spiel spiel = testdata.getSpiel();
 
     private JLabel titleRight = new JLabel();
 
@@ -59,6 +60,7 @@ public class Testframe extends JFrame {
     private int ausgewY;
     
     private String command;
+    private Boolean ready;
     
     private int playerId;
 
@@ -91,9 +93,9 @@ public class Testframe extends JFrame {
         aktiverButton();
         setContent();
         setTitle();
-//        setBackgroundImg();
-//        refreshDataRight();
-//        refreshDataLeft();
+        setBackgroundImg();
+        //refreshDataRight();
+        //refreshDataLeft();
 
         this.add(map, "North");
         this.add(title, "Center");
@@ -496,5 +498,13 @@ public class Testframe extends JFrame {
 
     public void setContentBorderCenter(JPanel contentBorderCenter) {
         this.contentBorderCenter = contentBorderCenter;
+    }
+
+    public Boolean getReady() {
+        return ready;
+    }
+
+    public void setReady(Boolean ready) {
+        this.ready = ready;
     }
 }
