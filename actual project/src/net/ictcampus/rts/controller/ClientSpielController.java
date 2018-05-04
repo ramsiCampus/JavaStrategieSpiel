@@ -19,17 +19,22 @@ public class ClientSpielController {
     String command;
     Player activePlayer;
     Spiel spiel;
+    Thread protocol;
 
     // -------------------------------Constructor--------------------------------//
 
     public ClientSpielController() {
         cltCtrl = new ClientController("DiniMuetter");
         activePlayer = cltCtrl.getPlayer();
-        while(!cltCtrl.isGameIsReady()) {
+        System.out.println("soifosdjf");
+        cltCtrl.start();
+        while(!ClientController.isGameIsReady()) {
         }
-        spiel = cltCtrl.getNetzSpiel();
+        System.out.println("Spiel ready");
+        spiel = ClientController.getNetzSpiel();
         tF = new Testframe(null);
-        supiDupiGame();
+        cltCtrl.close();
+        //supiDupiGame();
 
     }
     // -----------------------------------Main-----------------------------------//

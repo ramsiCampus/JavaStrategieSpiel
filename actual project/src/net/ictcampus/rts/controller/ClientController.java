@@ -32,13 +32,14 @@ public class ClientController extends Thread{
     private BufferedWriter bw;
     private Thread protocol;
     
-    private static boolean clientIsReady;
-    private static boolean gameIsReady;
-    private static String message;
-    private static String cmd;
-    private static Spiel netzSpiel;
-    private boolean done = false;
+    private static volatile boolean clientIsReady;
+    private static volatile boolean gameIsReady;
+    private static volatile String message;
+    private static volatile String cmd;
+    private static volatile Spiel netzSpiel;
+    private static volatile boolean done = false;
     private Player player;
+    private SmallSerial zurli;
 
     // -------------------------------Constructor--------------------------------//
     /**
@@ -52,11 +53,11 @@ public class ClientController extends Thread{
         socket = ClientSocketFactory.createClientSocket();
         clientIsReady = true;
         message = this.getMessageFromServer();
+        System.out.println(message);
         player = new Player(name, Integer.parseInt(message));
-        this.netzSpiel = getGameStateFromServer();
-        gameIsReady = true;
-        protocol = new Thread(this);
-        protocol.start();
+        message = "";
+        gameIsReady = false;
+        System.out.println("OK GOT IT");
     }
 
     // -----------------------------------Main-----------------------------------//
@@ -106,45 +107,70 @@ public class ClientController extends Thread{
 	    	InputStreamReader isr = new InputStreamReader(dis);
 	    	BufferedReader br = new BufferedReader(isr);
 	    	
-	    	char[] cbuf = new char[10];
-	    	br.read(cbuf, 0, 10);
+	    	char[] cbuf = new char[1];
+	    	br.read(cbuf);
 	    	msg = new String(cbuf);
-	    	System.out.print(message);
+	    	System.out.println("msg = "+msg);
 
     	} catch (IOException e) {
-    		e.printStackTrace();
+    	    msg = "";
     	}
     	return msg.trim();
     }
     
     
     public Spiel getGameStateFromServer() {
-        Spiel uebertragenesSpiel = null;    
+        Spiel netzspiel = null;    
         try {
-            DataInputStream dis = new DataInputStream(socket.getInputStream());
-            ObjectInputStream istream = new ObjectInputStream(dis);
+            //DataInputStream dis = new DataInputStream(socket.getInputStream());
+            ObjectInputStream istream = new ObjectInputStream(socket.getInputStream());
             
-            uebertragenesSpiel = (Spiel)istream.readObject();
+             Object temp = istream.readObject();
+             System.out.println("::gelesen");
+             netzspiel = (Spiel)temp;
         } catch (IOException e){
+            System.out.println("I O Exception in getGameStateFromServer");
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        System.out.println("Dini Muetter esch en respektabli und guete Ma");
-        return uebertragenesSpiel;
+        System.out.println("Dini Muetter esch en respektabli Frau");
+        return netzspiel;
         
     }
     
     /**
-     * empfängt messages vom Server und vollführt die entsprechende Aktiion des Protokolls
+     * testemethode
+     */
+    public SmallSerial getZurli() {
+        //SmallSerial zurli = null;    
+        try {
+            //DataInputStream dis = new DataInputStream(socket.getInputStream());
+            ObjectInputStream istream = new ObjectInputStream(socket.getInputStream());
+            
+             Object temp = istream.readObject();
+             System.out.println("::gelesen");
+             zurli = (SmallSerial)temp;
+        } catch (IOException e){
+            System.out.println("I O Exception in getGameStateFromServer");
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Dini Muetter esch en respektabli Frau");
+        return zurli;
+        
+    }
+    
+    /**
+     * empfängt messages vom Server und vollführt die entsprechende Aktion des Protokolls
      */
     public void run() {
         
         while(!done) {
             message = getMessageFromServer();
-            
             if(message.equals("0")) {
-                if(this.clientIsReady) {
+                if(ClientController.clientIsReady) {
                     String response = Integer.toString(player.getID())+",0,0,0,0,0,0";
                     this.sendCommand(response);
                 } else {
@@ -154,13 +180,12 @@ public class ClientController extends Thread{
             }
             else if(message.equals("1")) {
                 this.sendCommand(cmd);
-                this.clientIsReady = false;
+                ClientController.clientIsReady = false;
             }
             else if(message.equals("2")) {
-                this.netzSpiel = getGameStateFromServer();
+                ClientController.netzSpiel = getGameStateFromServer();
                 gameIsReady = true;
             }
-            
         }
     }
     
