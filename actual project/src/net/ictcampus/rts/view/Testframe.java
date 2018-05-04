@@ -98,7 +98,7 @@ public class Testframe extends JFrame {
         setContent();
         setTitle();
         setBackgroundImg();
-        //refreshDataRight();
+        refreshDataRight();
         //refreshDataLeft();
 
         this.add(map, "North");
@@ -166,6 +166,7 @@ public class Testframe extends JFrame {
         JLabel titleLeft = new JLabel("Spielerinfo");
         JLabel titleCenter = new JLabel("Ausgewähltes Feld: ");
         playButton = new JButton("Play");
+        playButton.addActionListener(new ButtonActionListener(this, this.spiel));
 
         Font font = new Font("Calibri", 1, 40);
         titleLeft.setFont(font);
