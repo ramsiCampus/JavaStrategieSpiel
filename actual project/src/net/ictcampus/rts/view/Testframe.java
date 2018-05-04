@@ -54,6 +54,7 @@ public class Testframe extends JFrame {
     private JLabel lblAnzahlMenschen;
     private JLabel lblGesammelteR;
     private JLabel lblVerfuegbareR;
+    private JLabel lblTitelVerfuegbareR;
 
     private int xSize = 20;
     private int ySize = 10;
@@ -75,7 +76,7 @@ public class Testframe extends JFrame {
 
     public Testframe(SpielLogik spielLogik) {
 
-        super("Javalisation");
+        super("Javalisation (Dini Mueter isch fett)");
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.spielLogik = spielLogik;
         this.spiel = spielLogik.getSpiel();
@@ -99,7 +100,7 @@ public class Testframe extends JFrame {
         setTitle();
         setBackgroundImg();
         refreshDataRight();
-        //refreshDataLeft();
+        refreshDataLeft();
 
         this.add(map, "North");
         this.add(title, "Center");
@@ -184,11 +185,11 @@ public class Testframe extends JFrame {
 
         contentBorderLeft.setBackground(new Color(92, 255, 150));
 
-        menschenAnzahl = new JLabel("800000");
-        ressourcenAnzahl = new JLabel("2022541100");
-        stadtAnzahl = new JLabel("6");
-        sammelAnzahl = new JLabel("600023");
-        menschenInStadtAnzahl = new JLabel("400000");
+        menschenAnzahl = new JLabel("-");
+        ressourcenAnzahl = new JLabel("-");
+        stadtAnzahl = new JLabel("-");
+        sammelAnzahl = new JLabel("-");
+        menschenInStadtAnzahl = new JLabel("-");
 
         contentBorderLeft.add(new JLabel("Menschen:"));
         contentBorderLeft.add(menschenAnzahl);
@@ -272,6 +273,7 @@ public class Testframe extends JFrame {
         lblAnzahlMenschen = new JLabel("-");
         lblGesammelteR = new JLabel("-");
         lblVerfuegbareR = new JLabel("-");
+        lblTitelVerfuegbareR = new JLabel("Verfügbare Ressourcen:");
 
         lblInfo.setFont(titel);
 
@@ -287,7 +289,7 @@ public class Testframe extends JFrame {
         p.add(lblAnzahlMenschen);
         p.add(new JLabel("Gesammelte Ressourcen:"));
         p.add(lblGesammelteR);
-        p.add(new JLabel("Verfügbare Ressourcen:"));
+        p.add(lblTitelVerfuegbareR);
         p.add(lblVerfuegbareR);
     }
 
@@ -331,8 +333,9 @@ public class Testframe extends JFrame {
             lblFeldart.setText("Stadt");
             String besitzer = (spiel.getSpielFeld().getFelder()[ausgewX][ausgewY].getStadt().getBesitzer().getName());
             lblBesitzer.setText(besitzer);
-            lblVerfuegbareR.setText("-");
+            lblVerfuegbareR.setText(spiel.getSpielFeld().getFelder()[ausgewX][ausgewY].getStadt().getVorratGUI("Geld")+"");
             lblAnzahlMenschen.setText(spiel.getSpielFeld().getFelder()[ausgewX][ausgewY].getStadt().getVolk().size()+"");
+            lblTitelVerfuegbareR.setText("Anz. Ressourcen im Lager");
             
         }
         else if(spiel.getSpielFeld().getFelder()[ausgewX][ausgewY].getLoot().size() > 0) {
@@ -340,6 +343,7 @@ public class Testframe extends JFrame {
             lblBesitzer.setText("-");
             lblVerfuegbareR.setText(spiel.getSpielFeld().getFelder()[ausgewX][ausgewY].getAnzahlRessource()+"");
             lblAnzahlMenschen.setText(spiel.getSpielFeld().getFelder()[ausgewX][ausgewY].countPlayerEinheiten(playerId)+"");
+            lblTitelVerfuegbareR.setText("Verfügbare Ressourcen");
         }
         else {
             lblFeldart.setText("Wüste");
@@ -361,13 +365,15 @@ public class Testframe extends JFrame {
         int anzMenschenSammeln=0;
         for (int i = 0; i < ySize; i++) {
           for (int j = 0; j < xSize; j++) {
-              anzMenschenSammeln+=spiel.getSpielFeld().getFelder()[i][j].countPlayerEinheiten(playerId);
+              anzMenschenSammeln+=spiel.getSpielFeld().getFelder()[j][i].countPlayerEinheiten(1/*playerId*/);
               
-              if (spiel.getSpielFeld().getFelder()[i][j].getStadt().getBesitzer().equals(spiel.getPlayerByID(playerId))) {
-                  anzStaedte++;
-                  anzRessourcen+=spiel.getSpielFeld().getFelder()[i][j].getStadt().getVorratGUI("Geld");
-                  anzMenschenStadt+=spiel.getSpielFeld().getFelder()[i][j].getStadt().getVolk().size();
-              }
+              if(spiel.getSpielFeld().getFelder()[j][i].getStadt()!=null) {
+                  if (spiel.getSpielFeld().getFelder()[j][i].getStadt().getBesitzer().equals(spiel.getPlayerByID(/*playerId*/1))) {
+                      anzStaedte++;
+                      anzRessourcen+=spiel.getSpielFeld().getFelder()[j][i].getStadt().getVorratGUI("Geld");
+                      anzMenschenStadt+=spiel.getSpielFeld().getFelder()[j][i].getStadt().getVolk().size();
+                      }
+                  }
             }
         }
         anzMenschen=anzMenschenSammeln+anzMenschenStadt;
@@ -511,5 +517,17 @@ public class Testframe extends JFrame {
 
     public void setReady(Boolean ready) {
         this.ready = ready;
+    }
+
+    public JLabel getLblAnzahlMenschen() {
+        return lblAnzahlMenschen;
+    }
+
+    public void setLblAnzahlMenschen(JLabel lblAnzahlMenschen) {
+        this.lblAnzahlMenschen = lblAnzahlMenschen;
+    }
+
+    public void setSpiel(Spiel spiel) {
+        this.spiel = spiel;
     }
 }
