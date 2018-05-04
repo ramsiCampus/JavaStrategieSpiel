@@ -53,8 +53,10 @@ public class SpielLogik {
         SpielLogik sl = new SpielLogik();
         
         int[] command = new int[]{1,2,8,3,8,2,10};
+
         int[] command2 = new int[]{1,4,8,2,7,2,10};
 //        int[] command3 = new int[]{1,2,8,3,8,2,10};
+
        
         sl.commandAusfuehren(command);
         sl.commandAusfuehren(command2);
