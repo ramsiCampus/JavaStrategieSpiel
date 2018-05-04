@@ -23,6 +23,7 @@ public class SpielLogik {
     // ---------------------------variable_declaration---------------------------//
 
     private Spiel spiel;
+
     private SpielFeld spielfeld;
     private Mensch protMensch;
     private List<Player> spieler = new ArrayList<Player>();
@@ -51,7 +52,6 @@ public class SpielLogik {
 
     public static void main(String[] args) {
         SpielLogik sl = new SpielLogik();
-//        Testframe tf = new Testframe();
         for(Player p : sl.spiel.getSpieler()){
             System.out.println(p.getName());
         }
@@ -71,12 +71,11 @@ public class SpielLogik {
       sl.spielfeld.getStadt(8, 3).menschenBewegen(10);
       System.out.println(sl.spielfeld.getStadt(8, 3).getArmee().getArmee().size());
       System.out.println(sl.spielfeld.getStadt(8, 3).getVolk().size());
-      
-     
-        
        
        sl.ereignisGenerieren();
        System.out.println(sl.spielfeld.getStadt(8, 3).getVolk().size());
+       
+       Testframe tf = new Testframe(sl);
        
 //        System.out.println(sl.spiel.getMenschPreis());
        
@@ -128,4 +127,7 @@ public class SpielLogik {
 
     // ------------------------------Getter_Setter------------------------------//
 
+    public Spiel getSpiel() {
+        return spiel;
+    }
 }

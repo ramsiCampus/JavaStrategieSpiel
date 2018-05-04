@@ -61,6 +61,7 @@ public class Spiel implements Serializable {
 
         Stadt stadt = new Stadt(stadtName, xPosStadt, yPosStadt, spieler, startKapital, protMensch);
         spielFeld.getStaedte().add(stadt);
+        spielFeld.getFelder()[xPosStadt][yPosStadt].setStadt(stadt);
 
     }
 

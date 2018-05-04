@@ -27,7 +27,7 @@ public class GUI {
 
     public static void main(String[] args) {
 
-        Testframe tf = new Testframe();
+        //Testframe tf = new Testframe();
         
     }
     
