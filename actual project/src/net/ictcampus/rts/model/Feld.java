@@ -43,19 +43,21 @@ public class Feld {
      * @return true falls Objekt Mensch in Liste vorhanden ist, sonnst false.
      */
 
-    
     public boolean wirdBetreten(Armee armee) {
         if (einheiten.size() > 0) {
             for (Armee i : einheiten) {
-                if (i.getBesitzer().equals(armee.getBesitzer())) {
-                    i.menschenHinzufuegen(armee.getArmee());
-                    return true;
+                if (i.getArmee().size() > 0) {
+                    if (i.getBesitzer().equals(armee.getBesitzer())) {
+                        i.menschenHinzufuegen(armee.getArmee());
+                        armee.getArmee().clear();
+                        return true;
+                    }
                 }
             }
-            //possible pvp
+            // possible pvp
         }
         einheiten.add(armee);
-        return true; 
+        return true;
     }
 
     /**
@@ -148,10 +150,10 @@ public class Feld {
 
     public int getAnzahlRessource() {
         Item lootie = this.getLoot().get(0);
-        if(lootie instanceof Ressource) {
+        if (lootie instanceof Ressource) {
             return ((Ressource) lootie).getAnzahl();
         }
         return 0;
-        
+
     }
 }

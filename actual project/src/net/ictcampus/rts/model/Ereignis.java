@@ -27,19 +27,19 @@ public class Ereignis {
 
         switch (ereignisZahl) {
         case 1:
-            feuerAusbruch(50, 100);
+            ausbruch("Feuer",50, 100);
             break;
         case 2:
-            pestAusbruch(200, 1000);
+            ausbruch("Pest",200, 1000);
             break;
         case 3:
-            tornadoAusbruch(10, 30);
+            ausbruch("Tornado",10, 30);
             break;
         case 4:
-            revolteAusbruch(600, 1000);
+            ausbruch("Revolte",600, 1000);
             break;
         case 5:
-            erdbebenAusbrauch(80, 300);
+            ausbruch("Erdbeben",80, 300);
         }
         
     }
@@ -54,7 +54,7 @@ public class Ereignis {
      * auf und generiert eine Zufallszahl zwischen 10 und 30, welche die Anzahl
      * an Menschen entfernen
      */
-    public void feuerAusbruch(int min, int max) {
+    public void ausbruch(String name,int min, int max) {
 
         Random randomZahl = new Random();
         todesOpfer = randomZahl.nextInt(max - min) + min;
@@ -62,33 +62,7 @@ public class Ereignis {
 
     }
 
-    public void pestAusbruch(int min, int max) {
 
-        Random randomZahl = new Random();
-        todesOpfer = randomZahl.nextInt(max - min) + min;
-        betroffeneStadt.menschenDezimieren(todesOpfer);
-    }
-
-    public void tornadoAusbruch(int min, int max) {
-
-        Random randomZahl = new Random();
-        todesOpfer = randomZahl.nextInt(max - min) + min;
-        betroffeneStadt.menschenDezimieren(todesOpfer);
-    }
-
-    public void revolteAusbruch(int min, int max) {
-
-        Random randomZahl = new Random();
-        todesOpfer = randomZahl.nextInt(max - min) + min;
-        betroffeneStadt.menschenDezimieren(todesOpfer);
-    }
-    
-    public void erdbebenAusbrauch(int min, int max){
-        
-        Random randomZahl = new Random();
-        todesOpfer = randomZahl.nextInt(max - min) + min;
-        betroffeneStadt.menschenDezimieren(todesOpfer);
-    }
     // ------------------------------Getter_Setter------------------------------//
 
     public String getName() {
