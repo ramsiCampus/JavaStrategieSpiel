@@ -109,7 +109,7 @@ public class ClientController extends Thread{
     	} catch (IOException e) {
     		e.printStackTrace();
     	}
-    	return msg;
+    	return msg.trim();
     }
     
     
@@ -125,6 +125,7 @@ public class ClientController extends Thread{
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+        System.out.println("Dini Muetter esch en respektabli und guete Ma");
         return uebertragenesSpiel;
         
     }

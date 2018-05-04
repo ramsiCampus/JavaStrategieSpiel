@@ -26,8 +26,8 @@ public class ClientSpielController {
         cltCtrl = new ClientController("DiniMuetter");
         activePlayer = cltCtrl.getPlayer();
         while(!cltCtrl.isGameIsReady()) {
-            spiel = cltCtrl.getNetzSpiel();
         }
+        spiel = cltCtrl.getNetzSpiel();
         tF = new Testframe(null);
         supiDupiGame();
 
