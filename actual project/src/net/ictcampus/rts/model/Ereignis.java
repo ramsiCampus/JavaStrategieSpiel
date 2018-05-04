@@ -54,7 +54,7 @@ public class Ereignis {
      * auf und generiert eine Zufallszahl zwischen 10 und 30, welche die Anzahl
      * an Menschen entfernen
      */
-    public void ausbruch(String name,int min, int max) {
+    private void ausbruch(String name,int min, int max) {
 
         Random randomZahl = new Random();
         todesOpfer = randomZahl.nextInt(max - min) + min;
