@@ -16,7 +16,7 @@ public class ClientTest {
     // -----------------------------------Main-----------------------------------//
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		ClientController cc = new ClientController();
+		ClientController cc = new ClientController("Lurith");
 		cc.sendCommand("1,2,3,4,5,6,7");
 		cc.getMessage();
 	    ClientSocketFactory.closeClientSocket(ClientSocketFactory.getClientSocket());
