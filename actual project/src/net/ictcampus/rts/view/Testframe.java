@@ -99,7 +99,7 @@ public class Testframe extends JFrame {
         setTitle();
         setBackgroundImg();
         refreshDataRight();
-        //refreshDataLeft();
+        refreshDataLeft();
 
         this.add(map, "North");
         this.add(title, "Center");
@@ -184,11 +184,11 @@ public class Testframe extends JFrame {
 
         contentBorderLeft.setBackground(new Color(92, 255, 150));
 
-        menschenAnzahl = new JLabel("800000");
-        ressourcenAnzahl = new JLabel("2022541100");
-        stadtAnzahl = new JLabel("6");
-        sammelAnzahl = new JLabel("600023");
-        menschenInStadtAnzahl = new JLabel("400000");
+        menschenAnzahl = new JLabel("-");
+        ressourcenAnzahl = new JLabel("-");
+        stadtAnzahl = new JLabel("-");
+        sammelAnzahl = new JLabel("-");
+        menschenInStadtAnzahl = new JLabel("-");
 
         contentBorderLeft.add(new JLabel("Menschen:"));
         contentBorderLeft.add(menschenAnzahl);
@@ -361,13 +361,15 @@ public class Testframe extends JFrame {
         int anzMenschenSammeln=0;
         for (int i = 0; i < ySize; i++) {
           for (int j = 0; j < xSize; j++) {
-              anzMenschenSammeln+=spiel.getSpielFeld().getFelder()[i][j].countPlayerEinheiten(playerId);
+              anzMenschenSammeln+=spiel.getSpielFeld().getFelder()[j][i].countPlayerEinheiten(1/*playerId*/);
               
-              if (spiel.getSpielFeld().getFelder()[i][j].getStadt().getBesitzer().equals(spiel.getPlayerByID(playerId))) {
-                  anzStaedte++;
-                  anzRessourcen+=spiel.getSpielFeld().getFelder()[i][j].getStadt().getVorratGUI("Geld");
-                  anzMenschenStadt+=spiel.getSpielFeld().getFelder()[i][j].getStadt().getVolk().size();
-              }
+              if(spiel.getSpielFeld().getFelder()[j][i].getStadt()!=null) {
+                  if (spiel.getSpielFeld().getFelder()[j][i].getStadt().getBesitzer().equals(spiel.getPlayerByID(/*playerId*/2))) {
+                      anzStaedte++;
+                      anzRessourcen+=spiel.getSpielFeld().getFelder()[j][i].getStadt().getVorratGUI("Geld");
+                      anzMenschenStadt+=spiel.getSpielFeld().getFelder()[j][i].getStadt().getVolk().size();
+                      }
+                  }
             }
         }
         anzMenschen=anzMenschenSammeln+anzMenschenStadt;

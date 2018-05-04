@@ -30,7 +30,7 @@ public class Spiel implements Serializable {
         this.spielFeld = new SpielFeld(xLength, yLength);
         this.spieler.add(spieler1);
         this.spieler.add(spieler2);
-        this.stadtPreis = 200;
+        this.stadtPreis = 1000;
         this.protMensch = protMensch;
         
         
