@@ -68,7 +68,11 @@ public class SpielLogik {
             
         }
         
-//       sl.spielfeld.getStadt(8, 3)
+      sl.spielfeld.getStadt(8, 3).menschenBewegen(10);
+      System.out.println(sl.spielfeld.getStadt(8, 3).getArmee().getArmee().size());
+      System.out.println(sl.spielfeld.getStadt(8, 3).getVolk().size());
+      
+     
         
        
        sl.ereignisGenerieren();
