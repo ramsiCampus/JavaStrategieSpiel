@@ -23,11 +23,13 @@ public class SpielFeld implements Serializable {
     private List<Armee> armies = new ArrayList<Armee>();
     private List<Stadt> staedte = new ArrayList<Stadt>();
     private Feld[][] felder;
+    private int stadtPreis;
 
     // -------------------------------Constructor--------------------------------//
 
     public SpielFeld(int xLength, int yLength) {
 
+        this.stadtPreis = 200;
         felder = new Feld[xLength][yLength];
 
         for (int j = 0; j < yLength; j++) {
@@ -70,6 +72,7 @@ public class SpielFeld implements Serializable {
             if (s.getBesitzer() == spieler && s.getName() == ursprungsStadt) {
 
                 if (s.kaufeStadt() == true) {
+                    s.vorratVerringern("Geld", stadtPreis);
                     thisField.erzeugeStadt(name, spieler, startKapital, protMensch);
                 }
 
@@ -141,4 +144,7 @@ public class SpielFeld implements Serializable {
         return felder;
     }
 
+    public void setStadtPreis(int stadtPreis) {
+        this.stadtPreis = stadtPreis;
+    }
 }

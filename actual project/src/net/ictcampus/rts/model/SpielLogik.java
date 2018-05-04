@@ -101,7 +101,7 @@ public class SpielLogik {
         case(3):
             int counter = 0;
             for(Stadt s : spielfeld.getStaedte()){
-                if(s.getBesitzer() == spieler.get(command[0])){
+                if(s.getBesitzer().equals(spieler.get(command[0]))){
                     counter++;
                 }
             }
@@ -112,7 +112,7 @@ public class SpielLogik {
             Armee zielArmee = null;
             List<Armee> armeen = spielfeld.getFelder()[command[2]][command[3]].getEinheiten();
             for(Armee a : armeen){
-                if(a.getBesitzer() == spieler.get(command[0])){
+                if(a.getBesitzer().equals(spieler.get(command[0]))){
                     zielArmee = a;                 
                 }
             }
@@ -139,7 +139,7 @@ public class SpielLogik {
 
     public void armeeBewegen(int xPos, int yPos, Armee armee, Player playingSpieler) {
 
-        if (armee.getBesitzer() == playingSpieler) {
+        if (armee.getBesitzer().equals(playingSpieler)) {
             spielfeld.armeeBewegen(xPos, yPos, armee);
         }
     }
