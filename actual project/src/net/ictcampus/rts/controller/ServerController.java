@@ -28,6 +28,7 @@ public class ServerController {
     // ---------------------------variable_declaration---------------------------//
     private ServerSocket listener;
     private List<Socket> connections = new ArrayList<Socket>();
+    private List<ObjectOutputStream> osw = new ArrayList<ObjectOutputStream>();
 
     // -------------------------------Constructor--------------------------------//
     public ServerController(int anzConnections) {
@@ -36,11 +37,17 @@ public class ServerController {
         	System.out.println(listener.getLocalPort()+" is the local port.");
         	System.out.println(listener.getInetAddress().toString());
         	for(int i=0; i<anzConnections; i++) {
+        	    
         	    connections.add(listener.accept());
         	    this.sendMessageToClient(connections.get(i), Integer.toString(i));
+        	    
+        	    //DataOutputStream dos = new DataOutputStream(connections.get(i).getOutputStream());
+        	    ObjectOutputStream oos = new ObjectOutputStream(connections.get(i).getOutputStream());
+        	    oos.reset();
+        	    osw.add(oos);
+        	    
         	}
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
@@ -77,20 +84,28 @@ public class ServerController {
     	for(int i=0; i<connections.size(); i++) {
 	    	sendMessageToClient(connections.get(i), message);
     	}
-    	
     }
     
     public void sendGameStateToAll(Spiel spiel) throws IOException {
     	for(int i=0; i<connections.size(); i++) {
-    		DataOutputStream dos = new DataOutputStream(connections.get(i).getOutputStream());
-	    	ObjectOutputStream osw = new ObjectOutputStream(dos);
-	    	
-	    	osw.writeObject(spiel);
-	    	osw.flush();
-	    	
+    		
+	    	osw.get(i).writeObject(spiel);
+	    	osw.get(i).flush();
+	    		
     	}
     	
     }
+    
+    public void sendNormalObject(SmallSerial smsrl) throws IOException {
+        for(int i=0; i<connections.size(); i++) {
+            
+            osw.get(i).writeObject(smsrl);
+            osw.get(i).flush();
+                
+        }
+        
+    }
+    
 
     // ------------------------------Getter_Setter------------------------------//
 }

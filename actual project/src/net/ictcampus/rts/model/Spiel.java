@@ -17,6 +17,10 @@ import java.util.List;
 
 public class Spiel implements Serializable {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 4113321948974371347L;
     // ---------------------------variable_declaration---------------------------//
     private SpielFeld spielFeld;
     private List<Player> spieler = new ArrayList<Player>();

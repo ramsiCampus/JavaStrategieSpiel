@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.sql.Date;
+import java.util.concurrent.TimeUnit;
 
 import javax.swing.JOptionPane;
 
@@ -36,10 +37,22 @@ public class ServerTest {
         Spiel TestSpiel = new Spiel(20, 10 , testPlayer1, testPlayer2, protoMensch);
         
         
-    	ServerSpielController ssc = new ServerSpielController(2);
-    	//ssc.getCommands();
-    	//ssc.printCommands();
-    	ssc.sendGame(TestSpiel);
+    	ServerSpielController ssc = new ServerSpielController(1);
+    	int i = 7;
+    	System.out.println("Irgenöppis");
+    	ssc.sendMessageToAll("2");
+    	
+    	
+    	try {
+    	TimeUnit.MILLISECONDS.sleep(1000);
+    	} catch (Exception e) {
+    	    e.printStackTrace();
+    	}
+    	//ssc.sendGame(TestSpiel);
+    	SmallSerial zurli = new SmallSerial();
+    	ssc.sendObject(zurli);
+    	System.out.println("Test over");
+    	
     }
 
     // ---------------------------------Methods---------------------------------//

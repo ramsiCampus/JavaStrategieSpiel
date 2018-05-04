@@ -15,7 +15,7 @@ public class ServerSpielController {
 	
 	public ServerSpielController(int anzSpieler){
 		this.spielLogik = new SpielLogik();
-		this.srvCtrl = new ServerController(2);
+		this.srvCtrl = new ServerController(anzSpieler);
 		this.anzSpieler = anzSpieler;
 		commands = new int [anzSpieler][COMMANDCOUNT];
 	}
@@ -39,6 +39,10 @@ public class ServerSpielController {
 		
 	}
 	
+	public void initGame() {
+	    
+	}
+	
 	public void printCommands(){
 		for(int i=0; i<anzSpieler; i++){
 			for(int j=0; j<COMMANDCOUNT; j++){
@@ -49,14 +53,30 @@ public class ServerSpielController {
 	}
 	
 	
+	public void sendMessageToAll(String message){
+	    try {
+	        this.srvCtrl.sendMessageToAll(message);
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    }
+	}
+	
 	public void sendGame(Spiel game) {
 	    try {
 	        this.srvCtrl.sendGameStateToAll(game);
 	    } catch (IOException e) {
-	        System.out.println("DINI FETTI MUETER SCHWIZT");
+	        e.printStackTrace();
 	    }
-	    System.out.println("Holy Mother of God es het klappt wtf");
 	}
+	
+	public void sendObject(SmallSerial sm) {
+        try {
+            this.srvCtrl.sendNormalObject(sm);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
 	
 	
 	//-----------------------------Getter & Setter------------------------------------
