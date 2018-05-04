@@ -53,13 +53,16 @@ public class SpielLogik {
 
     public static void main(String[] args) {
         SpielLogik sl = new SpielLogik();
-//        for(Player p : sl.spiel.getSpieler()){
-//            System.out.println(p.getName());
-//        }
+        for(Player p : sl.spiel.getSpieler()){
+            System.out.println(p.getName());
+        }
         
-//        sl.kaufeStadt(10, 8, sl.spieler.get(1), 10000, "Hauptsadt1","dinni", sl.protMensch);
+        sl.kaufeStadt(10, 8, sl.spieler.get(1), 10000, "Hauptsadt1","dinni", sl.protMensch);
+        sl.kaufeStadt(1, 1, sl.spieler.get(2), 1000, "zweiteHauptstadt", "muetter", sl.protMensch);
         
-        
+        sl.armeeErzeugen(8,4, sl.spieler.get(1), sl.spielfeld.getStadt(8, 3), 10, "beste");
+        System.out.println("Armee: "+sl.spiel.getSpielFeld().getFelder()[8][4].getEinheiten().get(0).getArmee().size());
+        System.out.println("Armee: "+sl.spiel.getSpielFeld().getFelder()[8][3].getStadt().getArmee().getArmee().size());
        
         
         
@@ -96,6 +99,12 @@ public class SpielLogik {
 
         spieler.add(playingSpieler);
 
+    }
+    
+    public void armeeErzeugen(int xPos, int yPos,Player playingSpieler, Stadt stadt, int anzahlMenschen, String name ){
+        if(stadt.menschenBewegen(anzahlMenschen, name)){
+            armeeBewegen(xPos,yPos,stadt.getArmee(),playingSpieler);
+        }
     }
 
     public void armeeBewegen(int xPos, int yPos, Armee armee, Player playingSpieler) {

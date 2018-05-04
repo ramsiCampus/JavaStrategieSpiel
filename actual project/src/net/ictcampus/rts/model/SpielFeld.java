@@ -70,12 +70,11 @@ public class SpielFeld implements Serializable{
 
                 if (s.kaufeStadt() == true) {
                     thisField.erzeugeStadt(name, spieler, startKapital, protMensch);
-                    staedte.add(thisField.getStadt());
-
                 }
 
             }
         }
+        staedte.add(thisField.getStadt());
 
     }
 
@@ -96,14 +95,22 @@ public class SpielFeld implements Serializable{
     public void armeeBewegen(int xPos, int yPos, Armee armee) {
         int xOld = armee.getxPos();
         int yOld = armee.getyPos();
+        Armee armeeOldi;
         
         if (armee.armeeBewegen(xPos, yPos)) {
 
             List<Armee> neuArmeen = this.felder[xPos][yPos].getEinheiten();
             neuArmeen.add(armee);
 
-            List<Armee> oldArmeen = this.felder[xOld][yOld].getEinheiten();
-            oldArmeen.remove(oldArmeen.indexOf(armee));
+            Feld f = this.felder[xOld][yOld];
+            if(f.getStadt() == null){
+                List<Armee> oldArmeen = this.felder[xOld][yOld].getEinheiten();
+                oldArmeen.remove(oldArmeen.indexOf(armee));
+            }
+            else{
+                armeeOldi = this.felder[xOld][yOld].getStadt().getArmee();
+                armeeOldi=null;
+            }
             
             if(this.felder[xPos][yPos].getStadt()!= null) {
                 this.felder[xPos][yPos].getStadt().wirdBetreten(armee);
