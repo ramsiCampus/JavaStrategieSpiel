@@ -42,10 +42,7 @@ public class ButtonActionListener implements ActionListener{
             buildCity();
             break;
         case "Menschen transportieren":
-            transportHumans();
-            break;
-        case "Menschen aus Stadt senden":
-            transportCitizens();
+            checkCityOrField();
             break;
         }
     }
@@ -87,8 +84,9 @@ public class ButtonActionListener implements ActionListener{
             String coordinates = frame.getTxtCreateC().getText();
             try {
                 String[] coordinateArr = coordinates.split("-");
-                int x = Integer.parseInt(coordinateArr[0]);
-                int y = Integer.parseInt(coordinateArr[1]);
+                int x = Integer.parseInt(coordinateArr[1]);
+                int y = 9-Integer.parseInt(coordinateArr[0]);
+                coordinateArr[0] = Integer.toString(y);
                 Feld finalField = spiel.getSpielFeld().getFelder()[x][y];
                 
                 if (x < 0 || x > frame.getxSize() || y < 0 || y > frame.getySize()) {
@@ -103,13 +101,21 @@ public class ButtonActionListener implements ActionListener{
                 if (vorrat < (spiel.getStadtPreis())){
                     throw new InvalidAttributeValueException("CreateCity not possible, money not sufficient");
                 }
-                String befehl = frame.getPlayerId()+",3,"+frame.getAusgewX()+","+frame.getAusgewY()+","+coordinateArr[0]+","+coordinateArr[1]+",0";
+                String befehl = frame.getPlayerId()+",3,"+frame.getAusgewX()+","+frame.getAusgewY()+","+coordinateArr[1]+","+coordinateArr[0]+",0";
                 frame.setCommand(befehl);
             } catch (Exception e){
                 System.out.println("CreateCity invalid textfield input or money not sufficient - no action was triggered." +"\n" + e.toString());
             }
         } catch (Exception e) {
             System.out.println("Couldn't fetch the game-data correctly, it might be a server issue -- no action was triggered." +"\n" + e.toString());
+        }
+    }
+    
+    private void checkCityOrField() {
+        if (spiel.getSpielFeld().getFelder()[frame.getAusgewX()][frame.getAusgewY()].getStadt() != null) {
+            transportCitizens();
+        } else {
+            transportHumans();
         }
     }
     
@@ -121,12 +127,13 @@ public class ButtonActionListener implements ActionListener{
             String coordinates = frame.getTxtTransportPkoo().getText();
             try {
                 String[] coordinateArr = coordinates.split("-");
-                int x = Integer.parseInt(coordinateArr[0]);
-                int y = Integer.parseInt(coordinateArr[1]);
-                if (field.countPlayerEinheiten(frame.getPlayerId()) <= 0) {
+                int x = Integer.parseInt(coordinateArr[1]);
+                int y = 9-Integer.parseInt(coordinateArr[0]);
+                coordinateArr[0] = Integer.toString(y);
+                if (field.countPlayerEinheiten(/*frame.getPlayerId()*/1) <= 0) {
                     throw new InvalidAttributeValueException("No people on the selected field.");
                 }
-                String befehl = frame.getPlayerId()+",4,"+frame.getAusgewX()+","+frame.getAusgewY()+","+coordinateArr[0]+","+coordinateArr[1]+","+0;
+                String befehl = frame.getPlayerId()+",4,"+frame.getAusgewX()+","+frame.getAusgewY()+","+coordinateArr[1]+","+coordinateArr[0]+","+0;
                 frame.setCommand(befehl);
             } catch (Exception e) {
                 System.out.println("No people on the selected field - no action was triggered." +"\n" + e.toString());
@@ -144,18 +151,19 @@ public class ButtonActionListener implements ActionListener{
         String numberOfCitizens = frame.getTxtTransportPanz().getText();
             try {
                 String[] coordinateArr = coordinates.split("-");
-                int x = Integer.parseInt(coordinateArr[0]);
-                int y = Integer.parseInt(coordinateArr[1]);
+                int x = Integer.parseInt(coordinateArr[1]);
+                int y = 9-Integer.parseInt(coordinateArr[0]);
+                coordinateArr[0] = Integer.toString(y);
                 if (stadt.getVolk().size() <= 0) {
                     throw new InvalidAttributeValueException("No people on the selected City.");
                 }
                 if (Integer.parseInt(numberOfCitizens) <= 0) {
                     throw new InvalidAttributeValueException("No people selected to send.");
                 }
-                if (stadt.getVolk().size() <= Integer.parseInt(numberOfCitizens)) {
+                if (stadt.getVolk().size() < Integer.parseInt(numberOfCitizens)) {
                     throw new InvalidAttributeValueException("Selected to send more people than existing in the city.");
                 }
-                String befehl = frame.getPlayerId()+",2,"+frame.getAusgewX()+","+frame.getAusgewY()+","+coordinateArr[0]+","+coordinateArr[1]+","+numberOfCitizens;
+                String befehl = frame.getPlayerId()+",2,"+frame.getAusgewX()+","+frame.getAusgewY()+","+coordinateArr[1]+","+coordinateArr[0]+","+numberOfCitizens;
                 frame.setCommand(befehl);
             } catch (Exception e) {
                 System.out.println("No or not enaugh people on the selected field - no action was triggered." +"\n" + e.toString());
