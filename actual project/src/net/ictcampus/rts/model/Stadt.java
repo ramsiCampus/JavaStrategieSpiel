@@ -1,6 +1,8 @@
 //packages
 package net.ictcampus.rts.model;
 
+import java.util.ArrayList;
+
 //imports
 
 import java.util.List;
@@ -19,21 +21,26 @@ public class Stadt extends GameObject {
     private int xPos;
     private int yPos;
     private String name;
-    private List<Mensch> volk;
-    private List<Item> vorrat;
+    private List<Mensch> volk = new ArrayList<Mensch>();
+    private List<Item> vorrat = new ArrayList<Item>();
     private Player besitzer;
     private int preis;
     @SuppressWarnings("unused")
     private Armee armee;
+    
+    
 
     // -------------------------------Constructor--------------------------------//
 
-    public Stadt(String name, int xPos, int yPos, Player spieler) {
+    public Stadt(String name, int xPos, int yPos, Player spieler, int startKapital, Mensch protMensch) {
         super();
         this.name = name;
         this.xPos = xPos;
         this.yPos = yPos;
         this.besitzer = spieler;
+        vorratErzeugen("Geld", startKapital);
+        menschKaufen(protMensch, 50);
+        
 
     }
 
@@ -47,16 +54,16 @@ public class Stadt extends GameObject {
      *            Welcher Menschen typ gekauft werden soll
      * @return boolean ob Transaktion geglückt
      */
-    public boolean menschKaufen(Mensch mensch) {
+    public boolean menschKaufen(Mensch mensch, int mengeMenschen) {
         int preisM = mensch.getPreis().getAnzahl();
-        if (preisM > this.checkVorrat("Geld")) {
+        if (preisM > this.getVorratGUI("Geld")) {
             return false;
         }
-        for (int i = 0; i < preisM; i++) {
+        for (int i = 0; i < mengeMenschen; i++) {
             for (Item item : vorrat) {
                 if (item instanceof Ressource) {
                     if (item.getName().equals("Geld")) {
-                        int saldo = this.checkVorrat("Geld") - preisM;
+                        int saldo = this.getVorratGUI("Geld") - preisM;
                         ((Ressource) item).setAnzahl(saldo);
                     }
                 }
@@ -94,7 +101,7 @@ public class Stadt extends GameObject {
     }
 
     public void vorratAddieren(String ressourceName, int menge) {
-        if (checkVorrat(ressourceName) == 0) {
+        if (getVorratGUI(ressourceName) == 0) {
             vorratErzeugen(ressourceName, menge);
         }
         else {
@@ -147,7 +154,14 @@ public class Stadt extends GameObject {
         }
     }
 
+    /**
+     * @deprecated Use {@link #getVorratGUI(String)} instead
+     */
     public int checkVorrat(String itemName) {
+        return getVorratGUI(itemName);
+    }
+
+    public int getVorratGUI(String itemName) {
         int anzahl = 0;
         for (Item i : vorrat) {
             if (i instanceof Ressource) {
@@ -186,7 +200,7 @@ public class Stadt extends GameObject {
     
     public boolean kaufeStadt(){
         
-        int guthaben = checkVorrat("Geld");
+        int guthaben = getVorratGUI("Geld");
         int kaufpreis = 1000;
         
         
@@ -258,12 +272,6 @@ public class Stadt extends GameObject {
     public void setPreis(int preis) {
         this.preis = preis;
 
-    }
-    
-    public int getVorratGUI(String ressource){        
-        
-        int anzahlVorrat = checkVorrat(ressource);        
-        return anzahlVorrat;
     }
 
 }
