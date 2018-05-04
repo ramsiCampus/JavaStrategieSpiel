@@ -75,7 +75,7 @@ public class ButtonActionListener implements ActionListener{
             String befehl = frame.getPlayerId()+",1,"+frame.getAusgewX()+","+frame.getAusgewY()+","+frame.getAusgewX()+","+frame.getAusgewY()+","+anzahlString;
             frame.setCommand(befehl);
         } catch (Exception e){
-            System.out.println("CreateHumans invalid textfield input - no action was triggered." +"\n" + e.toString() +" "+ e.getMessage());
+            System.out.println("CreateHumans invalid textfield input - no action was triggered." +"\n" + e.toString());
         }
     }
 
@@ -106,10 +106,10 @@ public class ButtonActionListener implements ActionListener{
                 String befehl = frame.getPlayerId()+",3,"+frame.getAusgewX()+","+frame.getAusgewY()+","+coordinateArr[0]+","+coordinateArr[1]+",0";
                 frame.setCommand(befehl);
             } catch (Exception e){
-                System.out.println("CreateCity invalid textfield input or money not sufficient - no action was triggered.");
+                System.out.println("CreateCity invalid textfield input or money not sufficient - no action was triggered." +"\n" + e.toString());
             }
         } catch (Exception e) {
-            System.out.println("Couldn't fetch the game-data correctly, it might be a server issue -- no action was triggered.");
+            System.out.println("Couldn't fetch the game-data correctly, it might be a server issue -- no action was triggered." +"\n" + e.toString());
         }
     }
     
@@ -129,10 +129,10 @@ public class ButtonActionListener implements ActionListener{
                 String befehl = frame.getPlayerId()+",4,"+frame.getAusgewX()+","+frame.getAusgewY()+","+coordinateArr[0]+","+coordinateArr[1]+","+0;
                 frame.setCommand(befehl);
             } catch (Exception e) {
-                System.out.println("No people on the selected field - no action was triggered.");
+                System.out.println("No people on the selected field - no action was triggered." +"\n" + e.toString());
             }
         } catch (Exception e) {
-            System.out.println("Couldn't fetch the game-data correctly, it might be a server issue -- no action was triggered.");
+            System.out.println("Couldn't fetch the game-data correctly, it might be a server issue -- no action was triggered." +"\n" + e.toString());
         }
     }
     
@@ -158,10 +158,10 @@ public class ButtonActionListener implements ActionListener{
                 String befehl = frame.getPlayerId()+",2,"+frame.getAusgewX()+","+frame.getAusgewY()+","+coordinateArr[0]+","+coordinateArr[1]+","+numberOfCitizens;
                 frame.setCommand(befehl);
             } catch (Exception e) {
-                System.out.println("No or not enaugh people on the selected field - no action was triggered.");
+                System.out.println("No or not enaugh people on the selected field - no action was triggered." +"\n" + e.toString());
             }
         } catch (Exception e) {
-            System.out.println("Couldn't fetch the game-data correctly, it might be a server issue -- no action was triggered.");
+            System.out.println("Couldn't fetch the game-data correctly, it might be a server issue -- no action was triggered." +"\n" + e.toString());
         }
     }
 }
