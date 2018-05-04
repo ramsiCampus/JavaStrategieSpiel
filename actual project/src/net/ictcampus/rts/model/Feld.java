@@ -74,8 +74,8 @@ public class Feld implements Serializable {
 
     }
 
-    public void erzeugeStadt(String name, Player spieler) {
-        stadt = new Stadt(name, this.xPos, this.yPos, spieler);
+    public void erzeugeStadt(String name, Player spieler, int startKapital, Mensch protMensch) {
+        stadt = new Stadt(name, this.xPos, this.yPos, spieler, startKapital, protMensch);
         setStadt(stadt);
     }
 

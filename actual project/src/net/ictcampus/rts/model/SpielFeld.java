@@ -42,13 +42,13 @@ public class SpielFeld implements Serializable{
 
     // ---------------------------------Methods---------------------------------//
 
-    public boolean stadtBauen(int xPos, int yPos, Player spieler, String name) {
+    public boolean stadtBauen(int xPos, int yPos, Player spieler, String name, int startKapital, Mensch protMensch) {
 
         Feld thisField = felder[xPos][yPos];
         Stadt thisCity = thisField.getStadt();
 
         if (thisCity != null) {
-            thisField.erzeugeStadt(name, spieler);
+            thisField.erzeugeStadt(name, spieler, startKapital, protMensch);
 
             staedte.add(thisField.getStadt());
             return true;
@@ -57,7 +57,7 @@ public class SpielFeld implements Serializable{
     }
 
     public void stadtKaufen(int xPos, int yPos, Player spieler, String name,
-            String ursprungsStadt) {
+            String ursprungsStadt, int startKapital, Mensch protMensch) {
 
         Feld thisField = felder[xPos][yPos];
         for (Stadt s : staedte) {
@@ -65,7 +65,7 @@ public class SpielFeld implements Serializable{
             if (s.getBesitzer() == spieler && s.getName() == ursprungsStadt) {
 
                 if (s.kaufeStadt() == true) {
-                    thisField.erzeugeStadt(name, spieler);
+                    thisField.erzeugeStadt(name, spieler, startKapital, protMensch);
                     staedte.add(thisField.getStadt());
 
                 }
