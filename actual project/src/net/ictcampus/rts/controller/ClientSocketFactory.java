@@ -15,6 +15,7 @@ import java.net.UnknownHostException;
 public class ClientSocketFactory {
   //---------------------------variable_declaration---------------------------//
     private static Socket socket;
+    private static Socket dataSocket;
     private static final int PORT = 54269;
     //private static String serverAddress = "172.16.2.133";
     private static String serverAddress = "172.16.2.219";
@@ -56,7 +57,7 @@ public class ClientSocketFactory {
         boolean notConnected = true;
         while(notConnected) {
             try {
-                socket = new Socket(serverAddress, porterino);
+                dataSocket = new Socket(serverAddress, porterino);
                 notConnected = false;
             } catch (UnknownHostException e) {
                 notConnected = false;
@@ -67,7 +68,7 @@ public class ClientSocketFactory {
             }
         }
         
-        return socket;
+        return dataSocket;
     }
     
     

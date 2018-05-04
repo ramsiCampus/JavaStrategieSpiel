@@ -42,7 +42,9 @@ public class ServerController {
         	for(int i=0; i<anzConnections; i++) {
         	    
         	    connections.add(listener.accept());
+        	    System.out.println("message connection accepted");
         	    datasend.add(dlistener.accept());
+        	    System.out.println("data connection accepted");
         	    this.sendMessageToClient(connections.get(i), Integer.toString(i));
         	    
         	    ObjectOutputStream oos = new ObjectOutputStream(datasend.get(i).getOutputStream());

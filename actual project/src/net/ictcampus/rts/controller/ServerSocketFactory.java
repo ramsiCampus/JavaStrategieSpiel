@@ -15,6 +15,7 @@ import java.net.Socket;
 public class ServerSocketFactory {
     // ---------------------------variable_declaration---------------------------//
     private static ServerSocket listener;
+    private static ServerSocket dataListener;
     private static int PORT = 54269;
     private static String hostname = "nkerstingk";
     //private static String hostname = "nkochjo";
@@ -42,11 +43,11 @@ public class ServerSocketFactory {
     public static ServerSocket createServerSocket(int porterino) {
         
         try {
-            listener = new ServerSocket(porterino,1, InetAddress.getByName(hostname));
+            dataListener = new ServerSocket(porterino,1, InetAddress.getByName(hostname));
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return listener;
+        return dataListener;
     }
     
     /**
