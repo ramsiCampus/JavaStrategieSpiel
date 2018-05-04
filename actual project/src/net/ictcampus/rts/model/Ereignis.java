@@ -1,6 +1,5 @@
 //packages
 package net.ictcampus.rts.model;
-
 //imports
 import java.util.Random;
 

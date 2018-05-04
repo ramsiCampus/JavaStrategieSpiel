@@ -4,6 +4,7 @@ package net.ictcampus.rts.model;
 //imports
 import java.util.List;
 import java.util.Random;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -13,7 +14,7 @@ import java.util.ArrayList;
  *
  */
 
-public class Feld {
+public class Feld implements Serializable {
 
     // ---------------------------variable_declaration---------------------------//
     private int xPos;

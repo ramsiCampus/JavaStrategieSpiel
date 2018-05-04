@@ -1,6 +1,7 @@
 //packages
 package net.ictcampus.rts.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 //imports
@@ -14,7 +15,7 @@ import java.util.List;
  *
  */
 
-public class Spiel {
+public class Spiel implements Serializable {
 
     // ---------------------------variable_declaration---------------------------//
     private SpielFeld spielFeld;
