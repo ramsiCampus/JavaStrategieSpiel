@@ -270,6 +270,11 @@ public class Stadt extends GameObject {
     public Armee getArmee() {
         return armee;
     }
+
+    public void setArmee(Armee armee) {
+        this.armee = armee;
+    }
+    
     
 
 }

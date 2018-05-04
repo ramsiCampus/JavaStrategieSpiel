@@ -61,10 +61,7 @@ public class SpielLogik {
         sl.kaufeStadt(1, 1, sl.spieler.get(2), 1000, "zweiteHauptstadt", "muetter", sl.protMensch);
         
         sl.armeeErzeugen(8,4, sl.spieler.get(1), sl.spielfeld.getStadt(8, 3), 10, "beste");
-        System.out.println("Armee: "+sl.spiel.getSpielFeld().getFelder()[8][4].getEinheiten().get(0).getArmee().size());
-        System.out.println("Armee: "+sl.spiel.getSpielFeld().getFelder()[8][3].getStadt().getArmee().getArmee().size());
-       
-        
+        System.out.println("Armee Feld "+sl.spiel.getSpielFeld().getFelder()[8][4].getEinheiten().get(0).getArmee().size());
         
         
         for (Stadt i : sl.spielfeld.getStaedte()) {
