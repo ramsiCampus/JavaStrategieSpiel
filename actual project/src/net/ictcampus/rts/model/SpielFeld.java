@@ -34,6 +34,9 @@ public class SpielFeld implements Serializable{
             for (int i = 0; i < xLength; i++) {
                 Feld feld = new Feld(i, j);
                 felder[i][j] = feld;
+                if(Math.random()<0.3) {
+                    feld.erzeugeLoot();
+                }
             }
         }
     }
