@@ -1,5 +1,6 @@
 //packages
 package net.ictcampus.rts.model;
+import java.io.Serializable;
 //imports
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +10,7 @@ import java.util.List;
  * @author lauwrensw
  * @version 1.0
  */
-public class GameObject {
+public class GameObject implements Serializable {
 
     // ---------------------------variable_declaration---------------------------//
 
