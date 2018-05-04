@@ -185,6 +185,26 @@ public class ClientController extends Thread{
         ClientController.cmd = cmd;
         ClientController.clientIsReady = true;
     }
+
+    public static boolean isClientIsReady() {
+        return clientIsReady;
+    }
+
+    public static void setClientIsReady(boolean clientIsReady) {
+        ClientController.clientIsReady = clientIsReady;
+    }
+
+    public static boolean isGameIsReady() {
+        return gameIsReady;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public static void setGameIsReady(boolean gameIsReady) {
+        ClientController.gameIsReady = gameIsReady;
+    }
     
     
 }
