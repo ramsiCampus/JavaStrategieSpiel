@@ -66,8 +66,14 @@ public class ButtonField extends JButton{
         this.setIcon(icon);
     }
     
-    public void setFontColor() {
-        content.setForeground(new Color(252, 194, 194));
+    public void setFontColor(Boolean b) {
+        if(b) {
+            content.setForeground(new Color(252, 194, 194));
+            }
+        else {
+            content.setForeground(new Color(255, 255, 255));
+        }
+        
     }
     
     

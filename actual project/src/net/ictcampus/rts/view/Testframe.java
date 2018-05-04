@@ -328,8 +328,18 @@ public class Testframe extends JFrame {
 
     }
     public void setArmy() {
-        
-        
+        Boolean b;
+        for (int i = 0; i < ySize; i++) {
+            for (int j = 0; j < xSize; j++) {
+                if(spiel.getSpielFeld().getFelder()[j][i].getEinheiten().size()>0) {
+                    b=true;
+                }
+                else {
+                    b=false;
+                }
+                field[j][i].setFontColor(b);
+            }
+        }
     }
     
     public void refreshDataRight() {
