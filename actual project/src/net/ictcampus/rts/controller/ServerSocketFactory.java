@@ -16,10 +16,10 @@ public class ServerSocketFactory {
     // ---------------------------variable_declaration---------------------------//
     private static ServerSocket listener;
     private static ServerSocket dataListener;
-    private static int PORT = 54269;
-    private static String hostname = "nkerstingk";
+    private static int PORT = 54271;
+    //private static String hostname = "nkerstingk";
     //private static String hostname = "nkochjo";
-    //private static String hostname = "localhost";
+    private static String hostname = "localhost";
 
     // -------------------------------Constructor--------------------------------//
 
