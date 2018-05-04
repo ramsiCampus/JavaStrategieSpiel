@@ -102,7 +102,7 @@ public class SpielFeld implements Serializable {
         Armee armeeOldi;
 
         if (armee.armeeBewegen(xPos, yPos)) {
-
+            System.out.println("sventest7");
             List<Armee> neuArmeen = this.felder[xPos][yPos].getEinheiten();
             neuArmeen.add(armee);
 
@@ -123,7 +123,8 @@ public class SpielFeld implements Serializable {
                 this.felder[xPos][yPos].getStadt().wirdBetreten(armee);
             }
 
-            if (this.felder[xPos][yPos].getLoot().size() != 0) {
+            if (this.felder[xPos][yPos].getLoot().size() != 0) { //FEHLER HIER; MANCHMANL IST DIESES IF TRUE, DIES SOLLTE ES GLAUBE ICH NICHT SEIN. LG SVEN
+                System.out.println("sventest8");
                 this.felder[xPos][yPos].wirdBetreten(armee);
             }
         }

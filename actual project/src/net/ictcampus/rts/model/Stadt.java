@@ -176,7 +176,8 @@ public class Stadt extends GameObject {
     public boolean menschenBewegen(int anzahlMenschen, String name) {
         if (!armeeErzeugen(name, anzahlMenschen)) {
             return false;
-        }        
+        }
+        System.out.println("sventest4");
         return true;
     }
 
@@ -186,6 +187,7 @@ public class Stadt extends GameObject {
             return false;
         }
         armee = new Armee(this.besitzer, name, anzahlMenschen);
+        System.out.println("sventest3");
         armee.setxPos(this.getxPos());
         armee.setyPos(this.getyPos());
         for (int i = 0; i < anzahlMenschen; i++) {

@@ -89,14 +89,15 @@ public class SpielLogik {
         if(command.length != 7){
             return false;
         }
-        
         switch(command[1]){
+        
         
         case(1):
             menschenKaufen(spieler.get(command[0]), spielfeld.getFelder()[command[2]][command[3]].getStadt(), command[6]);
             break;
         case(2):
             armeeErzeugen(command[4], command[5], spieler.get(command[0]), spielfeld.getFelder()[command[2]][command[3]].getStadt(), command[6], "Schweizer Armee");
+            System.out.println("sventest1");
             break;
         case(3):
             int counter = 0;
@@ -134,12 +135,15 @@ public class SpielLogik {
             int anzahlMenschen, String name) {
         if (stadt.menschenBewegen(anzahlMenschen, name)) {
             armeeBewegen(xPos, yPos, stadt.getArmee(), playingSpieler);
+            System.out.println("sventest5");
         }
+        System.out.println("sventest2");
     }
 
     public void armeeBewegen(int xPos, int yPos, Armee armee, Player playingSpieler) {
 
         if (armee.getBesitzer().equals(playingSpieler)) {
+            System.out.println("sventest6");
             spielfeld.armeeBewegen(xPos, yPos, armee);
         }
     }
