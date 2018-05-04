@@ -101,6 +101,7 @@ public class Testframe extends JFrame {
         setBackgroundImg();
         refreshDataRight();
         refreshDataLeft();
+        setArmy();
 
         this.add(map, "North");
         this.add(title, "Center");
@@ -325,6 +326,10 @@ public class Testframe extends JFrame {
             }
         }
 
+    }
+    public void setArmy() {
+        
+        
     }
     
     public void refreshDataRight() {
