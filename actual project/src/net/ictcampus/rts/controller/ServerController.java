@@ -45,16 +45,21 @@ public class ServerController {
     // -----------------------------------Main-----------------------------------//
 
     // ---------------------------------Methods---------------------------------//
-    public void printCommand() throws IOException {
+    public String receiveCommands() throws IOException {
+    	String strToReturn = "";
     	for(int i=0; i<connections.size(); i++) {
 	    	DataInputStream dis = new DataInputStream(connections.get(i).getInputStream());
 	    	InputStreamReader isr = new InputStreamReader(dis);
 	    	BufferedReader br = new BufferedReader(isr);
 	    	
-	    	char[] cbuf = new char[10];
-	    	br.read(cbuf, 0, 10);
-	    	System.out.print(new String(cbuf));
+	    	char[] cbuf = new char[30];
+	    	br.read(cbuf, 0, cbuf.length);
+	    	strToReturn = strToReturn + new String(cbuf).trim();
+	    	if(i<connections.size()-1){
+	    		strToReturn = strToReturn + "#";
+	    	}
     	}
+    	return strToReturn;
     }
     
     public void sendMessage(String message) throws IOException {
