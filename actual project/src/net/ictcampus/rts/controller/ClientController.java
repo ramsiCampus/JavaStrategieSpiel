@@ -52,7 +52,7 @@ public class ClientController extends Thread{
     public ClientController(String name) {
         // Setup networking
         socket = ClientSocketFactory.createClientSocket();
-        dataSocket = ClientSocketFactory.createClientSocket(56270);
+        dataSocket = ClientSocketFactory.createClientSocket(54270);
         clientIsReady = true;
         message = this.getMessageFromServer();
         System.out.println(message);
@@ -125,7 +125,7 @@ public class ClientController extends Thread{
         Spiel netzspiel = null;    
         try {
             //DataInputStream dis = new DataInputStream(socket.getInputStream());
-            ObjectInputStream istream = new ObjectInputStream(socket.getInputStream());
+            ObjectInputStream istream = new ObjectInputStream(dataSocket.getInputStream());
             
              Object temp = istream.readObject();
              System.out.println("::gelesen");
@@ -148,7 +148,7 @@ public class ClientController extends Thread{
         //SmallSerial zurli = null;    
         try {
             //DataInputStream dis = new DataInputStream(socket.getInputStream());
-            ObjectInputStream istream = new ObjectInputStream(socket.getInputStream());
+            ObjectInputStream istream = new ObjectInputStream(dataSocket.getInputStream());
             
              Object temp = istream.readObject();
              System.out.println("::gelesen");
