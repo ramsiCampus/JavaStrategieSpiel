@@ -54,6 +54,7 @@ public class SpielLogik {
             System.out.println(p.getName());
         }
 
+
 //        sl.kaufeStadt(10, 8, sl.spieler.get(1), 10000, "Hauptsadt1", "dinni", sl.protMensch);
 //        sl.kaufeStadt(1, 1, sl.spieler.get(2), 1000, "zweiteHauptstadt", "muetter", sl.protMensch);
 
@@ -79,6 +80,7 @@ public class SpielLogik {
         sl.ereignisGenerieren();
         for (Stadt s : sl.spielfeld.getStaedte()) {
             System.out.println(s.getName() + " " + s.getVolk().size());
+
         }
 
         // System.out.println(sl.spielfeld.getStadt(8, 3).getVolk().size());
