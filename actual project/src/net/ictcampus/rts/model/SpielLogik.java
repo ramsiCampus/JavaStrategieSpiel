@@ -54,15 +54,17 @@ public class SpielLogik {
             System.out.println(p.getName());
         }
 
-
-//        sl.kaufeStadt(10, 8, sl.spieler.get(1), 10000, "Hauptsadt1", "dinni", sl.protMensch);
-//        sl.kaufeStadt(1, 1, sl.spieler.get(2), 1000, "zweiteHauptstadt", "muetter", sl.protMensch);
+        sl.kaufeStadt(10, 8, sl.spieler.get(1), 10000, "Hauptsadt1", "dinni", sl.protMensch);
+        sl.kaufeStadt(1, 1, sl.spieler.get(2), 1000, "zweiteHauptstadt", "muetter", sl.protMensch);
+        
+        sl.menschenKaufen( sl.spieler.get(1), sl.spielfeld.getStadt(8, 3), 20);
+        
+        
 
 //        sl.armeeErzeugen(8, 4, sl.spieler.get(1), sl.spielfeld.getStadt(8, 3), 10, "beste");
 //        System.out.println("Armee: " + sl.spiel.getSpielFeld().getFelder()[8][4].getEinheiten()
 //                .get(0).getArmee().size());
-//        System.out.println("Armee: " + sl.spiel.getSpielFeld().getFelder()[8][3].getStadt()
-//                .getArmee().getArmee().size());
+        
 
 //        for (Stadt i : sl.spielfeld.getStaedte()) {
 //            System.out.println(i.getName());
@@ -71,13 +73,15 @@ public class SpielLogik {
 //            System.out.println(i.getyPos());
 //
 //        }
+//        
+//        sl.armeeBewegen(8, 5, sl.spielfeld.getFelder()[8][4].getEinheiten().get(0), sl.spieler.get(1));
+//        System.out.println("Armee neue Position: " + " " + sl.spielfeld.getFelder()[8][5].getEinheiten().get(0).getArmee().size());
+//
+//        sl.spielfeld.getStadt(8, 3).menschenBewegen(10, "testArmee");
+//        System.out.println(sl.spielfeld.getStadt(8, 3).getArmee().getArmee().size());
+//        System.out.println(sl.spielfeld.getStadt(8, 3).getVolk().size());
 
-        // sl.spielfeld.getStadt(8, 3).menschenBewegen(10);
-        // System.out.println(sl.spielfeld.getStadt(8,
-        // 3).getArmee().getArmee().size());
-        // System.out.println(sl.spielfeld.getStadt(8, 3).getVolk().size());
-        //
-        sl.ereignisGenerieren();
+//        sl.ereignisGenerieren();
         for (Stadt s : sl.spielfeld.getStaedte()) {
             System.out.println(s.getName() + " " + s.getVolk().size());
 
@@ -85,7 +89,7 @@ public class SpielLogik {
 
         // System.out.println(sl.spielfeld.getStadt(8, 3).getVolk().size());
 
-         Testframe tf = new Testframe(sl);
+        // Testframe tf = new Testframe(sl);
 
         // System.out.println(sl.spiel.getMenschPreis());
 
@@ -133,7 +137,7 @@ public class SpielLogik {
                 protMensch);
     }
 
-    public Ereignis ereignisGenerieren() {
+    public void ereignisGenerieren() {
 
         int zufallszahl;
         int staedteLaenge = spielfeld.getStaedte().size();
@@ -146,7 +150,6 @@ public class SpielLogik {
         zufallsStadt = randomZahl1.nextInt(staedteLaenge - 0);
         Ereignis ereignis = new Ereignis("test", spielfeld.getStaedte().get(zufallsStadt),
                 zufallszahl);
-        return ereignis;
 
     }
 
