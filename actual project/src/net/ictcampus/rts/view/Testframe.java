@@ -199,6 +199,10 @@ public class Testframe extends JFrame {
         btnCreateP = new JButton("Menschen erstellen");
         JButton btnBuildC = new JButton("Stadt bauen");
         JButton btnTransportP = new JButton("Menschen transportieren");
+        btnCreateP.addActionListener(new ButtonActionListener(this, spiel));
+        btnBuildC.addActionListener(new ButtonActionListener(this, spiel));
+        btnTransportP.addActionListener(new ButtonActionListener(this, spiel));     
+        
         txtCreateP = new JTextField();
         txtTransportPkoo = new JTextField();
         txtTransportPanz = new JTextField();
