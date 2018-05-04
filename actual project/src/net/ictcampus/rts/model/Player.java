@@ -2,9 +2,9 @@
 package net.ictcampus.rts.model;
 //imports
 
-import java.util.List;
-
-import com.sun.javafx.collections.MappingChange.Map;
+//import java.util.List;
+//
+//import com.sun.javafx.collections.MappingChange.Map;
 
 /**
  * Player,
@@ -17,18 +17,18 @@ public class Player {
     // ---------------------------variable_declaration---------------------------//
 
     private String name;
+    @SuppressWarnings("unused")
     private int[] alleID;
     private int ID;
-    private List<Ressource> ressourcen;       // Anschauen!!!
-    private int testgeld;
+    
 
   //-------------------------------Constructor--------------------------------//
 
    
 
     public Player(String name, int ID){
-        name = this.name;
-        ID = this.ID;
+        this.setName(name);
+        this.ID = ID;
         
     }
   //-----------------------------------Main-----------------------------------//
@@ -38,12 +38,20 @@ public class Player {
     
   //------------------------------Getter_Setter------------------------------//
     
-    public int getTestgeld() {
-        return testgeld;
+   
+
+    public int getID() {
+        return ID;
     }
 
-    public void setTestgeld(int testgeld) {
-        this.testgeld = testgeld;
+    public String getName() {
+        return name;
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    
 
 }

@@ -23,11 +23,15 @@ public class ServerTest {
 
     // -----------------------------------Main-----------------------------------//
     public static void main(String[] args) throws IOException {
-        ServerController SC = new ServerController();
-        SC.printCommand();
-        ServerSocketFactory.closeServerSocket(ServerSocketFactory.getServerSocket());
-        
+//        ServerController SC = new ServerController();
+//        System.out.println(SC.receiveCommands());
+//        SC.sendMessage("server msg");
+//        ServerSocketFactory.closeServerSocket(ServerSocketFactory.getServerSocket());
+//        
 
+    	ServerSpielController ssc = new ServerSpielController(2);
+    	ssc.getCommands();
+    	ssc.printCommands();
     }
 
     // ---------------------------------Methods---------------------------------//

@@ -20,17 +20,26 @@ public class Armee extends GameObject {
     private int xPos;
     private int yPos;
     private String name;
-    private List<Mensch> menschen;
-    private int anzahlMenschen;
+    // private List<Mensch> menschen;
+    // private int anzahlMenschen;
     private List<Mensch> armee = new ArrayList<Mensch>();
+    private int ausdauer= 99;
+    private Player besitzer;
 
     // -------------------------------Constructor--------------------------------//
 
-    public Armee(String name, int anzahlMenschen, List<Mensch> menschen) {
+    public Armee(Player besitzer, String name, int anzahlMenschen) {
 
-        name = this.name;
-        anzahlMenschen = this.anzahlMenschen;
-        menschen = this.menschen;
+        this.setBesitzer(besitzer);
+        this.setName(name);
+        // anzahlMenschen = this.anzahlMenschen;
+        for (int i = 0; i < anzahlMenschen; i++) {
+            Mensch tempMensch = new Mensch(besitzer, i);
+            if(tempMensch.getAusdauer()<this.ausdauer) {
+                this.setAusdauer(tempMensch.getAusdauer());
+            }
+            armee.add(tempMensch);
+        }
 
     }
 
@@ -42,60 +51,36 @@ public class Armee extends GameObject {
      * Methode, menschenEinfuegen, fügt anhand mitgegebene Paramter im Konstrukt
      * Mensch Objekte in die Liste armee hinein.
      */
-    public void menschenEinfuegen() {
+    public void menschenHinzufuegen(List<Mensch> neuArmee) {
 
-        for (int i = 0; i <= anzahlMenschen; i++) {
-            armee.add(menschen.get(i));
+        while(neuArmee.size()>0) {
+            this.armee.add(neuArmee.get(0));
+            if(neuArmee.get(0).getAusdauer()<this.ausdauer) {
+                this.setAusdauer(neuArmee.get(0).getAusdauer());
+            }
+            neuArmee.remove(0);
         }
     }
 
     /**
-     * Methode armeeBewegen, Überprüft ob start Werten kleiner, gleich oder
-     * grösser als mitgebene Parameter sind, und setzt die Positionen gemäss
-     * Vergleich neu
+     * Methode armeeBewegen, Überprüft ob start Werten kleiner, gleich oder grösser
+     * als mitgebene Parameter sind, und setzt die Positionen gemäss Vergleich neu
      * 
-     * @param xPos, xPosition auf dem Spielfeld
-     * @param yPos, yPosition auf dem Spielfeld
+     * @param xGoal,
+     *            xPosition auf dem Spielfeld
+     * @param yGoal,
+     *            yPosition auf dem Spielfeld
      */
 
-    public void armeeBewegen(int xPos, int yPos) {
+    public boolean armeeBewegen(int xGoal, int yGoal) {
 
-        int startX = getxPos();
-        int startY = getyPos();
-
-        if (xPos < startX && yPos > startY) {
-            xPos = startX - xPos;
-            yPos = startY + yPos;
+        int distanz = Math.abs(xPos-xGoal) + Math.abs(yPos-yGoal);
+        if(distanz<=this.ausdauer) {
+            this.xPos = xGoal;
+            this.yPos = yGoal;
+            return true;
         }
-        else if (xPos < startX && yPos == startY) {
-            xPos = startX - xPos;
-        }
-        else if (xPos < startX && yPos < startY) {
-            xPos = startX - xPos;
-            yPos = startY - yPos;
-        }
-        else if (xPos == startX && yPos < startY) {
-
-            yPos = startY - yPos;
-        }
-        else if (xPos > startX && yPos < startY) {
-            xPos = startX + xPos;
-            yPos = startY - yPos;
-        }
-        else if (xPos > startX && yPos == startY) {
-            xPos = startX + xPos;
-
-        }
-        else if (xPos > startX && yPos > startY) {
-            xPos = startX + xPos;
-            yPos = startY + yPos;
-        }
-        else if (xPos == startX && yPos > startY) {
-            yPos = startY + yPos;
-        }
-        setxPos(xPos);
-        setyPos(yPos);
-
+        return false;
     }
 
     // ------------------------------Getter_Setter------------------------------//
@@ -118,6 +103,30 @@ public class Armee extends GameObject {
 
     public void setyPos(int yPos) {
         this.yPos = yPos;
+    }
+
+    public Player getBesitzer() {
+        return besitzer;
+    }
+
+    public void setBesitzer(Player besitzer) {
+        this.besitzer = besitzer;
+    }
+
+    public int getAusdauer() {
+        return ausdauer;
+    }
+
+    public void setAusdauer(int ausdauer) {
+        this.ausdauer = ausdauer;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
 }

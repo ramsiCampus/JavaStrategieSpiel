@@ -13,9 +13,10 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import net.ictcampus.rts.model.Spiel;
+
 import java.awt.font.*;
-
-
 
 public class Testframe extends JFrame {
 
@@ -23,6 +24,42 @@ public class Testframe extends JFrame {
     private JPanel content;
     private JPanel title;
     private ButtonField[][] field;
+    private Spiel spiel;
+
+    private JLabel titleRight = new JLabel();
+
+    private JButton playButton;
+    private JTextField txtCreateP;
+    private JTextField txtTransportPkoo;
+    private JTextField txtTransportPanz;
+    private JTextField txtCreateC;
+
+    private JLabel menschenAnzahl;
+    private JLabel ressourcenAnzahl;
+    private JLabel stadtAnzahl;
+    private JLabel sammelAnzahl;
+    private JLabel menschenInStadtAnzahl;
+    private JButton btnCreateP;
+
+    private JLabel lblKoordinaten;
+    private JLabel lblInfo;
+    private JLabel lblFeldart;
+    private JLabel lblBesitzer;
+    private JLabel lblAnzahlMenschen;
+    private JLabel lblGesammelteR;
+    private JLabel lblVerfuegbareR;
+
+    private int xSize = 20;
+    private int ySize = 10;
+
+    private int ausgewX;
+    private int ausgewY;
+    
+    private String command;
+    
+    private int playerId;
+
+    private JavalisationActionLinstener jAl;
 
     /**
      * What was that for?
@@ -45,7 +82,10 @@ public class Testframe extends JFrame {
         content = new JPanel();
         title = new JPanel();
 
-        addFieldButtons(20, 10);
+        jAl = new JavalisationActionLinstener(this);
+
+        addFieldButtons();
+        aktiverButton();
         setContent();
         setTitle();
 
@@ -55,7 +95,7 @@ public class Testframe extends JFrame {
 
     }
 
-    public void addFieldButtons(int xSize, int ySize) {
+    public void addFieldButtons() {
 
         map.setLayout(new GridLayout(ySize, xSize));
 
@@ -66,7 +106,7 @@ public class Testframe extends JFrame {
                 field[j][i] = new ButtonField(j, i);
                 field[j][i].setBackground(new Color(57, 211, 214));
                 map.add(field[j][i]);
-                // ActionListener added here TODO
+                field[j][i].addActionListener(jAl);
             }
         }
     }
@@ -98,11 +138,11 @@ public class Testframe extends JFrame {
         contentBorderLeft.setBorder(BorderFactory.createEmptyBorder(80, 100, 80, 20));
         contentBorderRight.setBorder(BorderFactory.createEmptyBorder(60, 100, 60, 20));
 
-        Font titel = new Font("Calibri",1, 20);
-        
+        Font titel = new Font("Calibri", 1, 20);
+
         setContentLeft(contentBorderLeft);
-        setContentCenter(contentBorderCenter,titel);
-        setContentRight(contentBorderRight,titel);
+        setContentCenter(contentBorderCenter, titel);
+        setContentRight(contentBorderRight, titel);
 
         content.add(contentLeft);
         content.add(contentCenter);
@@ -110,34 +150,32 @@ public class Testframe extends JFrame {
     }
 
     public void setTitle() {
-        title.setLayout(new GridLayout(1, 3));
+        title.setLayout(new GridLayout(1, 4));
         JLabel titleLeft = new JLabel("Spielerinfo");
         JLabel titleCenter = new JLabel("Ausgewähltes Feld: ");
-        JLabel titleRight = new JLabel();
+        playButton = new JButton("Play");
 
         Font font = new Font("Calibri", 1, 40);
         titleLeft.setFont(font);
         titleCenter.setFont(font);
         titleRight.setFont(font);
 
-        // titleLeft.setText("Spielerinfo");
-        titleRight.setText("....");
-
         title.add(titleLeft);
         title.add(titleCenter);
         title.add(titleRight);
+        title.add(playButton);
     }
 
     private void setContentLeft(JPanel contentBorderLeft) {
         contentBorderLeft.setLayout(new GridLayout(5, 2));
-        
+
         contentBorderLeft.setBackground(new Color(92, 255, 150));
-        
-        JLabel menschenAnzahl = new JLabel("800000");
-        JLabel ressourcenAnzahl = new JLabel("2022541100");
-        JLabel stadtAnzahl = new JLabel("6");
-        JLabel sammelAnzahl = new JLabel("600023");
-        JLabel menschenInStadtAnzahl = new JLabel("400000");
+
+        menschenAnzahl = new JLabel("800000");
+        ressourcenAnzahl = new JLabel("2022541100");
+        stadtAnzahl = new JLabel("6");
+        sammelAnzahl = new JLabel("600023");
+        menschenInStadtAnzahl = new JLabel("400000");
 
         contentBorderLeft.add(new JLabel("Menschen:"));
         contentBorderLeft.add(menschenAnzahl);
@@ -152,43 +190,33 @@ public class Testframe extends JFrame {
 
     }
 
-    private void setContentCenter(JPanel p,Font titel) {
-        p.setLayout(new GridLayout(7, 3));
-        
-        p.setBackground(new Color(150, 218, 255));
-        
-        JLabel lblTitel = new JLabel("Aktionen");
-        JButton btnCreateP = new JButton("Menschen erstellen");
-        JButton btnBuildC = new JButton("Stadt bauen");
-        JButton btnCollectR = new JButton("Ressourcen sammenln");
-        JButton btnStoreR = new JButton("Ressourcen lagern");
-        JButton btnTransportP = new JButton("Menschen transportieren");
-        JTextField txtCreateP = new JTextField();
-        JTextField txtTransportPkoo = new JTextField();
-        JTextField txtTransportPanz = new JTextField();
+    private void setContentCenter(JPanel p, Font titel) {
+        p.setLayout(new GridLayout(6, 3));
 
-        
+        p.setBackground(new Color(150, 218, 255));
+
+        JLabel lblTitel = new JLabel("Aktionen");
+        btnCreateP = new JButton("Menschen erstellen");
+        JButton btnBuildC = new JButton("Stadt bauen");
+        JButton btnTransportP = new JButton("Menschen transportieren");
+        txtCreateP = new JTextField();
+        txtTransportPkoo = new JTextField();
+        txtTransportPanz = new JTextField();
+        txtCreateC = new JTextField();
+
         lblTitel.setFont(titel);
-        
+
         p.add(lblTitel);
         p.add(new JLabel(""));
         p.add(new JLabel(""));
-        
+
         p.add(btnCreateP);
         p.add(txtCreateP);
         p.add(new JLabel("Anzahl"));
 
         p.add(btnBuildC);
-        p.add(new JLabel(""));
-        p.add(new JLabel(""));
-
-        p.add(btnCollectR);
-        p.add(new JLabel(""));
-        p.add(new JLabel(""));
-
-        p.add(btnStoreR);
-        p.add(new JLabel(""));
-        p.add(new JLabel(""));
+        p.add(txtCreateC);
+        p.add(new JLabel("Koordinaten"));
 
         p.add(btnTransportP);
         p.add(txtTransportPkoo);
@@ -200,19 +228,19 @@ public class Testframe extends JFrame {
 
     }
 
-    private void setContentRight(JPanel p,Font titel) {
+    private void setContentRight(JPanel p, Font titel) {
         p.setLayout(new GridLayout(7, 2));
         p.setBackground(new Color(247, 76, 76));
-        JLabel lblInfo = new JLabel("Info");
-        JLabel lblFeldart = new JLabel("Stadt");
-        JLabel lblBesitzer = new JLabel("Roger");
-        JLabel lblKoordinaten = new JLabel("12°N 10°O");
-        JLabel lblAnzahlMenschen = new JLabel("100");
-        JLabel lblGesammelteR = new JLabel("1000");
-        JLabel lblVerfuegbareR = new JLabel("2000");
-        
+        lblInfo = new JLabel("Info");
+        lblFeldart = new JLabel("-");
+        lblBesitzer = new JLabel("-");
+        lblKoordinaten = new JLabel("-");
+        lblAnzahlMenschen = new JLabel("-");
+        lblGesammelteR = new JLabel("-");
+        lblVerfuegbareR = new JLabel("-");
+
         lblInfo.setFont(titel);
-        
+
         p.add(lblInfo);
         p.add(new JLabel());
         p.add(new JLabel("Feldart"));
@@ -229,4 +257,193 @@ public class Testframe extends JFrame {
         p.add(lblVerfuegbareR);
     }
 
+    private void aktiverButton() {
+        for (int i = 0; i < ySize; i++) {
+            for (int j = 0; j < xSize; j++) {
+                if (field[j][i].getAusgew()) {
+                    ausgewX = field[j][i].getPosX();
+                    ausgewY = field[j][i].getPosY();
+                }
+            }
+        }
+    }
+
+    public void refreshKoordinaten() {
+        titleRight.setText(9 - ausgewY + "°N " + ausgewX + "°O");
+        lblKoordinaten.setText(9 - ausgewY + "°N " + ausgewX + "°O");
+    }
+
+    public void setBackgroundImg() {
+
+        for (int i = 0; i < ySize; i++) {
+            for (int j = 0; j < xSize; j++) {
+                if (spiel.getSpielFeld().getFelder()[j][i].getStadt() != null) {
+                    field[j][i].setFeldIcon(2);
+                }
+                else if (spiel.getSpielFeld().getFelder()[j][i].getLoot().size() > 0) {
+                    field[j][i].setFeldIcon(1);
+                }
+                else {
+                    field[j][i].setFeldIcon(0);
+                }
+            }
+        }
+
+    }
+    
+    public void refreshDataRight() {
+        
+        if (spiel.getSpielFeld().getFelder()[ausgewX][ausgewY].getStadt() != null) {
+            lblFeldart.setText("Stadt");
+            String besitzer = (spiel.getSpielFeld().getFelder()[ausgewX][ausgewY].getStadt().getBesitzer().getName());
+            lblBesitzer.setText(besitzer);
+            lblVerfuegbareR.setText("-");
+            lblAnzahlMenschen.setText(spiel.getSpielFeld().getFelder()[ausgewX][ausgewY].getStadt().getVolk().size()+"");
+            
+        }
+        else if(spiel.getSpielFeld().getFelder()[ausgewX][ausgewY].getLoot().size() > 0) {
+            lblFeldart.setText("Ressource");
+            lblBesitzer.setText("-");
+            lblVerfuegbareR.setText(spiel.getSpielFeld().getFelder()[ausgewX][ausgewY].getAnzahlRessource()+"");
+            lblAnzahlMenschen.setText(spiel.getSpielFeld().getFelder()[ausgewX][ausgewY].countPlayerEinheiten(playerId)+"");
+        }
+        else {
+            lblFeldart.setText("Wüste");
+            lblBesitzer.setText("-");
+            lblVerfuegbareR.setText("-");
+            lblAnzahlMenschen.setText(spiel.getSpielFeld().getFelder()[ausgewX][ausgewY].countPlayerEinheiten(playerId)+"");
+        }
+        
+        
+        
+        
+    }
+    
+    public void refreshDataLeft() {
+        int anzMenschen=0;
+        int anzRessourcen=0;
+        int anzStaedte=0;
+        int anzMenschenStadt=0;
+        int anzMenschenSammeln=0;
+        for (int i = 0; i < ySize; i++) {
+          for (int j = 0; j < xSize; j++) {
+              anzMenschenSammeln+=spiel.getSpielFeld().getFelder()[i][j].countPlayerEinheiten(playerId);
+              
+              if (spiel.getSpielFeld().getFelder()[i][j].getStadt().getBesitzer().equals(spiel.getPlayerByID(playerId))) {
+                  anzStaedte++;
+                  anzRessourcen+=spiel.getSpielFeld().getFelder()[i][j].getStadt().getVorratGUI("Geld");
+                  anzMenschenStadt+=spiel.getSpielFeld().getFelder()[i][j].getStadt().getVolk().size();
+              }
+            }
+        }
+        anzMenschen=anzMenschenSammeln+anzMenschenStadt;
+        menschenAnzahl.setText(anzMenschen+"");
+        ressourcenAnzahl.setText(anzRessourcen+"");
+        stadtAnzahl.setText(anzStaedte+"");
+        sammelAnzahl.setText(anzMenschenSammeln+"");
+        menschenInStadtAnzahl.setText(anzMenschenStadt+"");
+        
+        
+        
+    }
+
+    public int getAusgewX() {
+        return ausgewX;
+    }
+
+    public void setAusgewX(int ausgewX) {
+        this.ausgewX = ausgewX;
+    }
+
+    public int getAusgewY() {
+        return ausgewY;
+    }
+
+    public void setAusgewY(int ausgewY) {
+        this.ausgewY = ausgewY;
+    }
+
+    public JTextField getTxtCreateP() {
+        return txtCreateP;
+    }
+
+    public JTextField getTxtTransportPkoo() {
+        return txtTransportPkoo;
+    }
+
+    public JTextField getTxtTransportPanz() {
+        return txtTransportPanz;
+    }
+
+    public ButtonField[][] getField() {
+        return field;
+    }
+
+    public void setField(ButtonField[][] field) {
+        this.field = field;
+    }
+
+    public String getCommand() {
+        return command;
+    }
+
+    public void setCommand(String befehl) {
+        this.command = befehl;
+    }
+
+    public int getxSize() {
+        return xSize;
+    }
+
+    public void setxSize(int xSize) {
+        this.xSize = xSize;
+    }
+
+    public int getySize() {
+        return ySize;
+    }
+
+    public void setySize(int ySize) {
+        this.ySize = ySize;
+    }
+
+    public Spiel getSpiel() {
+        return spiel;
+    }
+
+    public int getPlayerId() {
+        return playerId;
+    }
+
+    public void setPlayerId(int playerId) {
+        this.playerId = playerId;
+    }
+
+    public JButton getBtnCreateP() {
+        return btnCreateP;
+    }
+
+    public void setBtnCreateP(JButton btnCreateP) {
+        this.btnCreateP = btnCreateP;
+    }
+
+    public JTextField getTxtCreateC() {
+        return txtCreateC;
+    }
+
+    public void setTxtCreateC(JTextField txtCreateC) {
+        this.txtCreateC = txtCreateC;
+    }
+
+    public void setTxtCreateP(JTextField txtCreateP) {
+        this.txtCreateP = txtCreateP;
+    }
+
+    public void setTxtTransportPkoo(JTextField txtTransportPkoo) {
+        this.txtTransportPkoo = txtTransportPkoo;
+    }
+
+    public void setTxtTransportPanz(JTextField txtTransportPanz) {
+        this.txtTransportPanz = txtTransportPanz;
+    }
 }

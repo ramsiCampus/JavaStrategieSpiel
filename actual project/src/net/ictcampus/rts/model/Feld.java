@@ -18,17 +18,17 @@ public class Feld {
     // ---------------------------variable_declaration---------------------------//
     private int xPos;
     private int yPos;
-    private List<Mensch> einheiten = new ArrayList<Mensch>();
+    private List<Armee> einheiten = new ArrayList<Armee>();
+
     private List<Item> loot = new ArrayList<Item>();
     private Stadt stadt;
 
     // -------------------------------Constructor--------------------------------//
 
-   
-   
     public Feld(int xPos, int yPos) {
-        xPos = this.xPos;
-        yPos = this.yPos;
+        this.xPos = xPos;
+        this.yPos = yPos;
+
     }
 
     // -----------------------------------Main-----------------------------------//
@@ -36,31 +36,31 @@ public class Feld {
     // ---------------------------------Methods---------------------------------//
 
     /**
-     * wirdBetreten, fügt Objekt Mensch der Liste einheiten hinzu und überprüft ob
-     * die Liste Objekte des Typs Mensch erhalten.
+     * wirdBetreten, fügt Objekt Mensch der Liste einheiten hinzu und überprüft
+     * ob die Liste Objekte des Typs Mensch erhalten.
      * 
      * @param mensch,
      *            Objeckt Mensch als Parameter wird mitgegeben
      * @return true falls Objekt Mensch in Liste vorhanden ist, sonnst false.
      */
 
-    @SuppressWarnings("unlikely-arg-type")
-    public boolean wirdBetreten(Mensch mensch) {
-
-        einheiten.add(mensch);
-
-        if (einheiten.contains(einheiten)) {
-            return true;
+    public boolean wirdBetreten(Armee armee) {
+        if (einheiten.size() > 0) {
+            for (Armee i : einheiten) {
+                if (i.getBesitzer().equals(armee.getBesitzer())) {
+                    i.menschenHinzufuegen(armee.getArmee());
+                    return true;
+                }
+            }
+            // possible pvp
         }
-        else {
-            return false;
-        }
-
+        einheiten.add(armee);
+        return true;
     }
 
     /**
-     * erzeugeLoot, erstellt ein neues Item als Ressource und fügt diese der Liste
-     * "loot" hinzu
+     * erzeugeLoot, erstellt ein neues Item als Ressource und fügt diese der
+     * Liste "loot" hinzu
      */
 
     public void erzeugeLoot() {
@@ -69,9 +69,9 @@ public class Feld {
         loot.add(ressource);
 
     }
-    
-    public void erzeugeStadt(String name, Player spieler){
-        stadt = new Stadt(name, this.xPos,this.yPos, spieler);  
+
+    public void erzeugeStadt(String name, Player spieler) {
+        stadt = new Stadt(name, this.xPos, this.yPos, spieler);
         setStadt(stadt);
     }
 
@@ -91,8 +91,8 @@ public class Feld {
     }
 
     /**
-     * anzahlRessource, generiert eine Zahl zwischen 100 und 1000 und gibt sie als
-     * int-Wert zurück @return, generierte Zahl als int
+     * anzahlRessource, generiert eine Zahl zwischen 100 und 1000 und gibt sie
+     * als int-Wert zurück @return, generierte Zahl als int
      */
 
     private int anzahlRessourcen() {
@@ -104,9 +104,7 @@ public class Feld {
         return generierteRessource;
     }
 
-
     // ------------------------------Getter_Setter------------------------------//
-
 
     public int getxPos() {
         return xPos;
@@ -124,11 +122,11 @@ public class Feld {
         this.yPos = yPos;
     }
 
-    public List<Mensch> getEinheiten() {
+    public List<Armee> getEinheiten() {
         return einheiten;
     }
 
-    public void setEinheiten(List<Mensch> einheiten) {
+    public void setEinheiten(List<Armee> einheiten) {
         this.einheiten = einheiten;
     }
 
@@ -148,5 +146,24 @@ public class Feld {
         this.stadt = stadt;
     }
 
+    public int getAnzahlRessource() {
+        Item lootie = this.getLoot().get(0);
+        if (lootie instanceof Ressource) {
+            return ((Ressource) lootie).getAnzahl();
+        }
+        return 0;
+    }
 
+    public int countPlayerEinheiten(int playerID) {
+
+            int anzahlMensch = 0;
+            
+            for( Armee a : einheiten){
+                if(playerID == a.getBesitzer().getID()){
+                    anzahlMensch += a.getArmee().size();
+                    break;
+                }               
+            }          
+            return anzahlMensch;
+    }
 }

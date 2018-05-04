@@ -15,26 +15,27 @@ import java.net.UnknownHostException;
 public class ClientSocketFactory {
   //---------------------------variable_declaration---------------------------//
     private static Socket socket;
-    private static int PORT = 54269;
-    private static String serverAddress = "172.16.2.219";
-    //private static String serverAddress = "127.0.0.1";
+    private static final int PORT = 54269;
+    //private static String serverAddress = "172.16.2.133";
+    //private static String serverAddress = "172.16.2.219";
+    private static String serverAddress = "127.0.0.1";
   //-------------------------------Constructor--------------------------------//
 
   //-----------------------------------Main-----------------------------------//
 
   //---------------------------------Methods---------------------------------//
     /**
-     * createSocket() erstellt ClientSocket
+     * createClientSocket() erstellt Socket
      * @return socket
      */
-    public static Socket createClientSocket() {
+    public static Socket createClientSocket(boolean isUsedForGameState) {
+    	int addForGameState = 0;
+    	if(isUsedForGameState){ addForGameState++; }
+    	
         boolean notConnected = true;
     	while(notConnected) {
 	    	try {
-	        	
-	        	System.out.println("Creating socket 2");
-	            socket = new Socket(serverAddress, PORT);
-	            System.out.println("Verbindung steht");
+	            socket = new Socket(serverAddress, PORT+addForGameState);
 	            notConnected = false;
 	        } catch (UnknownHostException e) {
 	            notConnected = false;
@@ -44,9 +45,10 @@ public class ClientSocketFactory {
 	            e.printStackTrace();
 	        }
     	}
-        System.out.println("Server found");
+        
         return socket;
     }
+    
     
     /**
      * getSocket() holt ClientSocket, falls es keinen hat, wird einer erstellt
@@ -54,9 +56,7 @@ public class ClientSocketFactory {
      */
     public static Socket getClientSocket(){
         if (socket == null) {
-        	System.out.println("Creating socket 1");
-            socket = createClientSocket();
-            System.out.println("Socket created");
+            socket = createClientSocket(false);
         }
         return socket;
     }

@@ -1,6 +1,8 @@
 //packages
 package net.ictcampus.rts.model;
+
 //imports
+import java.util.Random;
 
 /**
  * Ereignis,
@@ -13,14 +15,88 @@ public class Ereignis {
     // ---------------------------variable_declaration---------------------------//
 
     private String name;
-    private int staerke;
+    private int todesOpfer;
+    private Stadt betroffeneStadt;
 
     // -------------------------------Constructor--------------------------------//
 
-    // -----------------------------------Main-----------------------------------//
+    public Ereignis(String name, Stadt stadt, int ereignisZahl) {
 
+        this.name = name;
+        this.betroffeneStadt = stadt;
+
+        switch (ereignisZahl) {
+        case 1:
+            feuerAusbruch(50, 100);
+            break;
+        case 2:
+            pestAusbruch(200, 1000);
+            break;
+        case 3:
+            tornadoAusbruch(10, 30);
+            break;
+        case 4:
+            revolteAusbruch(600, 1000);
+            break;
+        case 5:
+            erdbebenAusbrauch(80, 300);
+        }
+        
+    }
+
+    // -----------------------------------Main-----------------------------------//
+    
+    
     // ---------------------------------Methods---------------------------------//
 
+    /**
+     * methode feuerAusbruch, ruft Methode menschenDezimieren aus Klass Stadt
+     * auf und generiert eine Zufallszahl zwischen 10 und 30, welche die Anzahl
+     * an Menschen entfernen
+     */
+    public void feuerAusbruch(int min, int max) {
+
+        Random randomZahl = new Random();
+        todesOpfer = randomZahl.nextInt(max - min) + min;
+        betroffeneStadt.menschenDezimieren(todesOpfer);
+
+    }
+
+    public void pestAusbruch(int min, int max) {
+
+        Random randomZahl = new Random();
+        todesOpfer = randomZahl.nextInt(max - min) + min;
+        betroffeneStadt.menschenDezimieren(todesOpfer);
+    }
+
+    public void tornadoAusbruch(int min, int max) {
+
+        Random randomZahl = new Random();
+        todesOpfer = randomZahl.nextInt(max - min) + min;
+        betroffeneStadt.menschenDezimieren(todesOpfer);
+    }
+
+    public void revolteAusbruch(int min, int max) {
+
+        Random randomZahl = new Random();
+        todesOpfer = randomZahl.nextInt(max - min) + min;
+        betroffeneStadt.menschenDezimieren(todesOpfer);
+    }
+    
+    public void erdbebenAusbrauch(int min, int max){
+        
+        Random randomZahl = new Random();
+        todesOpfer = randomZahl.nextInt(max - min) + min;
+        betroffeneStadt.menschenDezimieren(todesOpfer);
+    }
     // ------------------------------Getter_Setter------------------------------//
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }    
+    
 }
