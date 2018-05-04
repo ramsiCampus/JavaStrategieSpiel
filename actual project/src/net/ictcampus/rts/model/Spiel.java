@@ -49,6 +49,7 @@ public class Spiel implements Serializable {
             y = y + 4;
             s = "zweiteHauptstadt";
         }
+        initStadt(spieler1,3,3,stadtPreis,s,protMensch);
 
     }
 
