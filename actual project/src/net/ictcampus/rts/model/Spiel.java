@@ -35,7 +35,7 @@ public class Spiel implements Serializable {
         
         
         
-        String s = "Hauptsadt1";
+        String s = "playerOneStadt";
         
         int x = 8;
         int y = 3;
@@ -45,7 +45,7 @@ public class Spiel implements Serializable {
             initStadt(i, x, y, stadtPreis, s, protMensch);
             x = x + 3;
             y = y + 4;
-            s = "zweiteHauptstadt";
+            s = "playerTwoStadt";
         }
         initStadt(spieler1,3,3,stadtPreis,s,protMensch);
 
