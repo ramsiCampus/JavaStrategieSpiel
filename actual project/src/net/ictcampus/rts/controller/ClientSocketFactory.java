@@ -28,14 +28,14 @@ public class ClientSocketFactory {
      * createClientSocket() erstellt Socket
      * @return socket
      */
-    public static Socket createClientSocket(boolean isUsedForGameState) {
-    	int addForGameState = 0;
-    	if(isUsedForGameState){ addForGameState++; }
+    public static Socket createClientSocket() {
+//    	int addForGameState = 0;
+//    	if(isUsedForGameState){ addForGameState++; }
     	
         boolean notConnected = true;
     	while(notConnected) {
 	    	try {
-	            socket = new Socket(serverAddress, PORT+addForGameState);
+	            socket = new Socket(serverAddress, PORT);
 	            notConnected = false;
 	        } catch (UnknownHostException e) {
 	            notConnected = false;
@@ -56,7 +56,7 @@ public class ClientSocketFactory {
      */
     public static Socket getClientSocket(){
         if (socket == null) {
-            socket = createClientSocket(false);
+            socket = createClientSocket();
         }
         return socket;
     }
