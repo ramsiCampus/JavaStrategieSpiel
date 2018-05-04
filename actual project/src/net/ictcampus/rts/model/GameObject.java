@@ -16,7 +16,7 @@ public class GameObject implements Serializable {
 
     private static int counter;
     private static List<GameObject> alleObj = new ArrayList<GameObject>();
-    private int staerke;
+//    private int staerke;
     private int ID;
 
     // -------------------------------Constructor--------------------------------//

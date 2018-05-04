@@ -274,4 +274,9 @@ public class Stadt extends GameObject {
 
     }
 
+    public Armee getArmee() {
+        return armee;
+    }
+    
+
 }
