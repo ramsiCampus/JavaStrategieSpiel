@@ -44,13 +44,13 @@ public class ServerTest {
     	
     	
     	try {
-    	TimeUnit.MILLISECONDS.sleep(1000);
+    		TimeUnit.MILLISECONDS.sleep(1000);
     	} catch (Exception e) {
     	    e.printStackTrace();
     	}
-    	//ssc.sendGame(TestSpiel);
     	SmallSerial zurli = new SmallSerial();
-    	ssc.sendObject(zurli);
+    	ssc.sendGame(TestSpiel);
+    	//ssc.sendObject(zurli);
     	System.out.println("Test over");
     	
     }

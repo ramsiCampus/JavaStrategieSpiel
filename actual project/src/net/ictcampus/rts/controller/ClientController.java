@@ -185,11 +185,11 @@ public class ClientController extends Thread{
                 ClientController.clientIsReady = false;
             }
             else if(message.equals("2")) {
-                //ClientController.netzSpiel = getGameStateFromServer();
-                zurli = getZurli();
+                ClientController.netzSpiel = getGameStateFromServer();
+//                zurli = getZurli();
                 gameIsReady = true;
-                System.out.println(zurli.name);
-                System.out.println(zurli.zahl);
+//                System.out.println(zurli.name);
+//                System.out.println(zurli.zahl);
             }
         }
     }
