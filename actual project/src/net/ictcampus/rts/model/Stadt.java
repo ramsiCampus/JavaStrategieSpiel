@@ -173,8 +173,7 @@ public class Stadt extends GameObject {
      * volk. die Anzahl wird über einen Input bestimmt.
      */
 
-    public boolean menschenBewegen(int anzahlMenschen) {
-        name = "Testarmee";
+    public boolean menschenBewegen(int anzahlMenschen, String name) {
         if (!armeeErzeugen(name, anzahlMenschen)) {
             return false;
         }        
@@ -187,6 +186,8 @@ public class Stadt extends GameObject {
             return false;
         }
         armee = new Armee(this.besitzer, name, anzahlMenschen);
+        armee.setxPos(this.getxPos());
+        armee.setyPos(this.getyPos());
         for (int i = 0; i < anzahlMenschen; i++) {
             this.volk.remove(0);
         }
@@ -269,6 +270,11 @@ public class Stadt extends GameObject {
     public Armee getArmee() {
         return armee;
     }
+
+    public void setArmee(Armee armee) {
+        this.armee = armee;
+    }
+    
     
 
 }

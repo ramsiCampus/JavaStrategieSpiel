@@ -46,12 +46,22 @@ public class Feld implements Serializable {
      */
 
     public boolean wirdBetreten(Armee armee) {
+        for(Mensch n:armee.getArmee()) {
+            if(!lootAufnehmen(n)) {
+                break;
+            }            
+        }
+        
         if (einheiten.size() > 0) {
             for (Armee i : einheiten) {
                 if (i.getArmee().size() > 0) {
                     if (i.getBesitzer().equals(armee.getBesitzer())) {
-                        i.menschenHinzufuegen(armee.getArmee());
-                        armee.getArmee().clear();
+                        List<Mensch> klon = new ArrayList<Mensch>();
+                        for(Mensch m : armee.getArmee()) {
+                            klon.add(m);
+                        }
+                        i.menschenHinzufuegen(klon);
+                        System.out.println("armee transfer");
                         return true;
                     }
                 }

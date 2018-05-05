@@ -26,6 +26,7 @@ public class Spiel implements Serializable {
     private List<Player> spieler = new ArrayList<Player>();
     private Mensch protMensch;
     private int stadtPreis;
+    private int stadtStartkapital;
 
     // -------------------------------Constructor--------------------------------//
 
@@ -34,26 +35,25 @@ public class Spiel implements Serializable {
         this.spielFeld = new SpielFeld(xLength, yLength);
         this.spieler.add(spieler1);
         this.spieler.add(spieler2);
-        this.stadtPreis = 1000;
+        this.stadtPreis = 200;
+        this.stadtStartkapital = 1000;
         this.protMensch = protMensch;
         
         
         
-        String s = "Hauptsadt1";
+        String s = "playerOneStadt";
         
         int x = 8;
         int y = 3;
 
         for (Player i : spieler) {
-
-         
-          
-            initStadt(i, x, y, stadtPreis, s, protMensch);
+                   
+            initStadt(i, x, y, stadtStartkapital, s, protMensch);
             x = x + 3;
             y = y + 4;
-            s = "zweiteHauptstadt";
+            s = "playerTwoStadt";
         }
-        initStadt(spieler1,3,3,stadtPreis,s,protMensch);
+        initStadt(spieler1,3,3,stadtStartkapital,s,protMensch);
 
     }
 
@@ -85,6 +85,10 @@ public class Spiel implements Serializable {
     public void setProtMensch(Mensch protMensch) {
         this.protMensch = protMensch;
     }
+    
+    public Mensch getProtMensch() {
+        return protMensch;
+    }
 
     public int getMenschPreis() {
         return this.protMensch.getPreis().getAnzahl();
@@ -109,4 +113,12 @@ public class Spiel implements Serializable {
         return stadtPreis;
     }
 
+
+    public int getStadtStartkapital() {
+        return stadtStartkapital;
+    }
+
+    public void setStadtStartkapital(int stadtStartkapital) {
+        this.stadtStartkapital = stadtStartkapital;
+    }
 }

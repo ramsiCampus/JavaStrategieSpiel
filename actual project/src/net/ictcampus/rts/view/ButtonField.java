@@ -23,6 +23,8 @@ public class ButtonField extends JButton{
     
     private int feldTyp;
     
+    private JLabel content;
+    
     private Boolean ausgew = false;
 
     public ButtonField(int x, int y) {
@@ -41,7 +43,7 @@ public class ButtonField extends JButton{
         icon = new ImageIcon(img1);
         this.setIcon(icon);
         
-        JLabel content = new JLabel();
+        content = new JLabel();
         content.setSize(50, 50);
         content.setForeground(new Color(255, 255, 255));
         int gradNorth = 9 - y;
@@ -62,6 +64,16 @@ public class ButtonField extends JButton{
             icon = new ImageIcon(img3);
         }
         this.setIcon(icon);
+    }
+    
+    public void setFontColor(Boolean b) {
+        if(b) {
+            content.setForeground(new Color(252, 194, 194));
+            }
+        else {
+            content.setForeground(new Color(255, 255, 255));
+        }
+        
     }
     
     

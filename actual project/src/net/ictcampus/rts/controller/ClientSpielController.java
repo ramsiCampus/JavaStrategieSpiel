@@ -30,11 +30,13 @@ public class ClientSpielController {
         cltCtrl.start();
         while(!ClientController.isGameIsReady()) {
         }
+        
         System.out.println("Spiel ready");
         spiel = ClientController.getNetzSpiel();
         tF = new Testframe(null);
         cltCtrl.close();
         //supiDupiGame();
+
 
     }
     // -----------------------------------Main-----------------------------------//
