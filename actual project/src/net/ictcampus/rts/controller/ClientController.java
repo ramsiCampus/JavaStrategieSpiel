@@ -53,7 +53,7 @@ public class ClientController extends Thread{
         // Setup networking
         socket = ClientSocketFactory.createClientSocket();
         dataSocket = ClientSocketFactory.createClientSocket(54270);
-        clientIsReady = true;
+        clientIsReady = false;
         message = this.getMessageFromServer();
         System.out.println(message);
         player = new Player(name, Integer.parseInt(message));
@@ -178,10 +178,11 @@ public class ClientController extends Thread{
                 } else {
                     String response = Integer.toString(player.getID())+",-1,0,0,0,0,0";
                     this.sendCommand(response);
+                    System.out.println("I'm not yet ready!");
                 }
             }
-            else if(message.equals("1")) {
-                this.sendCommand(cmd);
+            else if(message.equals("1") && ClientController.clientIsReady) {
+                this.sendCommand(ClientController.cmd);
                 ClientController.clientIsReady = false;
             }
             else if(message.equals("2")) {

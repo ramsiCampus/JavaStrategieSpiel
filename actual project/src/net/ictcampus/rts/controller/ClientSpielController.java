@@ -1,5 +1,7 @@
 package net.ictcampus.rts.controller;
 
+import java.util.concurrent.TimeUnit;
+
 import net.ictcampus.rts.model.Player;
 import net.ictcampus.rts.model.Spiel;
 import net.ictcampus.rts.view.Testframe;
@@ -14,8 +16,7 @@ public class ClientSpielController {
     // ---------------------------variable_declaration---------------------------//
     ClientController cltCtrl;
     Testframe tF;
-    Boolean ready = false;
-    Boolean isready = false;
+    Boolean ready;
     String command;
     Player activePlayer;
     Spiel spiel;
@@ -26,16 +27,17 @@ public class ClientSpielController {
     public ClientSpielController() {
         cltCtrl = new ClientController("DiniMuetter");
         activePlayer = cltCtrl.getPlayer();
+        ready = false;
         System.out.println("soifosdjf");
         cltCtrl.start();
         while(!ClientController.isGameIsReady()) {
         }
         
-        System.out.println("Spiel ready");
+        
         spiel = ClientController.getNetzSpiel();
-        tF = new Testframe(null);
-        cltCtrl.close();
-        //supiDupiGame();
+        System.out.println("Spiel ready");
+        tF = new Testframe(spiel);
+        supiDupiGame();
 
 
     }
@@ -44,28 +46,24 @@ public class ClientSpielController {
     // ---------------------------------Methods---------------------------------//
     /**
      * waitForCommand() wartet auf die Befehle vom GUI und sendet diese
-     * anschliessend an den Server weiter wenn ready = true
+     * anschliessend an den ClientController welcher es weiter an den Server
+     * sendet wenn ready = true
      */
     public void waitForCommand() {
         while (!ready) {
             ready = tF.getReady();
-            if (ready) {
-                command = tF.getCommand();
-                cltCtrl.sendCommand(command);
-                ready = false;
-                break;
-            }
         }
+        command = tF.getCommand();
+        ClientController.setCmd(command);
+        ready = false;
     }
     
     public void waitForGame() {
-        while (!isready) {
-            isready = cltCtrl.isGameIsReady();
-            if(isready) {
-                spiel = cltCtrl.getNetzSpiel();
-                break;
-            }
+        while (!ClientController.isGameIsReady()) {
+        	try {TimeUnit.MILLISECONDS.sleep(1000);}//wait 1 seconds before trying again
+			catch (Exception e) {e.printStackTrace();}
         }
+        spiel = cltCtrl.getNetzSpiel();
     }
 
     /**
@@ -76,7 +74,7 @@ public class ClientSpielController {
 
     public void supiDupiGame() {
         while (true) {
-            // Spiel an GUI senden
+            tF.setSpiel(spiel);
             waitForCommand();
             waitForGame();
         }

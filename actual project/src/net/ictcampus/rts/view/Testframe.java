@@ -73,7 +73,9 @@ public class Testframe extends JFrame {
      * What was that for?
      */
     // private static final long serialVersionUID = -6325432051352243062L;
-
+    
+    //wieso gnau brucheder SpielLogik wenner e nu spielLogik.getSpiel() im Konstruktor mached?
+    //Gruess Keya
     public Testframe(SpielLogik spielLogik) {
 
         super("Javalisation (Dini Mueter isch fett(not kidding!))");
@@ -82,6 +84,21 @@ public class Testframe extends JFrame {
         this.spiel = spielLogik.getSpiel();
         this.initContent();
         this.setVisible(true);
+    }
+    
+    /**
+     * Alternativer Konstruktor, da vom Client nur ein Spiel entegegengenommen wird.
+     * 
+     * Gruess Keya
+     * @param spiel
+     */
+    public Testframe(Spiel spiel) {
+        super("Javalisation (Dini Mueter isch fetter als fett (not kidding!)) Gruess Keya");
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.spiel = spiel;
+        this.initContent();
+        this.setVisible(true);
+        this.ready = false;
     }
 
     public void initContent() {

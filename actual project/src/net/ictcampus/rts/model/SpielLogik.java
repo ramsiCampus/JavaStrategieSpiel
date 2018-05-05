@@ -45,6 +45,30 @@ public class SpielLogik {
         this.spielfeld = spiel.getSpielFeld();
 
     }
+    
+    /**
+     * Hey Ho I hamer mol d Freiheit gno zum afach de Konstruktor schriebe willi vom ServerSpielController mue chöne sege wivil Spieler
+     * dasses geh mues. Worschinli schribi au no en separate Spiel-Konstruktor, do en Mensch immer en Bsitzer het und alles sött
+     * neutral initialisiert werde.
+     * 
+     * Gruess Keya
+     * 
+     * @param anzahlSpieler
+     */
+    public SpielLogik(int anzahlSpieler) {
+    	for(int i=0; i<anzahlSpieler; i++){
+    		spieler.add(new Player("Player_"+i, i));
+    	}
+    	
+    	this.protMensch = new Mensch(new Player("Game", -1), 10);
+    	
+    	//Zweiter Spieler sollte mal noch geändert werden zu Spieler.get(1)
+        this.spiel = new Spiel(20, 10, spieler.get(0), spieler.get(0), protMensch);
+
+        this.spielfeld = spiel.getSpielFeld();
+    	
+    }
+    
 
     // -----------------------------------Main-----------------------------------//
 

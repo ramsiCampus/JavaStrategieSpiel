@@ -40,7 +40,7 @@ public class ServerTest {
     	ServerSpielController ssc = new ServerSpielController(1);
     	int i = 7;
     	System.out.println("Irgenöppis");
-    	ssc.sendMessageToAll("2");
+//    	ssc.sendMessageToAll("2");
     	
     	
     	try {
@@ -48,9 +48,10 @@ public class ServerTest {
     	} catch (Exception e) {
     	    e.printStackTrace();
     	}
-    	SmallSerial zurli = new SmallSerial();
-    	ssc.sendGame(TestSpiel);
+//    	SmallSerial zurli = new SmallSerial();
+//    	ssc.sendGameToAll(TestSpiel);
     	//ssc.sendObject(zurli);
+    	ssc.play();
     	System.out.println("Test over");
     	
     }
