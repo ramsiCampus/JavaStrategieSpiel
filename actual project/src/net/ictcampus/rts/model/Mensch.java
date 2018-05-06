@@ -52,22 +52,45 @@ public class Mensch extends GameObject {
         return false;
     }
 
+//    public void aufnehmen(Feld feld) {
+//        int geld = 0;
+//        List<Item> loot = feld.getLoot();
+//        for(Item it : loot) {
+//            if(it instanceof Ressource) {
+//                if(it.getName().equals("Geld")) {
+//                    geld =((Ressource) it).getAnzahl();
+//                    if (geld > 50) {
+//                        looteGeld(50);
+//                        ((Ressource) it).setAnzahl(geld-50);
+//                    }
+//                    else {
+//                        looteGeld(geld);
+//                        ((Ressource) it).setAnzahl(0);
+//                        //loot.remove(0);                         //hard-coded für Felder die nur Geld haben
+//                        										//JÜNGE! Da dörfsch nöd! Du chasch nöd Sache lösche
+//                        										//wod no am drüberiteriere bisch
+//                    }
+//                }
+//            }
+//        }
+//       
+//    }
+    
     public void aufnehmen(Feld feld) {
-        
         int geld = 0;
         List<Item> loot = feld.getLoot();
-        for(Item it : loot) {
-            if(it instanceof Ressource) {
-                if(it.getName().equals("Geld")) {
-                    geld =((Ressource) it).getAnzahl();
+        for(int i=0; i<loot.size(); i++) {
+            if(loot.get(i) instanceof Ressource) {
+                if(loot.get(i).getName().equals("Geld")) {
+                    geld =((Ressource) loot.get(i)).getAnzahl();
                     if (geld > 50) {
                         looteGeld(50);
-                        ((Ressource) it).setAnzahl(geld-50);
+                        ((Ressource) loot.get(i)).setAnzahl(geld-50);
                     }
                     else {
                         looteGeld(geld);
-                        ((Ressource) it).setAnzahl(0);
-                        loot.remove(0);                         //hard-coded für Felder die nur Geld haben 
+                        loot.remove(i);                         //so tuet mer richtig lösche, oder mit Iterator
+                        i--;
                     }
                 }
             }

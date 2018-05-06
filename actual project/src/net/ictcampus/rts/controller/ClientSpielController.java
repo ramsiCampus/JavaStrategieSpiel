@@ -28,15 +28,15 @@ public class ClientSpielController {
         cltCtrl = new ClientController("DiniMuetter");
         activePlayer = cltCtrl.getPlayer();
         ready = false;
-        System.out.println("soifosdjf");
         cltCtrl.start();
-        while(!ClientController.isGameIsReady()) {
-        }
-        
+        System.out.println("soifosdjf");
+        while(!ClientController.isGameIsReady())
+        {}
         
         spiel = ClientController.getNetzSpiel();
         System.out.println("Spiel ready");
-        tF = new Testframe(spiel);
+        tF = new Testframe(spiel, activePlayer.getID());
+        System.out.println("GUI GESTARTET!");
         supiDupiGame();
 
 
@@ -54,6 +54,7 @@ public class ClientSpielController {
             ready = tF.getReady();
         }
         command = tF.getCommand();
+        System.out.println("Command is "+command);
         ClientController.setCmd(command);
         ready = false;
     }
