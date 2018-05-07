@@ -96,17 +96,19 @@ public class SpielFeld implements Serializable {
     public void armeeBewegen(int xPos, int yPos, Armee armee) {
         int xOld = armee.getxPos();
         int yOld = armee.getyPos();
-        Armee armeeOldi;
+        //Armee armeeOldi;
 
         if (armee.armeeBewegen(xPos, yPos)) {
 
+        	/*
             List<Armee> neuArmeen = this.felder[xPos][yPos].getEinheiten();
             neuArmeen.add(armee);
+            */
 
             Feld f = this.felder[xOld][yOld];
             if (f.getStadt() == null) {
-                List<Armee> oldArmeen = this.felder[xOld][yOld].getEinheiten();
-                oldArmeen.remove(oldArmeen.indexOf(armee));
+                this.felder[xOld][yOld].removeArmee(armee);
+                
             }
             else {
                 this.felder[xOld][yOld].getStadt().setArmee(null);

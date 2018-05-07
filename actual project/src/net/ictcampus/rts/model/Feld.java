@@ -45,7 +45,7 @@ public class Feld implements Serializable {
      * @return true falls Objekt Mensch in Liste vorhanden ist, sonnst false.
      */
 
-    public boolean wirdBetreten(Armee armee) {
+    public void wirdBetreten(Armee armee) {
         for(Mensch n:armee.getArmee()) {
             if(!lootAufnehmen(n)) {
                 break;
@@ -53,6 +53,7 @@ public class Feld implements Serializable {
         }
         
         if (einheiten.size() > 0) {
+        	
             for (Armee i : einheiten) {
                 if (i.getArmee().size() > 0) {
                     if (i.getBesitzer().equals(armee.getBesitzer())) {
@@ -61,15 +62,27 @@ public class Feld implements Serializable {
                             klon.add(m);
                         }
                         i.menschenHinzufuegen(klon);
+                        
                         System.out.println("armee transfer");
-                        return true;
+                        return;
                     }
                 }
             }
+            
             // possible pvp
         }
         einheiten.add(armee);
-        return true;
+    }
+    
+    public void removeArmee(Armee armee){
+    	int i = 0;
+    	for(Armee a : einheiten){
+    		if(a==armee){
+    			i = einheiten.indexOf(armee);
+    		}
+    	}
+    	einheiten.remove(i);
+    	
     }
 
     /**

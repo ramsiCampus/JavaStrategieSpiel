@@ -55,6 +55,7 @@ public class Mensch extends GameObject {
     public void aufnehmen(Feld feld) {
         
         int geld = 0;
+        boolean leer = false;
         List<Item> loot = feld.getLoot();
         for(Item it : loot) {
             if(it instanceof Ressource) {
@@ -67,10 +68,14 @@ public class Mensch extends GameObject {
                     else {
                         looteGeld(geld);
                         ((Ressource) it).setAnzahl(0);
-                        loot.remove(0);                         //hard-coded für Felder die nur Geld haben 
+                        leer = true;
+                        break;
                     }
                 }
             }
+        }
+        if(leer){
+        	loot.remove(0);                         //hard-coded für Felder die nur Geld haben 
         }
        
     }

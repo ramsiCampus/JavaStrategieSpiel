@@ -78,15 +78,26 @@ public class SpielLogik {
         
         int[] command = new int[]{1,2,8,3,8,2,10};
 
-        int[] command2 = new int[]{1,4,8,2,7,2,10};
+        int[] command2 = new int[]{1,4,8,2,7,2,0};
         int[] command3 = new int[]{1,3,8,3,17,2,0};
 //        int[] command3 = new int[]{1,2,8,3,8,2,10};
+        int[] command4 = new int[]{1,4,7,2,6,2,0};
 
        
         sl.commandAusfuehren(command);
+        System.out.println("1 Armee(8,2) (10): "+sl.spielfeld.getFelder()[8][2].getEinheiten().get(0).getArmee().size());
+        sl.commandAusfuehren(command);
+        System.out.println("2 Armeen merged (8,2) (20): "+sl.spielfeld.getFelder()[8][2].getEinheiten().get(0).getArmee().size());
+        System.out.println("Anzahl Armeen(8,2) (1): "+sl.spielfeld.getFelder()[8][2].getEinheiten().size());
         sl.commandAusfuehren(command2);
-        sl.commandAusfuehren(command3);        
-             
+        System.out.println("Armee bewegt(7,2) (20): "+sl.spielfeld.getFelder()[7][2].getEinheiten().get(0).getArmee().size());
+        //sl.commandAusfuehren(command3);        
+        sl.commandAusfuehren(command4);
+        System.out.println("Armee bewegt(6,2) (20): "+sl.spielfeld.getFelder()[6][2].getEinheiten().get(0).getArmee().size());
+        System.out.println("Feld leer(7,2) (0): "+sl.spielfeld.getFelder()[7][2].getEinheiten().size());
+        System.out.println("Feld leer(8,2) (0): "+sl.spielfeld.getFelder()[8][2].getEinheiten().size());
+        //System.out.println("truppen (8,2) (0): "+sl.spielfeld.getFelder()[8][2].getEinheiten().get(0).getArmee().size());
+        
         System.out.println(sl.spielfeld.getStadt(8, 3).getVolk().size());
        
 //        for (Stadt i : sl.spielfeld.getStaedte()) {
