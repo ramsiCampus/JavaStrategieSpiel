@@ -62,8 +62,8 @@ public class Testframe extends JFrame {
     private int ausgewX;
     private int ausgewY;
     
-    private String command;
-    private Boolean ready;
+    private static volatile String command;
+    private static volatile Boolean ready;
     
     private int playerId = 1;
 
@@ -87,14 +87,15 @@ public class Testframe extends JFrame {
     }
     
     /**
-     * Alternativer Konstruktor, da vom Client nur ein Spiel entegegengenommen wird.
+     * Alternativer Konstruktor, da vom Client nur ein Spiel und die Spieler-ID entegegengenommen wird.
      * 
      * Gruess Keya
      * @param spiel
      */
-    public Testframe(Spiel spiel) {
+    public Testframe(Spiel spiel, int playerID) {
         super("Javalisation (Dini Mueter isch fetter als fett (not kidding!)) Gruess Keya");
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.playerId = playerID;
         this.spiel = spiel;
         this.initContent();
         this.setVisible(true);
@@ -557,5 +558,6 @@ public class Testframe extends JFrame {
 
     public void setSpiel(Spiel spiel) {
         this.spiel = spiel;
+        this.ready = false;
     }
 }

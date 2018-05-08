@@ -50,8 +50,10 @@ public class ButtonActionListener implements ActionListener{
     private void sendCommand() {
         //TODO, transmit Befehl
         String command = frame.getCommand();
-        System.out.println(command);
+        System.out.println("Command nach Aufruf des PlayButtons: "+command);
+        //frame.setCommand(command);
         frame.setReady(true);
+        System.out.println(frame.getReady());
     }
     
     //PARTIALLY FINISHED TOCHECK XYMISSING

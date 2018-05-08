@@ -1,10 +1,12 @@
 package net.ictcampus.rts.controller;
 
+import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -28,10 +30,11 @@ public class ClientController extends Thread{
     // socket (Client)
     private Socket socket;
     private Socket dataSocket;
-    private DataOutputStream os;
-    private OutputStreamWriter osw;
+    private ObjectInputStream istream;
+    
+    private BufferedReader br;
     private BufferedWriter bw;
-    private Thread protocol;
+
     
     private static volatile boolean clientIsReady;
     private static volatile boolean gameIsReady;
@@ -50,15 +53,33 @@ public class ClientController extends Thread{
      *            IP-Adresse Server
      */
     public ClientController(String name) {
+    	gameIsReady = false;
+    	clientIsReady = false;
+    	done = false;
         // Setup networking
         socket = ClientSocketFactory.createClientSocket();
         dataSocket = ClientSocketFactory.createClientSocket(54270);
-        clientIsReady = false;
+        System.out.println("sldfjklsjd");
+        try{
+        	DataInputStream dis = new DataInputStream(socket.getInputStream());
+	    	InputStreamReader isr = new InputStreamReader(dis);
+	    	br = new BufferedReader(isr);
+	    	
+	    	DataOutputStream os = new DataOutputStream(socket.getOutputStream());
+            OutputStreamWriter osw = new OutputStreamWriter(os);
+            bw = new BufferedWriter(osw);
+	    	
+        	InputStream ipstr = new DataInputStream(dataSocket.getInputStream());
+        	istream = new ObjectInputStream(new BufferedInputStream(ipstr));
+    	} catch (IOException e) {
+    		e.printStackTrace();
+    	}
+        System.out.println("dddddddddddddddd");
         message = this.getMessageFromServer();
         System.out.println(message);
         player = new Player(name, Integer.parseInt(message));
         message = "";
-        gameIsReady = false;
+        
         System.out.println("OK GOT IT");
     }
 
@@ -77,18 +98,8 @@ public class ClientController extends Thread{
      */
     public boolean sendCommand(String command) {
         try {
-            // Stream öffnen zum param senden
-            socket = ClientSocketFactory.getClientSocket();
-            os = new DataOutputStream(socket.getOutputStream());
-            osw = new OutputStreamWriter(os);
-            bw = new BufferedWriter(osw);
-
-            // Variabeln werden gesammelt um anschliessend versendet zu werden
-            // deprecated: String condensedCommand = ""+playerID+":"+action+":"+xCoord+":"+yCoord+":"+anzahl;
             bw.write(command);
-
             bw.flush();
-            System.out.println(socket.getLocalPort());
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -105,17 +116,13 @@ public class ClientController extends Thread{
     public String getMessageFromServer() {
         String msg = "";
     	try {
-    		DataInputStream dis = new DataInputStream(socket.getInputStream());
-	    	InputStreamReader isr = new InputStreamReader(dis);
-	    	BufferedReader br = new BufferedReader(isr);
-	    	
 	    	char[] cbuf = new char[1];
 	    	br.read(cbuf);
 	    	msg = new String(cbuf);
-	    	System.out.println("msg = "+msg);
-
-    	} catch (IOException e) {
+	    	//System.out.println("msg = "+msg);
+    	} catch (Exception e) {
     	    msg = "";
+    	    e.printStackTrace();
     	}
     	return msg.trim();
     }
@@ -125,7 +132,7 @@ public class ClientController extends Thread{
         Spiel netzspiel = null;    
         try {
             //DataInputStream dis = new DataInputStream(socket.getInputStream());
-            ObjectInputStream istream = new ObjectInputStream(dataSocket.getInputStream());
+            
             
              Object temp = istream.readObject();
              System.out.println("::gelesen");
@@ -178,21 +185,31 @@ public class ClientController extends Thread{
                 } else {
                     String response = Integer.toString(player.getID())+",-1,0,0,0,0,0";
                     this.sendCommand(response);
-                    System.out.println("I'm not yet ready!");
                 }
             }
             else if(message.equals("1") && ClientController.clientIsReady) {
                 this.sendCommand(ClientController.cmd);
+                System.out.println("Comand is being sent: "+ClientController.cmd);
                 ClientController.clientIsReady = false;
             }
             else if(message.equals("2")) {
-                ClientController.netzSpiel = getGameStateFromServer();
-//                zurli = getZurli();
-                gameIsReady = true;
+            	System.out.println("2 erhalten");
+            	if(!gameIsReady) {
+                    String response = Integer.toString(player.getID())+",0,0,0,0,0,0";
+                    this.sendCommand(response);
+                    ClientController.netzSpiel = getGameStateFromServer();
+                    gameIsReady = true;
+                } else {
+                    String response = Integer.toString(player.getID())+",-1,0,0,0,0,0";
+                    this.sendCommand(response);
+                }
+                
 //                System.out.println(zurli.name);
 //                System.out.println(zurli.zahl);
             }
         }
+        System.out.println("gzgzgzgzgzgzgzgzg");
+        System.out.println(done);
     }
     
     public void close() {

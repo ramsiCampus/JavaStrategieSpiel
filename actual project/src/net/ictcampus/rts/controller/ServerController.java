@@ -2,10 +2,12 @@ package net.ictcampus.rts.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import net.ictcampus.rts.model.Spiel;
 import net.ictcampus.rts.model.SpielFeld;
 
+import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.ByteArrayOutputStream;
@@ -14,6 +16,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.ObjectOutputStream;
+import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -47,6 +50,7 @@ public class ServerController {
         	    System.out.println("data connection accepted");
         	    this.sendMessageToClient(connections.get(i), Integer.toString(i));
         	    
+        	    //OutputStream opstr = new DataOutputStream();
         	    ObjectOutputStream oos = new ObjectOutputStream(datasend.get(i).getOutputStream());
         	    //DataOutputStream dos = new DataOutputStream(connections.get(i).getOutputStream());
         	    

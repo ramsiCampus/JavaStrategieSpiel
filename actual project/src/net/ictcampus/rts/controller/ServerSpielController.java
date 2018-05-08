@@ -18,6 +18,7 @@ public class ServerSpielController {
 		this.anzSpieler = anzSpieler;
 		this.srvCtrl = new ServerController(anzSpieler);
 		this.commands = new int [anzSpieler][COMMANDCOUNT];
+		System.out.println("Initializing game");
 		initGame();
 	}
 	
@@ -42,12 +43,7 @@ public class ServerSpielController {
 	
 	public void initGame() {
 		this.spielLogik = new SpielLogik(anzSpieler);
-//		while(!this.areClientsReady()){
-//			System.out.println("Clients are not yet ready to receive the game");
-//			
-//			try {TimeUnit.MILLISECONDS.sleep(3000);}//wait 3 seconds before trying again
-//			catch (Exception e) {e.printStackTrace(); return;}
-//		}
+		System.out.println("spielLogik erstellt");
 		hereComesTheGame();
 		System.out.println("Game initialised and sent");
 	}
@@ -100,6 +96,17 @@ public class ServerSpielController {
 		return true;
 	}
 	
+	public boolean areClientsReadyToGetGame(){
+		sendMessageToAll("2");
+		System.out.println("TFFFFFFF?");
+		getCommands();
+		printCommands();
+		for(int i=0; i<this.anzSpieler; i++){
+			if(this.commands[i][1]!=0) { return false; }
+		}
+		return true;
+	}
+	
 	/**
 	 * Sendet eine 1 and alle Clients und nimmt dann die von den Spielern gesendeten Commands entgegen.
 	 * Diese Funktion darf erst nach areClientsReady() ausgeführt werden, da sonst falsche Commands entgegengenommen werden.
@@ -114,7 +121,13 @@ public class ServerSpielController {
 	 * Wird nach ausführen der commands auf dem Spiel ausgeführt.
 	 */
 	public void hereComesTheGame(){
-		sendMessageToAll("2");
+		System.out.println("entering sending game");
+		while(!this.areClientsReadyToGetGame()){
+			System.out.println("Waiting for Clients to get game");
+			try {TimeUnit.MILLISECONDS.sleep(1000);}
+			catch (Exception e) {System.out.println("Error while waiting to send the game");}
+		}
+		System.out.println("sending game");
 		sendGameToAll(spielLogik.getSpiel());
 	}
 	
@@ -130,11 +143,8 @@ public class ServerSpielController {
 				hereComesTheGame();
 			}
 			
-			try {
-	    		TimeUnit.MILLISECONDS.sleep(1000);
-	    	} catch (Exception e) {
-	    	    System.out.println("Error while sleeping between areClientsReady on the server.");
-	    	}
+			try {TimeUnit.MILLISECONDS.sleep(1000);}
+			catch (Exception e) {System.out.println("Error while sleeping between areClientsReady on the server.");}
 			
 		}
 	}
