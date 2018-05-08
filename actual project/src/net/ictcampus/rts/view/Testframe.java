@@ -345,6 +345,7 @@ public class Testframe extends JFrame {
         }
 
     }
+    
     public void setArmy() {
         Boolean b;
         for (int i = 0; i < ySize; i++) {
@@ -411,10 +412,15 @@ public class Testframe extends JFrame {
         stadtAnzahl.setText(anzStaedte+"");
         sammelAnzahl.setText(anzMenschenSammeln+"");
         menschenInStadtAnzahl.setText(anzMenschenStadt+"");
-        
-        
-        
     }
+    
+    public void updateMapAndInfo(){
+    	this.setBackgroundImg();
+    	this.refreshDataLeft();
+    	this.refreshDataRight();
+    }
+    
+    //----------------------Getter & Setter-----------------------------
 
     public int getAusgewX() {
         return ausgewX;
@@ -543,9 +549,9 @@ public class Testframe extends JFrame {
     public Boolean getReady() {
         return ready;
     }
-
-    public void setReady(Boolean ready) {
-        this.ready = ready;
+    
+    public void setReady(boolean ready){
+    	Testframe.ready = ready;
     }
 
     public JLabel getLblAnzahlMenschen() {
@@ -558,6 +564,7 @@ public class Testframe extends JFrame {
 
     public void setSpiel(Spiel spiel) {
         this.spiel = spiel;
-        this.ready = false;
+        Testframe.ready = false;
+        this.updateMapAndInfo();
     }
 }
