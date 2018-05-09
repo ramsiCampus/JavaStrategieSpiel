@@ -47,7 +47,7 @@ public class Spiel implements Serializable {
         int y = 3;
 
         for (Player i : spieler) {
-                   
+            
             initStadt(i, x, y, stadtStartkapital, s, protMensch);
             x = x + 3;
             y = y + 4;

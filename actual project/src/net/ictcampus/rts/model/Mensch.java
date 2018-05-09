@@ -7,10 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Mensch,
+ * Klasse Mensch
  * 
  * @author lauwrensw
- * @version 1.0
+ * @version 2.0
  */
 public class Mensch extends GameObject {
 
@@ -26,17 +26,38 @@ public class Mensch extends GameObject {
 
     // -------------------------------Constructor--------------------------------//
 
+    /**
+     * Konstruktor Mensch
+     *
+     * Setzt der Beistzer und die Preis eines Mensch Objektes
+     *
+     * @param besitzer
+     *            welches Objekt Player der Besitzer ist
+     * @param preisZahl
+     *            wieviel ein Mensch Objekt kostet
+     */
     public Mensch(Player besitzer, int preisZahl) {
         super();
-
         this.besitzer = besitzer;
         preis.setAnzahl(preisZahl);
-
     }
 
     // -----------------------------------Main-----------------------------------//
 
     // ---------------------------------Methods---------------------------------//
+
+    /**
+     * Methode bewegen
+     * 
+     * Überprüft ob Mensch Objekt genug Ausdauer hat um dorthin zu bewegen
+     * 
+     * @param xGoal
+     *            Ziel x-Koordinate
+     * 
+     * @param yGoal
+     *            Ziel y-Koordinate
+     * @return
+     */
 
     public boolean bewegen(int xGoal, int yGoal) {
         int distanz = Math.abs(xPos - xGoal) + Math.abs(yPos - yGoal);
@@ -48,29 +69,14 @@ public class Mensch extends GameObject {
         return false;
     }
 
-    // public void aufnehmen(Feld feld) {
-    // int geld = 0;
-    // List<Item> loot = feld.getLoot();
-    // for(Item it : loot) {
-    // if(it instanceof Ressource) {
-    // if(it.getName().equals("Geld")) {
-    // geld =((Ressource) it).getAnzahl();
-    // if (geld > 50) {
-    // looteGeld(50);
-    // ((Ressource) it).setAnzahl(geld-50);
-    // }
-    // else {
-    // looteGeld(geld);
-    // ((Ressource) it).setAnzahl(0);
-    // //loot.remove(0); //hard-coded für Felder die nur Geld haben
-    // //JÜNGE! Da dörfsch nöd! Du chasch nöd Sache lösche
-    // //wod no am drüberiteriere bisch
-    // }
-    // }
-    // }
-    // }
-    //
-    // }
+    /**
+     * Methode aufnehmen
+     * 
+     * Überprüft ob Loot auf dem Feld liegt und nimmt sie mit Methode
+     * looteGeld() auf
+     * 
+     * @param feld
+     */
 
     public void aufnehmen(Feld feld) {
         int geld = 0;
@@ -87,14 +93,22 @@ public class Mensch extends GameObject {
                     else {
                         looteGeld(geld);
                         leer = true;
-                        loot.remove(i); // so tuet mer richtig lösche, oder mit Iterator
+                        loot.remove(i);
                         break;
                     }
                 }
             }
         }
-
     }
+
+    /**
+     * Methode looteGeld
+     * 
+     * Überprüft ob Objekt Mensch schon Geld in der Tasche hat, ruft Methode
+     * checkTasche und erzeugeInBeutel auf. Nimmt Loot vom Feld auf.
+     * 
+     * @param menge
+     */
 
     private void looteGeld(int menge) {
         if (checkTasche("Geld") == 0) {
@@ -112,6 +126,18 @@ public class Mensch extends GameObject {
         }
     }
 
+
+
+    /**
+     * Methode checkTasche
+     * 
+     * Returnt Anzahl Ressourcen des itemNames
+     *
+     * @param itemName
+     *            Name der gesuchten Ressourcen
+     * @return
+     */
+
     public int checkTasche(String itemName) {
         int anzahl = 0;
         for (Item i : tasche) {
@@ -120,9 +146,19 @@ public class Mensch extends GameObject {
                     anzahl += ((Ressource) i).getAnzahl();
             }
         }
-
         return anzahl;
     }
+
+    /**
+     * Methode erzeugeInBeutel
+     * 
+     * Erzeugt gewünschte Anzahl Ressourcen in Item tasche
+     * 
+     * @param ressourceName
+     *            Zu erzeugende Ressource
+     * @param menge
+     *            Anzahl Ressource
+     */
 
     private void erzeugeInBeutel(String ressourceName, int menge) {
         Item newRessource = new Ressource(ressourceName, menge);

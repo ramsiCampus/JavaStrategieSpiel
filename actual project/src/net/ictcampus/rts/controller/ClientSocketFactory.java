@@ -30,9 +30,6 @@ public class ClientSocketFactory {
      * @return socket
      */
     public static Socket createClientSocket() {
-//    	int addForGameState = 0;
-//    	if(isUsedForGameState){ addForGameState++; }
-    	
         boolean notConnected = true;
     	while(notConnected) {
 	    	try {
@@ -50,10 +47,12 @@ public class ClientSocketFactory {
         return socket;
     }
     
+    /**
+     * createClientSocket() überladen mit einer angabe für port
+     * @param porterino int für port
+     * @return socket
+     */
     public static Socket createClientSocket(int porterino) {
-//      int addForGameState = 0;
-//      if(isUsedForGameState){ addForGameState++; }
-        
         boolean notConnected = true;
         while(notConnected) {
             try {
@@ -91,7 +90,6 @@ public class ClientSocketFactory {
         try {
             socketToClose.close();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }

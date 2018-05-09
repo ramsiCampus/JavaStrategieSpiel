@@ -40,6 +40,11 @@ public class ServerSocketFactory {
         return listener;
     }
     
+    /**
+     * ServerSocket() überladen, man kann einen Port angeben
+     * @param porterino (int)
+     * @return
+     */
     public static ServerSocket createServerSocket(int porterino) {
         
         try {

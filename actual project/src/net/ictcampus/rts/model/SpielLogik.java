@@ -32,6 +32,9 @@ public class SpielLogik {
 
     // -------------------------------Constructor--------------------------------//
 
+    /**
+     * Konstruktor für lokale Tests
+     */
     public SpielLogik() {
 
         spieler.add(new Player("Game", 0));
@@ -45,17 +48,20 @@ public class SpielLogik {
         this.spielfeld = spiel.getSpielFeld();
 
     }
-    
+
     /**
-     * Hey Ho I hamer mol d Freiheit gno zum afach de Konstruktor schriebe willi vom ServerSpielController mue chöne sege wivil Spieler
-     * dasses geh mues. Worschinli schribi au no en separate Spiel-Konstruktor, do en Mensch immer en Bsitzer het und alles sött
-     * neutral initialisiert werde.
+     * Hey Ho I hamer mol d Freiheit gno zum afach de Konstruktor schriebe willi vom
+     * ServerSpielController mue chöne sege wivil Spieler dasses geh mues.
+     * Worschinli schribi au no en separate Spiel-Konstruktor, do en Mensch immer en
+     * Bsitzer het und alles sött neutral initialisiert werde.
      * 
      * Gruess Keya
      * 
      * @param anzahlSpieler
      */
+    
     public SpielLogik(int anzahlSpieler) {
+<<<<<<< HEAD
     	for(int i=0; i<anzahlSpieler; i++){
     		spieler.add(new Player("Player_"+i, i));
     	}
@@ -64,108 +70,94 @@ public class SpielLogik {
     	
     	//Zweiter Spieler sollte mal noch geändert werden zu Spieler.get(1)
         this.spiel = new Spiel(20, 10, spieler.get(0), spieler.get(1), protMensch);
+=======
+        for (int i = 0; i < anzahlSpieler; i++) {
+            spieler.add(new Player("Player_" + i, i));
+        }
+
+        this.protMensch = new Mensch(new Player("Game", -1), 10);
+
+        // Zweiter Spieler sollte mal noch geändert werden zu Spieler.get(1)
+        this.spiel = new Spiel(20, 10, spieler.get(0), spieler.get(0), protMensch);
+>>>>>>> e10c250ae72450033fc5bf904d40d7678a81709a
 
         this.spielfeld = spiel.getSpielFeld();
-    	
+
     }
-    
 
     // -----------------------------------Main-----------------------------------//
 
+    /**
+     * 
+     * main-Methode um Spiellogik lokal zu testen einzelne Kommandos und ganze
+     * Kommando Ablaeufe testbar
+     * 
+     * @param args
+     */
     public static void main(String[] args) {
-        
+
         SpielLogik sl = new SpielLogik();
-        
-        int[] command = new int[]{1,2,8,3,8,2,10};
 
-        int[] command2 = new int[]{1,4,8,2,7,2,0};
-        int[] command3 = new int[]{1,3,8,3,17,2,0};
-//        int[] command3 = new int[]{1,2,8,3,8,2,10};
-        
+        int[] command = new int[] { 1, 2, 8, 3, 8, 2, 10 };
 
-//        Ramsi Testing armeebewegen
-//        int[] command = new int[]{1,2,8,3,8,2,10};
-//        int[] command2 = new int[]{1,4,8,2,7,2,0};
-//        int[] command4 = new int[]{1,4,7,2,6,2,0};
-//        sl.commandAusfuehren(command);
-//        System.out.println("1 Armee(8,2) (10): "+sl.spielfeld.getFelder()[8][2].getEinheiten().get(0).getArmee().size());
-//        sl.commandAusfuehren(command);
-//        System.out.println("2 Armeen merged (8,2) (20): "+sl.spielfeld.getFelder()[8][2].getEinheiten().get(0).getArmee().size());
-//        System.out.println("Anzahl Armeen(8,2) (1): "+sl.spielfeld.getFelder()[8][2].getEinheiten().size());
-//        sl.commandAusfuehren(command2);
-//        System.out.println("Armee bewegt(7,2) (20): "+sl.spielfeld.getFelder()[7][2].getEinheiten().get(0).getArmee().size());
-//        //sl.commandAusfuehren(command3);        
-//        sl.commandAusfuehren(command4);
-//        System.out.println("Armee bewegt(6,2) (20): "+sl.spielfeld.getFelder()[6][2].getEinheiten().get(0).getArmee().size());
-//        System.out.println("Feld leer(7,2) (0): "+sl.spielfeld.getFelder()[7][2].getEinheiten().size());
-//        System.out.println("Feld leer(8,2) (0): "+sl.spielfeld.getFelder()[8][2].getEinheiten().size());
-//        //System.out.println("truppen (8,2) (0): "+sl.spielfeld.getFelder()[8][2].getEinheiten().get(0).getArmee().size());
-//        
-        
-        
-        System.out.println(sl.spielfeld.getStadt(8, 3).getVolk().size());
-       
-//        for (Stadt i : sl.spielfeld.getStaedte()) {
-//            System.out.println("Stadtname" + i.getName());
-//            System.out.println(i.getVorratGUI("Geld"));
-//            System.out.println(i.getxPos());
-//            System.out.println(i.getyPos());
-//
-//        }
-
+        int[] command2 = new int[] { 1, 4, 8, 2, 7, 2, 0 };
+        int[] command3 = new int[] { 1, 3, 8, 3, 17, 2, 0 };
 
         Testframe tf = new Testframe(sl);
-
-
-//        System.out.println("Armee 1: "+sl.spielfeld.getFelder()[8][3].getEinheiten().get(0).getArmee().size());
-//        System.out.println("Armee 2: "+sl.spielfeld.getFelder()[7][2].getEinheiten().get(0).getArmee().size());
-        
-        
 
     }
 
     // ---------------------------------Methods---------------------------------//
-
+    /**
+     * 
+     * Interpreter für vom Server verschickte Kommandos ruft die einzelnen im GUI
+     * implementierten Aktionen auf
+     * 
+     * @param command
+     *            int-Array von Server der die einzelnen Aktionen abruft
+     * @return boolean ob kommando richtig war
+     */
     public boolean commandAusfuehren(int[] command) {
-        System.out.println("command wird ausgeführt: "+command[0]+" "+command[1]);
-        if(command.length != 7){
+        System.out.println("command wird ausgeführt: " + command[0] + " " + command[1]);
+        if (command.length != 7) {
             return false;
         }
-        
-//        System.out.println("Menschen auf Feld 11 1 vor Befehl: "+this.spielfeld.getFelder()[8][11].getEinheiten()==null);
-//        System.out.println("mit countPlayerEinheiten: "+this.spielfeld.getFelder()[11][8].countPlayerEinheiten(0));
-        switch(command[1]){
-        
-        case(1):
-            menschenKaufen(spieler.get(command[0]), spielfeld.getFelder()[command[2]][command[3]].getStadt(), command[6]);
+
+        switch (command[1]) {
+
+        case (1):
+            menschenKaufen(spieler.get(command[0]),
+                    spielfeld.getFelder()[command[2]][command[3]].getStadt(), command[6]);
             break;
-        case(2):
-            armeeErzeugen(command[4], command[5], spieler.get(command[0]), spielfeld.getFelder()[command[2]][command[3]].getStadt(), command[6], "Schweizer Armee");
+        case (2):
+            armeeErzeugen(command[4], command[5], spieler.get(command[0]),
+                    spielfeld.getFelder()[command[2]][command[3]].getStadt(), command[6],
+                    "Schweizer Armee");
             break;
-        case(3):
+        case (3):
             int counter = 0;
-            for(Stadt s : spielfeld.getStaedte()){
-                if(s.getBesitzer() == spieler.get(command[0])){
+            for (Stadt s : spielfeld.getStaedte()) {
+                if (s.getBesitzer() == spieler.get(command[0])) {
                     counter++;
                 }
             }
             String anzahl = Integer.toString(counter);
-            kaufeStadt(command[4], command[5], spieler.get(command[0]), 500, spielfeld.getFelder()[command[2]][command[3]].getStadt().getName(), anzahl, protMensch);
+            kaufeStadt(command[4], command[5], spieler.get(command[0]), 500,
+                    spielfeld.getFelder()[command[2]][command[3]].getStadt().getName(), anzahl,
+                    protMensch);
             break;
-        case(4):
+        case (4):
             Armee zielArmee = null;
             List<Armee> armeen = spielfeld.getFelder()[command[2]][command[3]].getEinheiten();
-            for(Armee a : armeen){
-                if(a.getBesitzer() == spieler.get(command[0])){
-                    zielArmee = a;                 
+            for (Armee a : armeen) {
+                if (a.getBesitzer() == spieler.get(command[0])) {
+                    zielArmee = a;
                 }
             }
             armeeBewegen(command[4], command[5], zielArmee, spieler.get(command[0]));
             break;
         }
-        
-        
-        //System.out.println("mit countPlayerEinheiten: "+this.spielfeld.getFelder()[11][8].countPlayerEinheiten(0));
+
         return true;
 
     }
@@ -176,6 +168,23 @@ public class SpielLogik {
 
     }
 
+    /**
+     * 
+     * GUI-Aktion Menschen von Stadt auf Spielfeld verschieben
+     * 
+     * @param xPos
+     *            wohin xKoord
+     * @param yPos
+     *            wohin yKoord
+     * @param playingSpieler
+     *            von welchem Spieler
+     * @param stadt
+     *            Aus welcher Stadt
+     * @param anzahlMenschen
+     *            wieviele Menschen
+     * @param name
+     *            Name der Armee
+     */
     public void armeeErzeugen(int xPos, int yPos, Player playingSpieler, Stadt stadt,
             int anzahlMenschen, String name) {
         if (stadt.menschenBewegen(anzahlMenschen, name)) {
@@ -183,6 +192,19 @@ public class SpielLogik {
         }
     }
 
+    /**
+     * 
+     * GUI-Aktion Armee von Feld auf Spielfeld verschieben
+     * 
+     * @param xPos
+     *            wohin xKoord
+     * @param yPos
+     *            wohin yKoord
+     * @param armee
+     *            zu verschiebende Armee
+     * @param playingSpieler
+     *            von welchem Spieler
+     */
     public void armeeBewegen(int xPos, int yPos, Armee armee, Player playingSpieler) {
 
         if (armee.getBesitzer() == playingSpieler) {
@@ -190,6 +212,17 @@ public class SpielLogik {
         }
     }
 
+    /**
+     * 
+     * GUI-Aktion Menschen in Stadt kaufen
+     * 
+     * @param playingSpieler
+     *            von welchem Spieler
+     * @param stadt
+     *            in welcher Stadt
+     * @param mengeMenschen
+     *            Wieviele Menschen sollen gekauft werden
+     */
     public void menschenKaufen(Player playingSpieler, Stadt stadt, int mengeMenschen) {
 
         if (stadt.getBesitzer() == playingSpieler) {
@@ -205,6 +238,11 @@ public class SpielLogik {
                 protMensch);
     }
 
+    /**
+     * aufrufen um ein zufälliges Ereignis aufzurufen
+     * 
+     * min und max in Instanzvariabeln festgelegt
+     */
     public void ereignisGenerieren() {
 
         int zufallszahl;

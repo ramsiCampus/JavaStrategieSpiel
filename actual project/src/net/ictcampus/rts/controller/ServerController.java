@@ -24,7 +24,7 @@ import java.net.Socket;
 /**
  *ServerController, öffnet Serversocket...
  * 
- * @author Johanna
+ * @author kerstingk
  * @version 1.0
  */
 public class ServerController {
@@ -36,6 +36,10 @@ public class ServerController {
     private List<ObjectOutputStream> osw = new ArrayList<ObjectOutputStream>();
 
     // -------------------------------Constructor--------------------------------//
+    /**
+     * ServerController() Konstruktor
+     * @param anzConnections man muss angeben, wie viele Connections geöffnet werden sollen
+     */
     public ServerController(int anzConnections) {
         listener = ServerSocketFactory.createServerSocket();
         dlistener = ServerSocketFactory.createServerSocket(54270);
@@ -50,11 +54,8 @@ public class ServerController {
         	    System.out.println("data connection accepted");
         	    this.sendMessageToClient(connections.get(i), Integer.toString(i));
         	    
-        	    //OutputStream opstr = new DataOutputStream();
         	    ObjectOutputStream oos = new ObjectOutputStream(datasend.get(i).getOutputStream());
-        	    //DataOutputStream dos = new DataOutputStream(connections.get(i).getOutputStream());
         	    
-        	    //oos.reset();
         	    osw.add(oos);
         	    
         	}
@@ -65,6 +66,11 @@ public class ServerController {
     // -----------------------------------Main-----------------------------------//
 
     // ---------------------------------Methods---------------------------------//
+    /**
+     * receiveCommands() Server erhält einen Befehl vom Client für das Spiel
+     * @return strToReturn Befehl als String
+     * @throws IOException
+     */
     public String receiveCommands() throws IOException {
     	String strToReturn = "";
     	for(int i=0; i<connections.size(); i++) {
@@ -82,6 +88,12 @@ public class ServerController {
     	return strToReturn;
     }
     
+    /**
+     * sendMessageToClient() Server sendet Message an Client
+     * @param connection (Socket) welcher zum Client führt
+     * @param message Befehl/Message als String
+     * @throws IOException 
+     */
     public void sendMessageToClient(Socket connection, String message) throws IOException {
             DataOutputStream dos = new DataOutputStream(connection.getOutputStream());
             OutputStreamWriter osw = new OutputStreamWriter(dos);
@@ -91,12 +103,22 @@ public class ServerController {
             bw.flush();
     }
     
+    /**
+     * sendMessageToAll() Server sendet Nachricht an alle Clients
+     * @param message als String
+     * @throws IOException
+     */
     public void sendMessageToAll(String message) throws IOException {
     	for(int i=0; i<connections.size(); i++) {
 	    	sendMessageToClient(connections.get(i), message);
     	}
     }
     
+    /**
+     * sendGameStateToAll() Server sendet Spiel an alle Clients
+     * @param spiel (Spiel)
+     * @throws IOException
+     */
     public void sendGameStateToAll(Spiel spiel) throws IOException {
     	for(int i=0; i<connections.size(); i++) {
     		osw.get(i).reset();
@@ -107,6 +129,11 @@ public class ServerController {
     	
     }
     
+    /**
+     * sendNormalObject() Testmethode um kleines Objekt zu versenden
+     * @param smsrl (SmallSerial)
+     * @throws IOException
+     */
     public void sendNormalObject(SmallSerial smsrl) throws IOException {
         for(int i=0; i<connections.size(); i++) {
             

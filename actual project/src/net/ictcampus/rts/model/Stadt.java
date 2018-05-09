@@ -27,12 +27,14 @@ public class Stadt extends GameObject {
     private int preis;
     @SuppressWarnings("unused")
     private Armee armee;
-    
-    
 
     // -------------------------------Constructor--------------------------------//
 
-    public Stadt(String name, int xPos, int yPos, Player spieler, int startKapital, Mensch protMensch) {
+    /**
+     * 
+     */
+    public Stadt(String name, int xPos, int yPos, Player spieler, int startKapital,
+            Mensch protMensch) {
         super();
         this.name = name;
         this.xPos = xPos;
@@ -40,7 +42,7 @@ public class Stadt extends GameObject {
         this.besitzer = spieler;
         vorratErzeugen("Geld", startKapital);
         menschKaufen(protMensch, 50);
-        
+
     }
 
     // -----------------------------------Main-----------------------------------//
@@ -94,11 +96,30 @@ public class Stadt extends GameObject {
         }
     }
 
+    /**
+     * 
+     * erzeugt eine neue Ressource die dem Vorrat hinzugefuegt werden soll
+     * 
+     * @param ressourceName
+     *            Name der Ressource die erzeugt werden soll
+     * @param menge
+     *            wieviel der Ressource soll erzeugt werden
+     * 
+     */
     public void vorratErzeugen(String ressourceName, int menge) {
         Item r = new Ressource(ressourceName, menge);
         vorrat.add(r);
     }
 
+    /**
+     * 
+     * erhöht die Menge einer Ressource im Vorrat
+     * 
+     * @param ressourceName
+     *            Name der Ressource deren Menge erhoeht werden soll
+     * @param menge
+     *            wieviel soll der Ressource hinzugefuegt werden
+     */
     public void vorratAddieren(String ressourceName, int menge) {
         if (getVorratGUI(ressourceName) == 0) {
             vorratErzeugen(ressourceName, menge);
@@ -115,6 +136,15 @@ public class Stadt extends GameObject {
         }
     }
 
+    /**
+     * 
+     * verringert die Menge einer Ressource im Vorrat
+     * 
+     * @param ressourceName
+     *            Name der Ressource deren Menge verringert werden soll
+     * @param menge
+     *            wieviel soll der Ressource weggenommen werden
+     */
     public void vorratVerringern(String ressourceName, int menge) {
         for (Item i : vorrat) {
             if (i instanceof Ressource) {
@@ -126,6 +156,14 @@ public class Stadt extends GameObject {
         }
     }
 
+    /**
+     * 
+     * Nimmt Menschen entgegen, entleert seine Tasche in den vorrat und fügt ihn der
+     * Bevölkerung hinzu
+     * 
+     * @param mensch
+     *            Menschobjekt welches die Stadt betritt
+     */
     public void wirdBetreten(Mensch mensch) {
 
         if (mensch.getBesitzer().equals(this.besitzer)) {
@@ -143,18 +181,34 @@ public class Stadt extends GameObject {
         }
     }
 
+    /**
+     * 
+     * Armee betritt die Stadt und für jeden Mensch wird wirdBetreten(Mensch)
+     * aufgerufen nachdem der mensch die Stadt betreten hat wird er der Armee
+     * entnommen
+     * 
+     * @param armee
+     */
     public void wirdBetreten(Armee armee) {
 
         if (armee.getBesitzer().equals(this.besitzer)) {
-            while(armee.getArmee().size()>0) {
-                wirdBetreten(armee.getArmee().get(0)); //Ein Mensch nach dem anderen betritt die Stadt
+            while (armee.getArmee().size() > 0) {
+                wirdBetreten(armee.getArmee().get(0)); // Ein Mensch nach dem anderen betritt die
+                                                       // Stadt
                 armee.getArmee().remove(0);
             }
         }
     }
 
-  
-
+    /**
+     * 
+     * Suchfunktion um den Vorrat nach einem Item/einer Ressource zu durchsuchen und
+     * die Häufigkeit im Vorrat zu bekommen
+     * 
+     * @param itemName
+     *            String zur identifizierung des Items/Ressource
+     * @return int Anzahl der gesuchten Items/Ressourcen, die im Vorrat sind
+     */
     public int getVorratGUI(String itemName) {
         int anzahl = 0;
         for (Item i : vorrat) {
@@ -168,16 +222,26 @@ public class Stadt extends GameObject {
     }
 
     /**
-     * Methode aremeeErzeugen, erzeugt eine Armee mit Mensch Objekten aus der Liste
-     * volk. die Anzahl wird über einen Input bestimmt.
+     * 
+     * Prüft ob es möglich sei diese Menge an Menschen aus der Stadt zu bewegen
+     * 
+     * @param anzahlMenschen
+     *            wieviele Menschen einer Armee hinzugefügt werden sollen
+     * @param name
+     *            Name für die Armee
+     * @return boolean, ob es möglich sei diese Menge an Menschen aus der Stadt zu bewegen
      */
-
     public boolean menschenBewegen(int anzahlMenschen, String name) {
         if (!armeeErzeugen(name, anzahlMenschen)) {
             return false;
-        }        
+        }
         return true;
     }
+
+    /**
+     * Methode aremeeErzeugen, erzeugt eine Armee mit Mensch Objekten aus der Liste
+     * volk. die Anzahl wird über einen Input bestimmt.
+     */
 
     private boolean armeeErzeugen(String name, int anzahlMenschen) {
 
@@ -193,18 +257,23 @@ public class Stadt extends GameObject {
         return true;
     }
     
-    public boolean kaufeStadt(){
-        
+    /**
+     * 
+     * überprüft ob es möglich sein von dieser Stadt aus eine andere zu kaufen
+     * 
+     * @return boolean, ob es möglich sein von dieser Stadt aus eine andere zu kaufen
+     */
+    public boolean kaufeStadt() {
+
         int guthaben = getVorratGUI("Geld");
         int kaufpreis = 200;
-        
-        
-        if(guthaben < kaufpreis){
+
+        if (guthaben < kaufpreis) {
             return false;
-        }       
-              
-                return true;
-        
+        }
+
+        return true;
+
     }
 
     // ------------------------------Getter_Setter------------------------------//
@@ -273,7 +342,5 @@ public class Stadt extends GameObject {
     public void setArmee(Armee armee) {
         this.armee = armee;
     }
-    
-    
 
 }
