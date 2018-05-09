@@ -24,6 +24,9 @@ public class ClientSpielController {
 
     // -------------------------------Constructor--------------------------------//
 
+    /**
+     * ClientSpielController() Konstruktor, Client verbindet sich mit dem Server und man kann das Spiel spielen
+     */
     public ClientSpielController() {
         cltCtrl = new ClientController("DiniMuetter");
         activePlayer = cltCtrl.getPlayer();
