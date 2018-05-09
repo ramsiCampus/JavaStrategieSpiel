@@ -41,7 +41,6 @@ public class Stadt extends GameObject {
         vorratErzeugen("Geld", startKapital);
         menschKaufen(protMensch, 50);
         
-
     }
 
     // -----------------------------------Main-----------------------------------//
