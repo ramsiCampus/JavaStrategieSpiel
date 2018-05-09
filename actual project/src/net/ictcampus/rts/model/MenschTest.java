@@ -1,4 +1,4 @@
-/*package net.ictcampus.rts.model;
+package net.ictcampus.rts.model;
 
 import static org.junit.Assert.assertEquals;
 import java.util.ArrayList;
@@ -24,13 +24,12 @@ class MenschTest {
         m = new Mensch(p, 10);
         m.setxPos(5);
         m.setyPos(5);
-        f = new Feld(5,5);
+        f = new Feld(5, 5);
         r = new Ressource("Geld", 100);
         l = new ArrayList<Item>();
         l.add(r);
         f.setLoot(l);
-        
-        
+
     }
 
     @AfterAll
@@ -58,23 +57,22 @@ class MenschTest {
         assertEquals(m.getPreis().getAnzahl(), 10);
 
     }
-    
+
     @Test
     void testBewegen() {
         /*
          * verschiedene Bewegungen testen
          */
         m.setAusdauer(1);
-        assertEquals(m.bewegen(6, 5),true);
-        assertEquals(m.bewegen(5, 5),true);
-        assertEquals(m.bewegen(5, 6),true);
-        assertEquals(m.bewegen(5, 5),true);
-        assertEquals(m.bewegen(6, 6),false);
-        assertEquals(m.bewegen(7, 5),false);
-        assertEquals(m.bewegen(3, 5),false);
+        assertEquals(m.bewegen(6, 5), true);
+        assertEquals(m.bewegen(5, 5), true);
+        assertEquals(m.bewegen(5, 6), true);
+        assertEquals(m.bewegen(5, 5), true);
+        assertEquals(m.bewegen(6, 6), false);
+        assertEquals(m.bewegen(7, 5), false);
+        assertEquals(m.bewegen(3, 5), false);
     }
-    
-    
+
     @Test
     void testAufnehmen() {
         /*
@@ -119,6 +117,5 @@ class MenschTest {
         }
         assertEquals(anzahl,100);
     }
-    
 
-}*/
+}
