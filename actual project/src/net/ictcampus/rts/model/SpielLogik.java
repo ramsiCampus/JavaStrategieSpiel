@@ -63,7 +63,7 @@ public class SpielLogik {
     	this.protMensch = new Mensch(new Player("Game", -1), 10);
     	
     	//Zweiter Spieler sollte mal noch geändert werden zu Spieler.get(1)
-        this.spiel = new Spiel(20, 10, spieler.get(0), spieler.get(0), protMensch);
+        this.spiel = new Spiel(20, 10, spieler.get(0), spieler.get(1), protMensch);
 
         this.spielfeld = spiel.getSpielFeld();
     	

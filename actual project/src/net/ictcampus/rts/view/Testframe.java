@@ -14,10 +14,16 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
+
+import net.ictcampus.rts.model.Armee;
+import net.ictcampus.rts.model.Mensch;
 import net.ictcampus.rts.model.Spiel;
 import net.ictcampus.rts.model.SpielLogik;
 
 import java.awt.font.*;
+import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 public class Testframe extends JFrame {
 
@@ -201,16 +207,18 @@ public class Testframe extends JFrame {
     }
 
     private void setContentLeft(JPanel contentBorderLeft) {
-        contentBorderLeft.setLayout(new GridLayout(5, 2));
+        contentBorderLeft.setLayout(new GridLayout(6, 2));
 
         contentBorderLeft.setBackground(new Color(92, 255, 150));
-
+        
+        JLabel playername = new JLabel("Du Bist: "+playerId+"");
         menschenAnzahl = new JLabel("-");
         ressourcenAnzahl = new JLabel("-");
         stadtAnzahl = new JLabel("-");
         sammelAnzahl = new JLabel("-");
         menschenInStadtAnzahl = new JLabel("-");
-
+        contentBorderLeft.add(playername);
+        contentBorderLeft.add(new JLabel(""));
         contentBorderLeft.add(new JLabel("Menschen:"));
         contentBorderLeft.add(menschenAnzahl);
         contentBorderLeft.add(new JLabel("Ressourcen:"));
@@ -274,10 +282,14 @@ public class Testframe extends JFrame {
     }
     
     public void disableContentCenter(boolean b) {
-        
-        
         this.getContentBorderCenter().setVisible(!b);
         btnTransportP.setBackground(new Color(255,255,255));
+        if(ready != null) {
+            if(ready) {
+                this.getContentBorderCenter().setVisible(!ready);
+                btnTransportP.setBackground(new Color(255,255,255));
+            }
+        }
         
         
         
@@ -379,6 +391,16 @@ public class Testframe extends JFrame {
             lblVerfuegbareR.setText(spiel.getSpielFeld().getFelder()[ausgewX][ausgewY].getAnzahlRessource()+"");
             lblAnzahlMenschen.setText(spiel.getSpielFeld().getFelder()[ausgewX][ausgewY].countPlayerEinheiten(playerId)+"");
             lblTitelVerfuegbareR.setText("Verfügbare Ressourcen");
+            int counter = 0;
+            for (Armee a : spiel.getSpielFeld().getFelder()[ausgewX][ausgewY].getEinheiten()) {
+                if(a.getBesitzer().getID() == playerId) {
+                    for (Mensch m : a.getArmee()) {
+                        if (m.checkTasche("Geld")>0) {
+                            counter += m.checkTasche("Geld");
+                        }
+                    }
+                }
+            }
         }
         else {
             lblFeldart.setText("Wüste");
@@ -420,12 +442,31 @@ public class Testframe extends JFrame {
     	this.refreshDataLeft();
     	this.refreshDataRight();
     	this.setArmy();
-    	//btnTransportP.removeActionListener(bAl);
     	btnTransportP.removeActionListener(bAl); 
+    	playButton.removeActionListener(bAl);
+    	btnCreateP.removeActionListener(bAl); 
+    	btnBuildC.removeActionListener(bAl); 
     	bAl = new ButtonActionListener(this, spiel);
-    	btnTransportP.addActionListener(bAl); 
+        btnCreateP.addActionListener(bAl);
+        btnBuildC.addActionListener(bAl);
+        playButton.addActionListener(bAl);
+        btnTransportP.addActionListener(bAl); 
     	
     }
+    
+//    public void notYourTurn() {
+//        while(ready) {
+//            System.out.println("disable");
+//            disableContentCenter(true);
+//            try {
+//                TimeUnit.SECONDS.sleep(1);
+//            } catch (InterruptedException e) {
+//                // TODO Auto-generated catch block
+//                e.printStackTrace();
+//            }
+//        }
+//        disableContentCenter(false);
+//    }
     
     //----------------------Getter & Setter-----------------------------
 
@@ -559,6 +600,7 @@ public class Testframe extends JFrame {
     
     public void setReady(boolean ready){
     	Testframe.ready = ready;
+    	disableContentCenter(ready);
     }
 
     public JLabel getLblAnzahlMenschen() {
@@ -571,7 +613,7 @@ public class Testframe extends JFrame {
 
     public void setSpiel(Spiel spiel) {
         this.spiel = spiel;
-        Testframe.ready = false;
+        setReady(false);
         this.updateMapAndInfo();
     }
 }

@@ -53,6 +53,7 @@ public class ButtonActionListener implements ActionListener{
         System.out.println("Command nach Aufruf des PlayButtons: "+command);
         //frame.setCommand(command);
         frame.setReady(true);
+//        frame.notYourTurn();
         System.out.println(frame.getReady());
     }
     

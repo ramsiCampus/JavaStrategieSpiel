@@ -112,7 +112,7 @@ public class Mensch extends GameObject {
         }
     }
 
-    private int checkTasche(String itemName) {
+    public int checkTasche(String itemName) {
         int anzahl = 0;
         for (Item i : tasche) {
             if (i instanceof Ressource) {

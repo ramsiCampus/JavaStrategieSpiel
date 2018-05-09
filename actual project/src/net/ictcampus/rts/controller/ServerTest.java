@@ -37,7 +37,7 @@ public class ServerTest {
         Spiel TestSpiel = new Spiel(20, 10 , testPlayer1, testPlayer2, protoMensch);
         
         
-    	ServerSpielController ssc = new ServerSpielController(1);
+    	ServerSpielController ssc = new ServerSpielController(2);
     	int i = 7;
     	System.out.println("Irgenöppis");
 //    	ssc.sendMessageToAll("2");
