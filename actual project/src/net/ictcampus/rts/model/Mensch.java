@@ -21,7 +21,7 @@ public class Mensch extends GameObject {
     private int lebenspunkt;
     private List<Item> tasche = new ArrayList<Item>();
     private Player besitzer;
-    private Ressource preis = new Ressource("Geld",10);
+    private Ressource preis = new Ressource("Geld", 10);
     private int ausdauer = 1;
 
     // -------------------------------Constructor--------------------------------//
@@ -29,13 +29,9 @@ public class Mensch extends GameObject {
     public Mensch(Player besitzer, int preisZahl) {
         super();
 
-        this.besitzer= besitzer ;
+        this.besitzer = besitzer;
         preis.setAnzahl(preisZahl);
 
-//        this.besitzer = besitzer;
-//        Ressource r = new Ressource("Geld",10);
-//        r.setAnzahl(preisZahl);
-//        this.preis = r;
     }
 
     // -----------------------------------Main-----------------------------------//
@@ -43,8 +39,8 @@ public class Mensch extends GameObject {
     // ---------------------------------Methods---------------------------------//
 
     public boolean bewegen(int xGoal, int yGoal) {
-        int distanz = Math.abs(xPos-xGoal) + Math.abs(yPos-yGoal);
-        if(distanz<=this.ausdauer) {
+        int distanz = Math.abs(xPos - xGoal) + Math.abs(yPos - yGoal);
+        if (distanz <= this.ausdauer) {
             this.xPos = xGoal;
             this.yPos = yGoal;
             return true;
@@ -52,54 +48,54 @@ public class Mensch extends GameObject {
         return false;
     }
 
-//    public void aufnehmen(Feld feld) {
-//        int geld = 0;
-//        List<Item> loot = feld.getLoot();
-//        for(Item it : loot) {
-//            if(it instanceof Ressource) {
-//                if(it.getName().equals("Geld")) {
-//                    geld =((Ressource) it).getAnzahl();
-//                    if (geld > 50) {
-//                        looteGeld(50);
-//                        ((Ressource) it).setAnzahl(geld-50);
-//                    }
-//                    else {
-//                        looteGeld(geld);
-//                        ((Ressource) it).setAnzahl(0);
-//                        //loot.remove(0);                         //hard-coded für Felder die nur Geld haben
-//                        										//JÜNGE! Da dörfsch nöd! Du chasch nöd Sache lösche
-//                        										//wod no am drüberiteriere bisch
-//                    }
-//                }
-//            }
-//        }
-//       
-//    }
-    
+    // public void aufnehmen(Feld feld) {
+    // int geld = 0;
+    // List<Item> loot = feld.getLoot();
+    // for(Item it : loot) {
+    // if(it instanceof Ressource) {
+    // if(it.getName().equals("Geld")) {
+    // geld =((Ressource) it).getAnzahl();
+    // if (geld > 50) {
+    // looteGeld(50);
+    // ((Ressource) it).setAnzahl(geld-50);
+    // }
+    // else {
+    // looteGeld(geld);
+    // ((Ressource) it).setAnzahl(0);
+    // //loot.remove(0); //hard-coded für Felder die nur Geld haben
+    // //JÜNGE! Da dörfsch nöd! Du chasch nöd Sache lösche
+    // //wod no am drüberiteriere bisch
+    // }
+    // }
+    // }
+    // }
+    //
+    // }
+
     public void aufnehmen(Feld feld) {
         int geld = 0;
         boolean leer = false;
         List<Item> loot = feld.getLoot();
-        for(int i=0; i<loot.size(); i++) {
-            if(loot.get(i) instanceof Ressource) {
-                if(loot.get(i).getName().equals("Geld")) {
-                    geld =((Ressource) loot.get(i)).getAnzahl();
+        for (int i = 0; i < loot.size(); i++) {
+            if (loot.get(i) instanceof Ressource) {
+                if (loot.get(i).getName().equals("Geld")) {
+                    geld = ((Ressource) loot.get(i)).getAnzahl();
                     if (geld > 50) {
                         looteGeld(50);
-                        ((Ressource) loot.get(i)).setAnzahl(geld-50);
+                        ((Ressource) loot.get(i)).setAnzahl(geld - 50);
                     }
                     else {
                         looteGeld(geld);
                         leer = true;
-                        loot.remove(i);                         //so tuet mer richtig lösche, oder mit Iterator
+                        loot.remove(i); // so tuet mer richtig lösche, oder mit Iterator
                         break;
                     }
                 }
             }
         }
-       
+
     }
-    
+
     private void looteGeld(int menge) {
         if (checkTasche("Geld") == 0) {
             erzeugeInBeutel("Geld", menge);
@@ -108,14 +104,14 @@ public class Mensch extends GameObject {
             for (Item i : tasche) {
                 if (i instanceof Ressource) {
                     if (i.getName().equals("Geld")) {
-                        int mengeNeu = (checkTasche("Geld")+ menge);
+                        int mengeNeu = (checkTasche("Geld") + menge);
                         ((Ressource) i).setAnzahl(mengeNeu);
                     }
                 }
             }
         }
     }
-    
+
     private int checkTasche(String itemName) {
         int anzahl = 0;
         for (Item i : tasche) {
@@ -127,7 +123,7 @@ public class Mensch extends GameObject {
 
         return anzahl;
     }
-    
+
     private void erzeugeInBeutel(String ressourceName, int menge) {
         Item newRessource = new Ressource(ressourceName, menge);
         this.tasche.add(newRessource);
@@ -190,7 +186,5 @@ public class Mensch extends GameObject {
     public void setAusdauer(int ausdauer) {
         this.ausdauer = ausdauer;
     }
-    
-    
 
 }
