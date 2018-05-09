@@ -71,6 +71,7 @@ public class SpielFeld implements Serializable {
 
                 if (s.kaufeStadt() == true) {
                     thisField.erzeugeStadt(name, spieler, startKapital, protMensch);
+                    s.vorratVerringern("Geld", 200);
                 }
 
             }
