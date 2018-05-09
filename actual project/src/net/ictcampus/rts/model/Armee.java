@@ -10,6 +10,7 @@ import java.util.ArrayList;
  * Klasse Armee
  * 
  * @author lauwrensw
+ * @
  *
  */
 
