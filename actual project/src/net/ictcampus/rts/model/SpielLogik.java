@@ -32,6 +32,9 @@ public class SpielLogik {
 
     // -------------------------------Constructor--------------------------------//
 
+    /**
+     * Konstruktor für lokale Tests
+     */
     public SpielLogik() {
 
         spieler.add(new Player("Game", 0));
@@ -56,6 +59,7 @@ public class SpielLogik {
      * 
      * @param anzahlSpieler
      */
+    
     public SpielLogik(int anzahlSpieler) {
         for (int i = 0; i < anzahlSpieler; i++) {
             spieler.add(new Player("Player_" + i, i));
