@@ -1,4 +1,4 @@
-package net.ictcampus.rts.model;
+/*package net.ictcampus.rts.model;
 
 import static org.junit.Assert.assertEquals;
 import java.util.ArrayList;
@@ -121,4 +121,4 @@ class MenschTest {
     }
     
 
-}
+}*/

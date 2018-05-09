@@ -98,9 +98,8 @@ public class ServerSpielController {
 	
 	public boolean areClientsReadyToGetGame(){
 		sendMessageToAll("2");
-		System.out.println("TFFFFFFF?");
 		getCommands();
-		printCommands();
+		//printCommands();
 		for(int i=0; i<this.anzSpieler; i++){
 			if(this.commands[i][1]!=0) { return false; }
 		}
@@ -129,6 +128,7 @@ public class ServerSpielController {
 		}
 		System.out.println("sending game");
 		sendGameToAll(spielLogik.getSpiel());
+		System.out.println("DAT FELD auf dem Server: "+spielLogik.getSpiel().getSpielFeld().getFelder()[11][8].countPlayerEinheiten(0));
 	}
 	
 	public void play(){
