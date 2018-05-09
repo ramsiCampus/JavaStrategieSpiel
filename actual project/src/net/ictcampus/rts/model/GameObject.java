@@ -1,9 +1,13 @@
 //packages
+
 package net.ictcampus.rts.model;
-import java.io.Serializable;
+
 //imports
+
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
 /**
  * GameObject,
  * 
@@ -16,7 +20,6 @@ public class GameObject implements Serializable {
 
     private static int counter;
     private static List<GameObject> alleObj = new ArrayList<GameObject>();
-//    private int staerke;
     private int ID;
 
     // -------------------------------Constructor--------------------------------//
