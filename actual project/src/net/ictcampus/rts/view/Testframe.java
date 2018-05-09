@@ -383,6 +383,7 @@ public class Testframe extends JFrame {
             lblVerfuegbareR.setText(spiel.getSpielFeld().getFelder()[ausgewX][ausgewY].getStadt().getVorratGUI("Geld")+"");
             lblAnzahlMenschen.setText(spiel.getSpielFeld().getFelder()[ausgewX][ausgewY].getStadt().getVolk().size()+"");
             lblTitelVerfuegbareR.setText("Anz. Ressourcen im Lager");
+            lblGesammelteR.setText("-");
             
         }
         else if(spiel.getSpielFeld().getFelder()[ausgewX][ausgewY].getLoot().size() > 0) {
@@ -401,12 +402,24 @@ public class Testframe extends JFrame {
                     }
                 }
             }
+            lblGesammelteR.setText(counter+"");
         }
         else {
             lblFeldart.setText("Wüste");
             lblBesitzer.setText("-");
             lblVerfuegbareR.setText("-");
             lblAnzahlMenschen.setText(spiel.getSpielFeld().getFelder()[ausgewX][ausgewY].countPlayerEinheiten(playerId)+"");
+            int counter = 0;
+            for (Armee a : spiel.getSpielFeld().getFelder()[ausgewX][ausgewY].getEinheiten()) {
+                if(a.getBesitzer().getID() == playerId) {
+                    for (Mensch m : a.getArmee()) {
+                        if (m.checkTasche("Geld")>0) {
+                            counter += m.checkTasche("Geld");
+                        }
+                    }
+                }
+            }
+            lblGesammelteR.setText(counter+"");
         }
     }
     
