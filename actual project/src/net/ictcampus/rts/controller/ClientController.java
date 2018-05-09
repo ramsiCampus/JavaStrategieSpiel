@@ -86,7 +86,7 @@ public class ClientController extends Thread{
     // ---------------------------------Methods---------------------------------//
 
     /**
-     * 
+     * sendCommand() der Client sendet ein Kommando an den Server
      * @param playerID
      * @param action
      * @param xCoord
@@ -108,7 +108,7 @@ public class ClientController extends Thread{
     }
     
     /**
-     * Empfängt eine Nachricht (was nur eine Zahl ist, siehe Protokoll) vom Server
+     *  getMessageFromServer() Empfängt eine Nachricht (was nur eine Zahl ist, siehe Protokoll) vom Server
      * @return die Nachricht
      */
     public String getMessageFromServer() {
@@ -124,14 +124,14 @@ public class ClientController extends Thread{
     	}
     	return msg.trim();
     }
-    
+    /**
+     * getGameStateFromServer() Client empfängt das Spiel vom Server
+     * @return das Spiel
+     */
     
     public Spiel getGameStateFromServer() {
         Spiel netzspiel =null;    
         try {
-            //DataInputStream dis = new DataInputStream(socket.getInputStream());
-            
-            
              Object temp = istream.readObject();
              System.out.println("::gelesen");
              netzspiel = (Spiel)temp;
@@ -147,7 +147,8 @@ public class ClientController extends Thread{
     }
     
     /**
-     * testemethode
+     * getZurli() testmethode mit einem "kleinen" testobjekt zum überprüfen, ob das versenden im Datastream funktioniert
+     * @return testobjekt
      */
     public SmallSerial getZurli() {
         //SmallSerial zurli = null;    
@@ -170,7 +171,7 @@ public class ClientController extends Thread{
     }
     
     /**
-     * empfängt messages vom Server und vollführt die entsprechende Aktion des Protokolls
+     * run() empfängt messages vom Server und vollführt die entsprechende Aktion des Protokolls
      */
     public void run() {
         System.out.println("protocol loop started");
