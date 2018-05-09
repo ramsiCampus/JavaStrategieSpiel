@@ -83,7 +83,6 @@ public class Stadt extends GameObject {
      * @param todesOpfer,
      *            anzahl als int von Menschen, die entfernt werden
      */
-
     public void menschenDezimieren(int todesOpfer) {
 
         if (todesOpfer >= volk.size()) {
