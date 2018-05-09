@@ -39,6 +39,8 @@ class MenschTest {
     static void tearDownAfterClass() throws Exception {
         p = null;
         m = null;
+        f = null;
+        l = null;
     }
 
     @BeforeEach
@@ -51,6 +53,9 @@ class MenschTest {
 
     @Test
     void testMensch() {
+        /*
+         * Standard Konstruktor test
+         */
         assertEquals(m.getBesitzer(), p);
         assertEquals(m.getPreis().getAnzahl(), 10);
 
@@ -58,6 +63,10 @@ class MenschTest {
     
     @Test
     void testBewegen() {
+        /*
+         * verschiedene Bewegungen testen
+         */
+        m.setAusdauer(1);
         assertEquals(m.bewegen(6, 5),true);
         assertEquals(m.bewegen(5, 5),true);
         assertEquals(m.bewegen(5, 6),true);
@@ -70,6 +79,9 @@ class MenschTest {
     
     @Test
     void testAufnehmen() {
+        /*
+         * Feld mit 100 Geld plündern
+         */
         m.aufnehmen(f);
         assertEquals(f.getAnzahlRessource(),50);
         int anzahl = 0;
@@ -81,7 +93,9 @@ class MenschTest {
         }
         assertEquals(anzahl,50);
         
-        
+        /*
+         * Feld mit 50 geld leeren
+         */
         m.aufnehmen(f);
         assertEquals(f.getLoot().size(),0);
         anzahl = 0;
@@ -93,7 +107,9 @@ class MenschTest {
         }
         assertEquals(anzahl,100);
         
-        
+        /*
+         * leeres feld looten
+         */
         m.aufnehmen(f);
         assertEquals(f.getLoot().size(),0);
         anzahl = 0;
