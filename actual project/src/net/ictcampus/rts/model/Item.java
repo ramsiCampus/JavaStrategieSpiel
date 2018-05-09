@@ -1,12 +1,14 @@
 //packages
+
 package net.ictcampus.rts.model;
+
 //imports
 
 /**
  * Class Item,
  * 
  * @author lauwrensw
- *
+ * @version 1.0
  */
 public class Item extends GameObject{
 
@@ -20,7 +22,6 @@ public class Item extends GameObject{
         super();
         this.name = name;
     }
-
 
     // -----------------------------------Main-----------------------------------//
 
