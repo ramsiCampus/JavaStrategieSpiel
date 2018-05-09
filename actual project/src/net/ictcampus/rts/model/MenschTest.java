@@ -3,6 +3,9 @@ package net.ictcampus.rts.model;
 import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -13,6 +16,9 @@ class MenschTest {
 
     private static Player p;
     private static Mensch m;
+    private static Feld f;
+    private static Ressource r;
+    private static List<Item> l;
 
     @BeforeAll
     static void setUpBeforeClass() throws Exception {
@@ -20,6 +26,13 @@ class MenschTest {
         m = new Mensch(p, 10);
         m.setxPos(5);
         m.setyPos(5);
+        f = new Feld(5,5);
+        r = new Ressource("Geld", 100);
+        l = new ArrayList<Item>();
+        l.add(r);
+        f.setLoot(l);
+        
+        
     }
 
     @AfterAll
@@ -54,11 +67,44 @@ class MenschTest {
         assertEquals(m.bewegen(3, 5),false);
     }
     
-    /*
+    
     @Test
     void testAufnehmen() {
-        fail("Not yet implemented");
+        m.aufnehmen(f);
+        assertEquals(f.getAnzahlRessource(),50);
+        int anzahl = 0;
+        for (Item i : m.getTasche()) {
+            if (i instanceof Ressource) {
+                if (i.getName().equals("Geld"))
+                    anzahl += ((Ressource) i).getAnzahl();
+            }
+        }
+        assertEquals(anzahl,50);
+        
+        
+        m.aufnehmen(f);
+        assertEquals(f.getLoot().size(),0);
+        anzahl = 0;
+        for (Item i : m.getTasche()) {
+            if (i instanceof Ressource) {
+                if (i.getName().equals("Geld"))
+                    anzahl += ((Ressource) i).getAnzahl();
+            }
+        }
+        assertEquals(anzahl,100);
+        
+        
+        m.aufnehmen(f);
+        assertEquals(f.getLoot().size(),0);
+        anzahl = 0;
+        for (Item i : m.getTasche()) {
+            if (i instanceof Ressource) {
+                if (i.getName().equals("Geld"))
+                    anzahl += ((Ressource) i).getAnzahl();
+            }
+        }
+        assertEquals(anzahl,100);
     }
-    */
+    
 
 }
