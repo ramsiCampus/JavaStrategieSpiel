@@ -19,7 +19,11 @@ public class ClientTest {
     // -------------------------------Constructor--------------------------------//
 
     // -----------------------------------Main-----------------------------------//
-	public static void main(String[] args) {
+	/**
+	 * mainmethode
+	 * @param args
+	 */
+    public static void main(String[] args) {
 	    ClientSpielController cSC = new ClientSpielController();
 	}
 	

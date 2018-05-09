@@ -48,7 +48,7 @@ public class ClientSocketFactory {
     }
     
     /**
-     * methode createClientSocket überladen mit einer angabe für port
+     * createClientSocket() überladen mit einer angabe für port
      * @param porterino int für port
      * @return socket
      */
