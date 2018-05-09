@@ -127,11 +127,13 @@ public class SpielLogik {
     // ---------------------------------Methods---------------------------------//
 
     public boolean commandAusfuehren(int[] command) {
-        
+        System.out.println("command wird ausgeführt: "+command[0]+" "+command[1]);
         if(command.length != 7){
             return false;
         }
         
+//        System.out.println("Menschen auf Feld 11 1 vor Befehl: "+this.spielfeld.getFelder()[8][11].getEinheiten()==null);
+//        System.out.println("mit countPlayerEinheiten: "+this.spielfeld.getFelder()[11][8].countPlayerEinheiten(0));
         switch(command[1]){
         
         case(1):
@@ -162,6 +164,8 @@ public class SpielLogik {
             break;
         }
         
+        
+        //System.out.println("mit countPlayerEinheiten: "+this.spielfeld.getFelder()[11][8].countPlayerEinheiten(0));
         return true;
 
     }

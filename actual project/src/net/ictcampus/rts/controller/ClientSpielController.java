@@ -75,9 +75,9 @@ public class ClientSpielController {
 
     public void supiDupiGame() {
         while (true) {
-            tF.setSpiel(spiel);
             waitForCommand();
             waitForGame();
+            tF.setSpiel(spiel);
         }
     }
 

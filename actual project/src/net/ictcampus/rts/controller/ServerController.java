@@ -96,7 +96,7 @@ public class ServerController {
     
     public void sendGameStateToAll(Spiel spiel) throws IOException {
     	for(int i=0; i<connections.size(); i++) {
-    		
+    		osw.get(i).reset();
 	    	osw.get(i).writeObject(spiel);
 	    	osw.get(i).flush();
 	    		

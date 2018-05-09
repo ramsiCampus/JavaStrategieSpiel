@@ -59,28 +59,26 @@ public class ClientController extends Thread{
         // Setup networking
         socket = ClientSocketFactory.createClientSocket();
         dataSocket = ClientSocketFactory.createClientSocket(54270);
-        System.out.println("sldfjklsjd");
         try{
         	DataInputStream dis = new DataInputStream(socket.getInputStream());
 	    	InputStreamReader isr = new InputStreamReader(dis);
 	    	br = new BufferedReader(isr);
-	    	
+	    	System.out.println("Datainput stream opened");
 	    	DataOutputStream os = new DataOutputStream(socket.getOutputStream());
             OutputStreamWriter osw = new OutputStreamWriter(os);
             bw = new BufferedWriter(osw);
+            System.out.println("Dataoutput stream opened");
 	    	
         	InputStream ipstr = new DataInputStream(dataSocket.getInputStream());
         	istream = new ObjectInputStream(new BufferedInputStream(ipstr));
     	} catch (IOException e) {
     		e.printStackTrace();
     	}
-        System.out.println("dddddddddddddddd");
         message = this.getMessageFromServer();
-        System.out.println(message);
         player = new Player(name, Integer.parseInt(message));
         message = "";
         
-        System.out.println("OK GOT IT");
+        System.out.println("ClientController successfully initialised");
     }
 
     // -----------------------------------Main-----------------------------------//
@@ -132,7 +130,7 @@ public class ClientController extends Thread{
      */
     
     public Spiel getGameStateFromServer() {
-        Spiel netzspiel = null;    
+        Spiel netzspiel =null;    
         try {
              Object temp = istream.readObject();
              System.out.println("::gelesen");
@@ -143,7 +141,7 @@ public class ClientController extends Thread{
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        System.out.println("Dini Muetter esch en respektabli Frau");
+        
         return netzspiel;
         
     }
@@ -176,7 +174,7 @@ public class ClientController extends Thread{
      * empfängt messages vom Server und vollführt die entsprechende Aktion des Protokolls
      */
     public void run() {
-        
+        System.out.println("protocol loop started");
         while(!done) {
             message = getMessageFromServer();
             if(message.equals("0")) {
@@ -199,6 +197,7 @@ public class ClientController extends Thread{
                     String response = Integer.toString(player.getID())+",0,0,0,0,0,0";
                     this.sendCommand(response);
                     ClientController.netzSpiel = getGameStateFromServer();
+                    System.out.println("DAT FELD in cltctrl: "+ClientController.netzSpiel.getSpielFeld().getFelder()[11][8].countPlayerEinheiten(0));
                     gameIsReady = true;
                 } else {
                     String response = Integer.toString(player.getID())+",-1,0,0,0,0,0";
@@ -209,8 +208,7 @@ public class ClientController extends Thread{
 //                System.out.println(zurli.zahl);
             }
         }
-        System.out.println("gzgzgzgzgzgzgzgzg");
-        System.out.println(done);
+        System.out.println("Variable done is "+done+". Ending thread now.");
     }
     
     public void close() {

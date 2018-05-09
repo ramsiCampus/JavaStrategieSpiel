@@ -26,7 +26,7 @@ public class Testframe extends JFrame {
     private JPanel title;
     private ButtonField[][] field;
     private Testdata testdata = new Testdata();
-    private Spiel spiel;
+    private static volatile Spiel spiel;
     private SpielLogik spielLogik;
 
     private JLabel titleRight = new JLabel();
@@ -418,6 +418,7 @@ public class Testframe extends JFrame {
     	this.setBackgroundImg();
     	this.refreshDataLeft();
     	this.refreshDataRight();
+    	this.setArmy();
     }
     
     //----------------------Getter & Setter-----------------------------
