@@ -68,6 +68,7 @@ public class Testframe extends JFrame {
     private int playerId = 1;
 
     private JavalisationActionLinstener jAl;
+    private ButtonActionListener bAl;
 
     /**
      * What was that for?
@@ -111,7 +112,7 @@ public class Testframe extends JFrame {
         title = new JPanel();
 
         jAl = new JavalisationActionLinstener(this);
-
+        bAl = new ButtonActionListener(this, spiel);
         addFieldButtons();
         aktiverButton();
         setContent();
@@ -186,7 +187,7 @@ public class Testframe extends JFrame {
         JLabel titleLeft = new JLabel("Spielerinfo");
         JLabel titleCenter = new JLabel("Ausgewähltes Feld: ");
         playButton = new JButton("Play");
-        playButton.addActionListener(new ButtonActionListener(this, this.spiel));
+        playButton.addActionListener(bAl);
 
         Font font = new Font("Calibri", 1, 40);
         titleLeft.setFont(font);
@@ -233,9 +234,9 @@ public class Testframe extends JFrame {
         btnBuildC = new JButton("Stadt bauen");
         btnTransportP = new JButton("Menschen transportieren");
         
-        btnCreateP.addActionListener(new ButtonActionListener(this, spiel));
-        btnBuildC.addActionListener(new ButtonActionListener(this, spiel));
-        btnTransportP.addActionListener(new ButtonActionListener(this, spiel));     
+        btnCreateP.addActionListener(bAl);
+        btnBuildC.addActionListener(bAl);
+        btnTransportP.addActionListener(bAl);     
         
         txtCreateP = new JTextField();
         txtTransportPkoo = new JTextField();
@@ -419,6 +420,11 @@ public class Testframe extends JFrame {
     	this.refreshDataLeft();
     	this.refreshDataRight();
     	this.setArmy();
+    	//btnTransportP.removeActionListener(bAl);
+    	btnTransportP.removeActionListener(bAl); 
+    	bAl = new ButtonActionListener(this, spiel);
+    	btnTransportP.addActionListener(bAl); 
+    	
     }
     
     //----------------------Getter & Setter-----------------------------

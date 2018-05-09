@@ -132,6 +132,8 @@ public class ButtonActionListener implements ActionListener{
                 int x = Integer.parseInt(coordinateArr[1]);
                 int y = 9-Integer.parseInt(coordinateArr[0]);
                 coordinateArr[0] = Integer.toString(y);
+                System.out.println("PlayerID: "+frame.getPlayerId()+"  X: "+frame.getAusgewX()+" Y: "+frame.getAusgewY());
+                System.out.println("Wie viu Lütli druffe: "+field.getEinheiten().size()+"");
                 if (field.countPlayerEinheiten(frame.getPlayerId()) <= 0) {
                     throw new InvalidAttributeValueException("No people on the selected field.");
                 }
