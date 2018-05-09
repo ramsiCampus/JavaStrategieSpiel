@@ -147,9 +147,9 @@ public class Stadt extends GameObject {
     public void wirdBetreten(Armee armee) {
 
         if (armee.getBesitzer().equals(this.besitzer)) {
-            for (Mensch mensch : armee.getArmee()) {
-                wirdBetreten(mensch);
-                armee.getArmee().remove(mensch);
+            while(armee.getArmee().size()>0) {
+                wirdBetreten(armee.getArmee().get(0)); //Ein Mensch nach dem anderen betritt die Stadt
+                armee.getArmee().remove(0);
             }
         }
     }
