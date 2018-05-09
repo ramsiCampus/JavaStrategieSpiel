@@ -126,14 +126,14 @@ public class ClientController extends Thread{
     	}
     	return msg.trim();
     }
-    
+    /**
+     * Client empfängt das Spiel vom Server
+     * @return das Spiel
+     */
     
     public Spiel getGameStateFromServer() {
         Spiel netzspiel = null;    
         try {
-            //DataInputStream dis = new DataInputStream(socket.getInputStream());
-            
-            
              Object temp = istream.readObject();
              System.out.println("::gelesen");
              netzspiel = (Spiel)temp;
@@ -149,7 +149,8 @@ public class ClientController extends Thread{
     }
     
     /**
-     * testemethode
+     * testmethode mit einem "kleinen" testobjekt zum überprüfen, ob das versenden im Datastream funktioniert
+     * @return testobjekt
      */
     public SmallSerial getZurli() {
         //SmallSerial zurli = null;    

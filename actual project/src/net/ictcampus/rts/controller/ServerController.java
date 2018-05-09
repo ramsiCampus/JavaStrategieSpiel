@@ -24,7 +24,7 @@ import java.net.Socket;
 /**
  *ServerController, öffnet Serversocket...
  * 
- * @author Johanna
+ * @author kerstingk
  * @version 1.0
  */
 public class ServerController {
@@ -50,11 +50,8 @@ public class ServerController {
         	    System.out.println("data connection accepted");
         	    this.sendMessageToClient(connections.get(i), Integer.toString(i));
         	    
-        	    //OutputStream opstr = new DataOutputStream();
         	    ObjectOutputStream oos = new ObjectOutputStream(datasend.get(i).getOutputStream());
-        	    //DataOutputStream dos = new DataOutputStream(connections.get(i).getOutputStream());
         	    
-        	    //oos.reset();
         	    osw.add(oos);
         	    
         	}
