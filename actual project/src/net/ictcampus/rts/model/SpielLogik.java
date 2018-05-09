@@ -59,18 +59,9 @@ public class SpielLogik {
      * 
      * @param anzahlSpieler
      */
-    
+
     public SpielLogik(int anzahlSpieler) {
-<<<<<<< HEAD
-    	for(int i=0; i<anzahlSpieler; i++){
-    		spieler.add(new Player("Player_"+i, i));
-    	}
-    	
-    	this.protMensch = new Mensch(new Player("Game", -1), 10);
-    	
-    	//Zweiter Spieler sollte mal noch geändert werden zu Spieler.get(1)
-        this.spiel = new Spiel(20, 10, spieler.get(0), spieler.get(1), protMensch);
-=======
+
         for (int i = 0; i < anzahlSpieler; i++) {
             spieler.add(new Player("Player_" + i, i));
         }
@@ -78,8 +69,7 @@ public class SpielLogik {
         this.protMensch = new Mensch(new Player("Game", -1), 10);
 
         // Zweiter Spieler sollte mal noch geändert werden zu Spieler.get(1)
-        this.spiel = new Spiel(20, 10, spieler.get(0), spieler.get(0), protMensch);
->>>>>>> e10c250ae72450033fc5bf904d40d7678a81709a
+        this.spiel = new Spiel(20, 10, spieler.get(0), spieler.get(1), protMensch);
 
         this.spielfeld = spiel.getSpielFeld();
 
