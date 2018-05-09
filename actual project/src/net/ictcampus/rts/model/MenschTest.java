@@ -1,8 +1,6 @@
 package net.ictcampus.rts.model;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.jupiter.api.Assertions.*;
-
 import java.util.ArrayList;
 import java.util.List;
 
